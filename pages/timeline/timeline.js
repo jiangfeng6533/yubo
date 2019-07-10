@@ -1,19 +1,11 @@
-// pages/index/index.js
-
-//index.js
-var wxCharts = require('../../utils/wxcharts.js');
-var global = require('../../Model/global.js');
-//获取应用实例
-const app = getApp()
-
+// pages/timeline/timeline.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
+
   },
 
   /**
@@ -22,13 +14,11 @@ Page({
   onLoad: function (options) {
 
   },
-  toaddorder:function(){
-    wx.navigateTo({
-      url: '../Order/add',
+  toback:function(){
+    wx.redirectTo({
+      url: '/pages/index/index',
     })
-    
   },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成

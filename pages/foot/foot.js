@@ -1,19 +1,15 @@
-// pages/index/index.js
-
-//index.js
-var wxCharts = require('../../utils/wxcharts.js');
+// pages/foot/foot.js
+var app = getApp();
 var global = require('../../Model/global.js');
-//获取应用实例
-const app = getApp()
-
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
+  
 
   /**
    * 页面的初始数据
    */
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
+
   },
 
   /**
@@ -21,14 +17,29 @@ Page({
    */
   onLoad: function (options) {
 
-  },
-  toaddorder:function(){
-    wx.navigateTo({
-      url: '../Order/add',
-    })
+    var that = this;
+    //获取专车订单状态
+    global.http.nopostReq(
+      global.Configs.getfoot,
+      { pid: '' },
+      function (data) {
+        if(data.data.ret == 200){
+          console.log('carlong', data)
+          that.setData({
+            footcontent: data.data.data
+          })
+          var article = data.data.data.content;
+          WxParse.wxParse('article', 'html', article, that, 5);
+        }
+      });
+    
     
   },
-
+  toback: function () {
+    wx.redirectTo({
+      url: '/pages/index/index',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

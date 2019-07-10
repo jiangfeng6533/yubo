@@ -1,19 +1,11 @@
-// pages/index/index.js
-
-//index.js
-var wxCharts = require('../../utils/wxcharts.js');
-var global = require('../../Model/global.js');
-//获取应用实例
-const app = getApp()
-
+// pages/manger/sick.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
+
   },
 
   /**
@@ -22,13 +14,6 @@ Page({
   onLoad: function (options) {
 
   },
-  toaddorder:function(){
-    wx.navigateTo({
-      url: '../Order/add',
-    })
-    
-  },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成
