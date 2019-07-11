@@ -4,34 +4,38 @@
 </cu-custom>
 
 <form>
-  <view class="cu-form-group margin-top">
-    <view class="title">客户名称</view>
-    <input placeholder="请输入客户名称"></input>
-  </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">客户级别</view>
-    <picker bindchange="PickerChange"  range="{{picker}}">
+    <picker bindchange="Changegrade"  range="{{clientgrade}}" >
       <view class="picker">
-        {{index?picker[index]:'请选择客户级别'}}
+        {{clientgrade[grade]?clientgrade[grade]:'请选择客户级别'}}
       </view>
     </picker>
   </view>
-
+  <view class="cu-form-group margin-top">
+    <view class="title">客户名称</view>
+    <input placeholder="请输入客户名称" bindtap='selectclient' bindinput="getclientname" disabled='{{grade>0?true:false}}' value="{{cname}}"></input>
+  </view>
   <view class="cu-form-group margin-top">
     <view class="title">联系电话</view>
-    <input placeholder="请输入联系电话"></input>
+    <input placeholder="请输入联系电话" bindtap='selectclient' disabled='{{grade>0?true:false}}' value="{{cphone}}"></input>
   </view>
 
   <view class="cu-form-group margin-top">
-    <view class="title">报价费用</view>
+    <view class="title">维修费用</view>
     <input placeholder="请输入报价费用"></input>
   </view>
 
   <view class="cu-form-group margin-top">
-    <view class="title">预计维修时间</view>
+    <view class="title">预计取机时间</view>
     <input placeholder="请输入预计维修时间"></input>
     <text class=" text-blue">天</text>
+  </view>
+
+  <view class="cu-form-group margin-top">
+    <view class="title">设备名称</view>
+    <input placeholder="请输入设备名称"></input>
   </view>
 
   <view class="cu-form-group margin-top">

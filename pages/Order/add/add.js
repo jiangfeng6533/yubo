@@ -1,6 +1,6 @@
-// pages/Order/add.js
-var wxCharts = require('../../utils/wxcharts.js');
-var global = require('../../Model/global.js');
+// pages/Order/add/add.js
+var wxCharts = require('../../../utils/wxcharts.js');
+var global = require('../../../Model/global.js');
 //获取应用实例
 const app = getApp()
 
@@ -12,7 +12,8 @@ Page({
   data: {
     index: null,
     imgList: [],
-    picker: ['零散客户', '大客户'],
+    clientgrade: ['零散客户', '大客户'],
+    grade:0,
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -24,11 +25,19 @@ Page({
   onLoad: function (options) {
 
   },
-  PickerChange(e) {
+  Changegrade(e) {
     console.log(e);
+    let grade = e.detail.value;
     this.setData({
-      index: e.detail.value
+      grade: grade
     })
+    if (grade == 1){
+      this.setData({
+        cname:null,
+        cphone:null,
+        cid:null
+      })
+    }
   },
   ChooseImage() {
     wx.chooseImage({
@@ -80,12 +89,11 @@ Page({
       textareaBValue: e.detail.value
     })
   },
-  toadd:function()
-  {
+  toadd: function () {
     wx.showModal({
       title: '提示',
       content: '添加成功',
-      showCancel:false,
+      showCancel: false,
       success(res) {
         if (res.confirm) {
           wx.redirectTo({
@@ -97,6 +105,31 @@ Page({
           })
         }
       }
+    })
+  },
+  selectclient(){
+    if (this.data.grade >0){
+      wx.navigateTo({
+        url: '../select-client/client',
+      })
+    }else{
+
+    }
+  },
+  resclientinfo(audit){
+    console.log('add-audit',audit);
+    this.setData({
+      cname: audit.name,
+      cphone: audit.phone,
+      cid: audit.cid
+    })
+  },
+  getclientname(e){
+    var that = this;
+    var key = e.detail.value;
+    console.log('name',key);
+    this.setData({
+      cname: key
     })
   },
   /**

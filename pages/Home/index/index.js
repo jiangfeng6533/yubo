@@ -14,7 +14,7 @@ Component({
     
     toorderlist: function () {
       wx.navigateTo({
-        url: '/pages/Order/list',
+        url: '/pages/Order/list/list',
       })
     },
     toUser: function () {

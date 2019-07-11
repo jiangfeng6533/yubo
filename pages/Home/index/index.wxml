@@ -55,7 +55,7 @@
   <view class="padding-sm cc">
   <view class="cu-capsule round padding-sm">
     <view class="cu-tag bg-blue ">
-      当日营业额
+      当日利润
     </view>
     <view class="cu-tag line-blue">
       16666
@@ -65,12 +65,6 @@
 </view>
 
 <view class="padding-ms grid col-2" style="margin-top:40rpx;">
-  <view class="padding-sm">
-    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-      <view class="text-lg">大客户设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
-    </view>
-  </view>
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">未修好设备总数</view>
@@ -86,6 +80,12 @@
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">失联设备总数</view>
+      <view class="margin-top-sm text-Abc">XXX</view>
+    </view>
+  </view>
+  <view class="padding-sm">
+    <view class="bg-gradual-blue padding radius text-center shadow-blur">
+      <view class="text-lg">大客户欠单总数</view>
       <view class="margin-top-sm text-Abc">XXX</view>
     </view>
   </view>

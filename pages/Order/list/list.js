@@ -1,6 +1,6 @@
-// pages/Order/list.js
-var wxCharts = require('../../utils/wxcharts.js');
-var global = require('../../Model/global.js');
+// pages/Order/list/list.js
+var wxCharts = require('../../../utils/wxcharts.js');
+var global = require('../../../Model/global.js');
 //获取应用实例
 const app = getApp()
 
@@ -40,12 +40,12 @@ Page({
   onShow: function () {
 
   },
-  toorderview:function(e){
+  toorderview: function (e) {
     console.log(e);
     var oid = e.currentTarget.dataset.oid;
     console.log(oid);
     wx.navigateTo({
-      url:"/pages/Order/view/view"
+      url: "/pages/Order/view/view"
     })
   },
   /**

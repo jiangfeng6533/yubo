@@ -1,12 +1,43 @@
 <!--pages/login/login.wxml-->
-<view class="ub ub-pc">
-  <image src='/images/medicalban.jpg' mode='widthFix' style="margin:0 auto;width:100%;"></image><!-- 默认图片 -->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"></cu-custom>
+<view class=" padding-xs flex align-center">
+
+  <view class="flex-sub padding ">
+    <view class=" text-xxl ">
+      <text class="text-black  text-bold">登录</text>
+    </view>
+    <view class="margin-top">请按照管理账号登录</view>
+  </view>
 </view>
 
-<view class="btn-area" id="buttonContainer">
-      <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"  style="width:90%">
-        <view class="fa fa-wechat"></view>
-        微信用户一键登录
-      </button>
-      
-</view>
+<form class="bg-white ">
+  <view class="cu-form-group margin-top">
+    <view class="title">用户</view>
+    <input placeholder="请输入名称"></input>
+  </view>
+
+  <view class="cu-form-group ">
+    <view class="title">密码</view>
+    <input placeholder="请输入密码" password="true"></input>
+  </view>
+
+
+  <view class="flex flex-wrap ub-pc margin-top">
+    <view class="basis-xl    radius">
+      <button class="cu-btn block bg-blue margin-tb-sm lg button-hover radius">登录</button>
+    </view>
+  </view>
+  <view class="flex flex-wrap ub-pc ">
+    <view class="basis-xl radius">
+      <view class="flex justify-between">
+        <view class="text-blue">
+          注册
+        </view>
+        <view class="text-blue">
+          忘记密码
+        </view>
+      </view>
+    </view>
+  </view>
+
+</form>

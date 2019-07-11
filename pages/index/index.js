@@ -22,8 +22,11 @@ Page({
     })
   },
   toaddorder: function () {
+    this.setData({
+      goingModal: false
+    });
     wx.navigateTo({
-      url: '/pages/Order/add',
+      url: '/pages/Order/add/add',
     })
 
   },
@@ -31,6 +34,21 @@ Page({
     wx.navigateTo({
       url: '/pages/Client/client/client',
     })
+  },
+  tologin(){
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
+  going(){
+    this.setData({
+      goingModal:true
+    });
+  },
+  goingModalHide(){
+    this.setData({
+      goingModal: false
+    });
   }
   
 })

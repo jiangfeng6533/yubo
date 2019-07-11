@@ -1,4 +1,4 @@
-/* pages/Order/list.wxss */
+/* pages/Order/list/list.wxss */
 .content text{
   font-size: 0.7rem;
 }

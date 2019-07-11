@@ -1,4 +1,29 @@
 
+<view class="cu-modal {{goingModal?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">选择类别</view>
+      <view class="action" bindtap="goingModalHide">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <view class="content">
+        <button class="cu-btn bg-blue button-hover" bindtap='toaddorder'>维修</button>
+      </view>
+      <view class="content margin-top">
+        <button class="cu-btn bg-cyan">销售</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+
+
 <home wx:if="{{PageCur=='home'}}"></home>
 <user wx:if="{{PageCur=='user'}}"></user>
 
@@ -11,11 +36,11 @@
     <view class="action {{PageCur=='classify'?'text-green':'text-gray'}}" bindtap="toclient">
       <view class="icon-similar"></view> 客户
     </view>
-    <view class="action {{PageCur=='add'?'text-green':'text-gray'}} add-action" bindtap="toaddorder" >
+    <view class="action {{PageCur=='add'?'text-green':'text-gray'}} add-action"  bindtap="going" >
       <button class="cu-btn icon-add bg-green shadow" ></button>
       开单
     </view>
-    <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="NavChange" data-cur="home">
+    <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="tologin" data-cur="home">
       <view class="icon-cart">
         <view class="cu-tag badge" bindtap="NavChange">99</view>
       </view>

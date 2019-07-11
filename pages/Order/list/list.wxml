@@ -1,4 +1,4 @@
-<!--pages/Order/list.wxml-->
+<!--pages/Order/list/list.wxml-->
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
   <view slot="backText" bindtap='toback'>返回</view>
   <view slot="content">订单列表</view>
@@ -173,7 +173,3 @@
   
 </view>
 <!-- 循环体结束 -->
-
-
-
-
