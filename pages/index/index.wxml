@@ -1,114 +1,27 @@
-<cu-custom bgColor="bg-gradual-blue">
-  <view slot="content">宇博机电</view>
-</cu-custom>
 
-<!-- 搜索 -->
-<view class="cu-bar search bg-white">
-  <view class="search-form round">
-    <text class="icon-search"></text>
-    <input type="text" placeholder="　搜索编号、客户名称" confirm-type="search"></input>
-  </view>
-  <view class="action">
-    <button class="cu-btn bg-green shadow-blur round">搜索</button>
-  </view>
-</view>
-
-<view class="cu-bar bg-white margin-top  solid-bottom">
-  <view class="action">
-    <text class="icon-title text-blue"></text>日期：2019-07-09 22:27
-  </view>
-</view>
-
-<view class=" bg-white grid col-2">
-  <view class="padding-sm cc">
-  <view class="cu-capsule round padding-sm" >
-    <view class="cu-tag bg-blue ">
-      当日送机总数
-    </view>
-    <view class="cu-tag line-blue">
-      123
-    </view>
-  </view>
-  </view>
-  <view class="padding-sm cc">
-  <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
-      当日取机总数
-    </view>
-    <view class="cu-tag line-blue">
-      123
-    </view>
-  </view>
-  </view>
-  <view class="padding-sm cc">
-  <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
-      当日营业额
-    </view>
-    <view class="cu-tag line-blue">
-      16666
-    </view>
-  </view>
-  </view>
-  <view class="padding-sm cc">
-  <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
-      当日营业额
-    </view>
-    <view class="cu-tag line-blue">
-      16666
-    </view>
-  </view>
-  </view>
-</view>
-
-<view class="padding-ms grid col-2" style="margin-top:40rpx;">
-  <view class="padding-sm">
-    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-      <view class="text-lg">大客户设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
-    </view>
-  </view>
-  <view class="padding-sm">
-    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-      <view class="text-lg">未修好设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
-    </view>
-  </view>
-  <view class="padding-sm">
-    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-      <view class="text-lg">未取设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
-    </view>
-  </view>
-  <view class="padding-sm">
-    <view class="bg-gradual-blue padding radius text-center shadow-blur">
-      <view class="text-lg">失联设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
-    </view>
-  </view>
-</view>
+<home wx:if="{{PageCur=='home'}}"></home>
+<user wx:if="{{PageCur=='user'}}"></user>
 
 
-
-<view class="cu-bar tabbar  bg-white foo">
-    <view class="action text-green">
+<!-- bar -->
+<view class="cu-bar tabbar bg-white foo">
+    <view class="action {{PageCur=='home'?'text-green':'text-gray'}}" bindtap="NavChange" data-cur="home">
       <view class="icon-homefill"></view> 首页
     </view>
-    <view class="action text-gray">
-      <view class="icon-similar"></view> 分类
+    <view class="action {{PageCur=='classify'?'text-green':'text-gray'}}" bindtap="toclient">
+      <view class="icon-similar"></view> 客户
     </view>
-    <view class="action text-gray add-action">
-      <button class="cu-btn icon-add bg-green shadow" bindtap='toaddorder'></button>
-      添加
+    <view class="action {{PageCur=='add'?'text-green':'text-gray'}} add-action" bindtap="toaddorder" >
+      <button class="cu-btn icon-add bg-green shadow" ></button>
+      开单
     </view>
-    <view class="action text-gray">
+    <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="NavChange" data-cur="home">
       <view class="icon-cart">
-        <view class="cu-tag badge">99</view>
+        <view class="cu-tag badge" bindtap="NavChange">99</view>
       </view>
-      仓库
+      货品
     </view>
-    <view class="action text-gray">
+    <view class="action {{PageCur=='user'?'text-green':'text-gray'}}" bindtap="NavChange" data-cur="user">
       <view class="icon-my">
         <view class="cu-tag badge"></view>
       </view>

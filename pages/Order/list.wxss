@@ -1,0 +1,12 @@
+/* pages/Order/list.wxss */
+.content text{
+  font-size: 0.7rem;
+}
+.cu-list.menu>.cu-item{
+  min-height: 70rpx ;
+  height: 70rpx;
+}
+.cu-bar{
+  height: 80rpx;
+  min-height: 80rpx;
+}

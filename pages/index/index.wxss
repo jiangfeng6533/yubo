@@ -1,12 +1,7 @@
 /* pages/index/index.wxss */
-@import "../../colorui/main.wxss";
-@import "../../colorui/icon.wxss";
+
 .cc{
   text-align:center;
 }
-.foo{
-  position: fixed;
-  width: 100%;
-  bottom: 0rpx;
-}
+
 

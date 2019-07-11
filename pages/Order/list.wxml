@@ -1,0 +1,179 @@
+<!--pages/Order/list.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">订单列表</view>
+</cu-custom>
+
+<!-- 搜索 -->
+<view class="cu-bar search bg-white">
+  <view class="search-form round">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="　搜索编号、客户名称" confirm-type="search"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-green shadow-blur round">搜索</button>
+  </view>
+</view>
+
+<!-- 循环体开始 -->
+<view class="cu-bar bg-white solid-bottom margin-top " bindtap='toorderview' data-oid="123">
+  <view class="action">
+    <text class="icon-title text-orange "></text> 编号：YB00123
+  </view>
+  <view class="action">
+    <text class=" text-orange "></text> 2019-07-10 12:58
+  </view>
+</view>
+<view class="cu-list menu sm-border ">
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-myfill text-grey"></text>
+      <text class="text-grey">客户名称：　爱的出行</text>
+    </view>
+  </view>
+
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-mobile text-grey"></text>
+      <text class="text-grey" bindtap='telcar' data-phone="15845672713">联系电话：　15845672713 （点击立即呼叫）</text>
+    </view>
+  </view>
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-calendar text-grey"></text>
+      <text class="text-grey">状　　态：　维修中</text>
+    </view>
+  </view>
+
+  <view class="bg-white ">
+    <view class="flex solid-bottom padding-sm justify-end " style="width:100%;">
+      <button class="cu-btn margin-right-sm lines-green shadow button-hover round">付款</button>
+      <button class="cu-btn margin-right-sm lines-blue shadow button-hover round">修好</button>
+      <button class="cu-btn round  lines-red shadow button-hover">取消</button>
+    </view>
+  </view>
+</view>
+<!-- 循环体结束 -->
+
+<!-- 循环体开始 -->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="icon-title text-orange "></text> 编号：YB00123
+  </view>
+  <view class="action">
+    <text class=" text-orange "></text> 2019-07-10 12:58
+  </view>
+</view>
+<view class="cu-list menu sm-border ">
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-myfill text-grey"></text>
+      <text class="text-grey">客户名称：　爱的出行</text>
+    </view>
+  </view>
+
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-mobile text-grey"></text>
+      <text class="text-grey">联系电话：　96716</text>
+    </view>
+  </view>
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-calendar text-grey"></text>
+      <text class="text-grey">状　　态：　已修好</text>
+    </view>
+  </view>
+
+  <view class="bg-white ">
+    <view class="flex solid-bottom padding justify-end " style="width:100%;">
+      <button class="cu-btn margin-right-sm lines-green shadow button-hover round">付款</button>
+      <button class="cu-btn margin-right-sm lines-cyan shadow button-hover round">通知</button>
+    </view>
+  </view>
+</view>
+<!-- 循环体结束 -->
+
+<!-- 循环体开始 -->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="icon-title text-orange "></text> 编号：YB00123
+  </view>
+  <view class="action">
+    <text class=" text-orange "></text> 2019-07-10 12:58
+  </view>
+</view>
+<view class="cu-list menu sm-border ">
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-myfill text-grey"></text>
+      <text class="text-grey">客户名称：　爱的出行</text>
+    </view>
+  </view>
+
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-mobile text-grey"></text>
+      <text class="text-grey">联系电话：　96716</text>
+    </view>
+  </view>
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-calendar text-grey"></text>
+      
+      <text class="text-grey">状　　态：　已通知</text>
+    </view>
+  </view>
+
+  <view class="bg-white ">
+    <view class="flex solid-bottom padding justify-end " style="width:100%;">
+      <button class="cu-btn margin-right-sm lines-green shadow button-hover round">付款</button>    
+      <button class="cu-btn margin-right-sm lines-orange shadow button-hover round">取机</button>
+    </view>
+  </view>
+</view>
+<!-- 循环体结束 -->
+
+<!-- 循环体开始 -->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="icon-title text-orange "></text> 编号：YB00123
+  </view>
+  <view class="action">
+    <text class=" text-orange "></text> 2019-07-10 12:58
+  </view>
+</view>
+<view class="cu-list menu sm-border ">
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-myfill text-grey"></text>
+      <text class="text-grey">客户名称：　爱的出行</text>
+    </view>
+  </view>
+
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-mobile text-grey"></text>
+      <text class="text-grey">联系电话：　96716</text>
+    </view>
+  </view>
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-calendar text-grey"></text>
+      <text class="text-grey">状　　态：　已取机</text>
+    </view>
+  </view>
+  <view class="cu-item ">
+    <view class="content">
+      <text class="icon-time text-grey"></text>
+      <text class="text-grey">取机时间：　2019-09-12 15:30</text>
+    </view>
+  </view>
+
+  
+</view>
+<!-- 循环体结束 -->
+
+
+
+

@@ -105,3 +105,86 @@
 .text-light {
   font-weight: 300;
 }
+
+
+/* ub Css */
+um-vp {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none
+}
+/*定义盒子*/
+.ub
+{
+  
+	display: flex;
+}
+/*分成一块*/
+.ub-f1
+{
+	flex:1;
+
+}
+/*分成2块*/
+.ub-f2
+{
+	flex:2;
+}
+
+.ub-f3
+{
+	flex:3;
+}
+
+.ub-f4
+{
+	flex:4;
+}
+/*内容居中*/
+.ub-ac
+{
+  align-items:center;
+	text-align: center
+}
+/*内容靠右*/
+.ub-ae
+{
+  text-align: right
+}
+/*盒子居中*/
+.ub-pc
+{
+  align-items:center;
+	justify-content: center
+}
+/*盒子靠右*/
+.ub-pe
+{
+	justify-content: right
+}
+/*盒子靠左*/
+.ub-pd
+{
+	justify-content: left
+}
+/*纵向布局 盒子里面纵向布局，*/
+.ub-ver
+{
+	flex-direction: column;
+}
+
+.foo{
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+}
+.hide {
+  display: none;
+}
+ 
+.show {
+  display: block;
+}

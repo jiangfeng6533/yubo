@@ -1,0 +1,63 @@
+<!--pages/Client/client/client.wxml-->
+<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">客户</view>
+</cu-custom>
+<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+  <view class="search-form round">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="输入搜索的关键词" confirm-type="search" bindinput="getclientsearch" ></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
+  </view>
+</view>
+
+
+<scroll-view scroll-y class="indexes {{isSearch==true?'show':'hide'}}" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
+  <view class="cu-list menu-avatar no-padding">
+    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123">
+      <view class="cu-avatar round lg">{{searchRes[sub].second}}</view>
+      <view class="content">
+        <view class="text-grey">
+          {{searchRes[sub].second}}{{searchRes[sub].start}}
+        </view>
+        <view class="text-gray text-sm">
+          有{{sub+2}}个主子需要伺候
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<scroll-view scroll-y class="indexes {{isSearch==false?'show':'hide'}}" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
+  <block wx:for="{{userarr}}" wx:key>
+    <view class="padding indexItem-{{userarr[index][0].second}}" id="indexes-{{userarr[index][0].second}}" data-index="{{userarr[index][0].second}}">{{userarr[index][0].second}}</view>
+    <view class="cu-list menu-avatar no-padding">
+      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123">
+        <view class="cu-avatar round lg">{{userarr[index][0].second}}</view>
+        <view class="content">
+          <view class="text-grey">
+            {{userarr[index][sub].second}}{{userarr[index][sub].start}}
+          </view>
+          <view class="text-gray text-sm">
+            有{{sub+2}}个主子需要伺候
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+
+
+
+<view class="indexBar {{isSearch==false?'':'barhide'}}" style="height:calc(100vh - {{CustomBar}}px - 50px)">
+  <view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
+    <view class="indexBar-item" wx:for="{{list}}" wx:key id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">{{list[index]}}</view>
+  </view>
+</view>
+<!--选择显示-->
+<view hidden="{{hidden}}" class="indexToast">
+  {{listCur}}
+</view>

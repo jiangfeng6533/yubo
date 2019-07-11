@@ -3,6 +3,11 @@
     "pages/index/index",
     "pages/login/login",
     "pages/Order/add",
+    "pages/Order/list",
+    "pages/Order/view/view",
+    "pages/User/user/user",
+    "pages/Home/index/index",
+    "pages/Client/client/client",
     "pages/foot/foot",
     "pages/timeline/timeline",
     "pages/manger/sick"

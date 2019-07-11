@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
-  <view slot="backText">返回</view>
+  <view slot="backText" bindtap='toback'>返回</view>
   <view slot="content">添加设备</view>
 </cu-custom>
 
