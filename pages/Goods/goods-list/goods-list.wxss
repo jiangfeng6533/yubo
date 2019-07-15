@@ -1,0 +1,45 @@
+/* pages/Goods/goods-list/goods-list.wxss */
+.menu{
+  position: fixed;
+  bottom:50rpx;
+  right:42rpx;
+}
+.menuother{
+  position: fixed;
+  bottom:130rpx;
+  right:20rpx;
+}
+.menu text{
+  font-size:2rem;
+  color:#ccc;
+}
+
+.menuico{
+  font-size:2rem;
+}
+
+@keyframes slidedown{
+  from {
+    height: 0;
+  }
+  to {
+    height: 240rpx;
+  }
+}
+ 
+@keyframes slideup{
+  from {
+    height: 240rpx;
+  }
+  to {
+    height: 0;
+  }
+}
+ 
+.open{
+  animation: slidedown 1s;
+}
+ 
+.close{
+  animation: slideup 1s; 
+}

@@ -40,7 +40,7 @@
       <button class="cu-btn icon-add bg-green shadow" ></button>
       开单
     </view>
-    <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="tologin" data-cur="home">
+    <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="togoodslist" data-cur="home">
       <view class="icon-cart">
         <view class="cu-tag badge" bindtap="NavChange">99</view>
       </view>

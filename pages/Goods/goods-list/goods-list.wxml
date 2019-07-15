@@ -1,0 +1,147 @@
+<!--pages/Goods/goods-list/goods-list.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">货品管理</view>
+</cu-custom>
+
+
+<!-- 搜索 -->
+<view class="cu-bar search bg-white">
+  <view class="margin-left padding-xs round solids" bindtap='selecttype'>
+    <!-- 选择类别 -->
+    <picker bindchange="Changetype" range="{{goodstype}}" value="typeindex">
+      <view class="picker">
+        {{goodstype[typeindex]}}
+        <text class="icon-right"></text>
+      </view>
+    </picker>
+    <!-- 选择类别结束 -->
+
+  </view>
+  <view class="search-form round">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="　搜索编号、客户名称"></input>
+  </view>
+
+</view>
+<!-- 搜索结束 -->
+
+<view class='ub ub-ver bg-white margin-top '>
+  <!-- 循环 -->
+  <view class="ub padding-sm solid-bottom" bindtap='setgoods' data-gid='1'>
+    <view class="ub padding-xs solids">
+      <text style="font-size:3rem" class="icon-cameraadd"></text>
+    </view>
+    <view class="ub ub-f1 ub-ver padding-sm">
+      <view class="ub margin-bottom">
+        离心开关片
+      </view>
+      <view class="ub">
+        价格：￥5.00
+      </view>
+
+    </view>
+  </view>
+  <!-- 循环结束 -->
+
+  <!-- 循环 -->
+  <view class="ub padding-sm solid-bottom" bindtap='setgoods'>
+    <view class="ub padding-xs solids">
+      <text style="font-size:3rem" class="icon-cameraadd"></text>
+    </view>
+    <view class="ub ub-f1 ub-ver padding-sm">
+      <view class="ub margin-bottom">
+        离心开关片
+      </view>
+      <view class="ub">
+        价格：￥5.00
+      </view>
+
+    </view>
+  </view>
+  <!-- 循环结束 -->
+
+</view>
+
+<!-- 添加菜单 -->
+<view class="ub ub-ver menuother {{first_click?'show':'hide'}} {{state?'open':'close'}} ">
+
+  <view class="ub menuico ub-pc">
+    <text class="icon-newshot text-blue "></text>
+
+  </view>
+  <view>管理类别</view>
+  <view class="ub menuico ub-pc" bindtap='addgoods'>
+    <text class="icon-goodsfill text-blue"></text>
+  </view>
+  <view>添加商品</view>
+</view>
+<view class="menu" bindtap='clickmenu' animation="{{animationData}}" bindtap="toggle">
+  <text class="icon-roundadd"></text>
+</view>
+
+<!-- 添加菜单结束 -->
+
+<!-- modal -->
+<view class="cu-modal {{setgoodsmodal==true?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">商品修改</view>
+      <view class="action" bindtap="setgoodshideModal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="">
+
+      <view class="cu-form-group margin-top">
+        <view class="title">名称修改</view>
+        <input placeholder="请输入客户名称" value="{{selectname}}"></input>
+      </view>
+      <view class="cu-form-group margin-top margin-bottom">
+        <view class="title">单　　价</view>
+        <input placeholder="请输入商品单价" value="{{selectgoodsprice}}"></input>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="setgoodshideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="setgoodshideModal" data-gid="selectgid">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- modal结束 -->
+
+
+
+<!-- modal 商品添加 -->
+<view class="cu-modal {{addgoodsmodal==true?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">商品添加</view>
+      <view class="action" bindtap="addgoodshideModal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="">
+
+      <view class="cu-form-group margin-top">
+        <view class="title">名称</view>
+        <input placeholder="请输入商品名称" value=""></input>
+      </view>
+      <view class="cu-form-group margin-top margin-bottom">
+        <view class="title">单　　价</view>
+        <input placeholder="请输入商品单价" value=""></input>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="addgoodshideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="addgoodshideModal" data-gid="selectgid">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- modal结束 -->

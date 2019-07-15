@@ -1,0 +1,53 @@
+/* pages/test/test.wxss */
+#box{
+ width: 100%;
+ border-top: 1px solid #ddd;
+ overflow: hidden;
+ height: 0;
+ animation-fill-mode: forwards;
+}
+ 
+#item_list{
+  background-color: white;
+  width: 100%;
+}
+ 
+#item_list view{
+  text-align: right;
+  overflow: auto;
+  white-space: nowrap;
+}
+ 
+@keyframes slidedown{
+  from {
+    height: 0;
+  }
+  to {
+    height: 240rpx;
+  }
+}
+ 
+@keyframes slideup{
+  from {
+    height: 240rpx;
+  }
+  to {
+    height: 0;
+  }
+}
+ 
+.open{
+  animation: slidedown 1s;
+}
+ 
+.close{
+  animation: slideup 1s; 
+}
+ 
+.hide{
+  display: none;
+}
+ 
+.show{
+  display: block;
+}

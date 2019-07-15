@@ -49,6 +49,11 @@ Page({
     this.setData({
       goingModal: false
     });
+  },
+  togoodslist(){
+    wx.navigateTo({
+      url: '/pages/Goods/goods-list/goods-list',
+    })
   }
   
 })
