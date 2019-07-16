@@ -37,9 +37,9 @@
 }
  
 .open{
-  animation: slidedown 1s;
+  animation: slidedown 0.5s;
 }
  
 .close{
-  animation: slideup 1s; 
+  animation: slideup 0.5s; 
 }

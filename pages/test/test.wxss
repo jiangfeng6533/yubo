@@ -51,3 +51,6 @@
 .show{
   display: block;
 }
+page{
+  height: 100%;
+}

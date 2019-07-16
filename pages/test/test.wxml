@@ -1,13 +1,11 @@
 <!--pages/test/test.wxml-->
-<view id="text_box">
-   <text decode='true'> 历 史 记 录</text>
+<cu-custom bgColor="bg-gradual-blue " isBack="{{true}}" >
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">规划</view>
+</cu-custom>
+<view id="myText">
+dad
 </view>
-<button id="slide" bindtap="toggle">▼</button>
-<view id="box" class="{{first_click?'show':'hide'}} {{state?'open':'close'}}">
-   <view id="item_list">
-      <view>111</view>
-      <view>222</view>
-      <view>333</view>
-   </view>
-</view>
-<view>zhanweizhi </view>
+<scroll-view class="ub ub-f1" style="height:{{height}}px">
+<map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height:100%"></map>
+</scroll-view>

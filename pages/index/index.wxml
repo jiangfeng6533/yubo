@@ -42,13 +42,14 @@
     </view>
     <view class="action {{PageCur=='store'?'text-green':'text-gray'}}" bindtap="togoodslist" data-cur="home">
       <view class="icon-cart">
-        <view class="cu-tag badge" bindtap="NavChange">99</view>
+        <view class="cu-tag badge"></view>
+        <!-- <view class="cu-tag badge" bindtap="NavChange">99</view> -->
       </view>
       货品
     </view>
     <view class="action {{PageCur=='user'?'text-green':'text-gray'}}" bindtap="NavChange" data-cur="user">
       <view class="icon-my">
-        <view class="cu-tag badge"></view>
+        <!-- <view class="cu-tag badge"></view> -->
       </view>
       我的
     </view>

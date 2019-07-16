@@ -16,6 +16,7 @@
 </view>
 
 <!-- 循环体开始 -->
+<view class="solid-bottom">
 <view class="cu-bar bg-white solid-bottom margin-top " bindtap='toorderview' data-oid="123">
   <view class="action">
     <text class="icon-title text-orange "></text> 编号：YB00123
@@ -35,18 +36,19 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-mobile text-grey"></text>
-      <text class="text-grey" bindtap='telcar' data-phone="15845672713">联系电话：　15845672713 （点击立即呼叫）</text>
+      <text class="text-grey" >设备名称：　变频器ABB305</text>
     </view>
   </view>
   <view class="cu-item ">
     <view class="content">
       <text class="icon-calendar text-grey"></text>
-      <text class="text-grey">状　　态：　维修中</text>
+      <text class="text-grey">状　　态：　维修中(未付款)</text>
     </view>
+  </view>
   </view>
 
   <view class="bg-white ">
-    <view class="flex solid-bottom padding-sm justify-end " style="width:100%;">
+    <view class="flex solid-bottom padding-bottom padding-right justify-end " style="width:100%;">
       <button class="cu-btn margin-right-sm lines-green shadow button-hover round">付款</button>
       <button class="cu-btn margin-right-sm lines-blue shadow button-hover round">修好</button>
       <button class="cu-btn round  lines-red shadow button-hover">取消</button>

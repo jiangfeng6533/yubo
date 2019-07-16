@@ -1,4 +1,10 @@
 // pages/test/test.js
+//index.js
+var wxCharts = require('../../utils/wxcharts.js');
+var global = require('../../Model/global.js');
+//获取应用实例
+const app = getApp()
+
 Page({
 
   /**
@@ -7,13 +13,34 @@ Page({
   data: {
     state: false,
     first_click: false,
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    console.log('StatusBar', this.data.StatusBar);
+    console.log('CustomBar', this.data.CustomBar);
+    var height = wx.getSystemInfoSync().windowHeight;
+    
+    console.log('height',height);
+    
 
+    var query = wx.createSelectorQuery();
+    //选择id
+    query.select('#myText').boundingClientRect()
+    query.exec(function (res) {
+      //res就是 所有标签为myText的元素的信息 的数组
+      console.log(res);
+      //取高度
+      console.log(res[0].height);
+      that.setData({
+        height: height - that.data.CustomBar - res[0].height
+      })
+    });
   },
 
   /**

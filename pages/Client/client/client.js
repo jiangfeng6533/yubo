@@ -366,5 +366,17 @@ Page({
       that.setData({ isSearch: false });
       console.log('没有内容')
     }
-  }
+  },
+  addclient(e) {
+    var that = this;
+    console.log('选择商品', e);
+    that.setData({
+      addclientmodal: true
+    })
+  },
+  addclienthideModal(e) {
+    this.setData({
+      addclientmodal: false
+    })
+  },
 });

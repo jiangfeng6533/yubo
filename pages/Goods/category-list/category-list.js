@@ -1,30 +1,20 @@
-// pages/Order/view/view.js
-var global = require('../../../Model/global.js');
-//获取应用实例
-const app = getApp()
+// pages/Goods/category-list/category-list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgList: [],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    var oid = options.oid;
+
   },
-  telcar: function (e) {
-    console.log(e);
-    var phone = e.target.dataset.phone
-    wx.makePhoneCall({
-      phoneNumber: phone,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -37,12 +27,6 @@ Page({
    */
   onShow: function () {
 
-  },
-  toeditorder(){
-
-    wx.redirectTo({
-      url: '/pages/Order/edit/edit',
-    })
   },
 
   /**

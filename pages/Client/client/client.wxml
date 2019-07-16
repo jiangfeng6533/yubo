@@ -61,3 +61,42 @@
 <view hidden="{{hidden}}" class="indexToast">
   {{listCur}}
 </view>
+
+
+
+<!-- 添加菜单 -->
+<view class="menu" bindtap='addclient' animation="{{animationData}}" >
+  <text class="icon-roundadd"></text>
+</view>
+
+
+<!-- modal -->
+<view class="cu-modal {{addclientmodal==true?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加客户</view>
+      <view class="action" bindtap="addclienthideModal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="">
+
+      <view class="cu-form-group margin-top">
+        <view class="title">客户名称</view>
+        <input placeholder="请输入客户名称" value=""></input>
+      </view>
+      <view class="cu-form-group margin-top margin-bottom">
+        <view class="title">手机号</view>
+        <input placeholder="请输入手机号" value=""></input>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="addclienthideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="addclienthideModal" data-gid="selectgid">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- modal结束 -->

@@ -73,3 +73,16 @@ movable-view.indexBar-item::before {
 .barhide{
   right:-66rpx;
 }
+
+.menu{
+  position: fixed;
+  bottom:50rpx;
+  right:42rpx;
+}
+
+.menu text{
+  font-size:2rem;
+  color:#ccc;
+}
+
+

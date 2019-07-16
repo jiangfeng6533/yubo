@@ -66,20 +66,18 @@
 <!-- 添加菜单 -->
 <view class="ub ub-ver menuother {{first_click?'show':'hide'}} {{state?'open':'close'}} ">
 
-  <view class="ub menuico ub-pc">
+  <view class="ub menuico ub-pc" bindtap='tocategory'>
     <text class="icon-newshot text-blue "></text>
-
   </view>
   <view>管理类别</view>
   <view class="ub menuico ub-pc" bindtap='addgoods'>
     <text class="icon-goodsfill text-blue"></text>
   </view>
-  <view>添加商品</view>
+  <view >添加商品</view>
 </view>
-<view class="menu" bindtap='clickmenu' animation="{{animationData}}" bindtap="toggle">
+<view class="menu"  animation="{{animationData}}" bindtap="toggle">
   <text class="icon-roundadd"></text>
 </view>
-
 <!-- 添加菜单结束 -->
 
 <!-- modal -->
@@ -119,7 +117,7 @@
 <view class="cu-modal {{addgoodsmodal==true?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">商品添加</view>
+      <view class="content" >商品添加</view>
       <view class="action" bindtap="addgoodshideModal">
         <text class="icon-close text-red"></text>
       </view>
@@ -127,7 +125,7 @@
     <view class="">
 
       <view class="cu-form-group margin-top">
-        <view class="title">名称</view>
+        <view class="title">名　　称</view>
         <input placeholder="请输入商品名称" value=""></input>
       </view>
       <view class="cu-form-group margin-top margin-bottom">
