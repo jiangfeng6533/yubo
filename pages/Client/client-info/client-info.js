@@ -1,9 +1,4 @@
-// pages/Order/list/list.js
-var wxCharts = require('../../../utils/wxcharts.js');
-var global = require('../../../Model/global.js');
-//获取应用实例
-const app = getApp()
-
+// pages/Client/client-info/client-info.js
 Page({
 
   /**
@@ -12,27 +7,20 @@ Page({
   data: {
 
   },
-  telcar: function (e) {
-    console.log(e);
-    var phone = e.target.dataset.phone
-    wx.makePhoneCall({
-      phoneNumber: phone,
-    })
-    return false;
-  },
-  toback: function (){
-    console.log("return index....")
-
-    wx.redirectTo({
-      url: '/pages/index/index',
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+  },
+  toorderlist:function(){
+    wx.navigateTo({
+      url: '/pages/Order/list/list',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   /**
@@ -48,14 +36,7 @@ Page({
   onShow: function () {
 
   },
-  toorderview: function (e) {
-    console.log(e);
-    var oid = e.currentTarget.dataset.oid;
-    console.log(oid);
-    wx.navigateTo({
-      url: "/pages/Order/view/view"
-    })
-  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

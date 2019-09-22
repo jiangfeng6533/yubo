@@ -45,7 +45,7 @@
 
   <view class="cu-form-group top margin-top">
     <view class="title">维修内容</view>
-    <textarea data-placeholder="请输入维修内容" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" bindinput="textareaBInput"></textarea>
+    <textarea data-placeholder="请输入维修内容" maxlength="-1" disabled="disabled" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" bindtap="changeGoods"></textarea>
   </view>
 
   <view class="cu-bar bg-white margin-top">

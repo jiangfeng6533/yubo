@@ -1,0 +1,75 @@
+<!--pages/Client/client-info/client-info.wxml-->
+<scroll-view scroll-y="{{modalName==null}}" class="page  {{modalName!=null?'show':''}}">
+  <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">列表</view>
+  </cu-custom>
+
+  <view class="cu-list menu sm-border card-menu margin-top ">
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-people text-grey"></text>
+        <text class="text-grey">姓名： 姜峰</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-phone text-green"></text>
+        <text class="text-grey">联系电话：15845672713</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-location text-blue margin-right-xs"></text>地址：</view>
+        <view class="text-gray text-sm">
+          黑龙江大庆市萨尔图区五金大街2B栋1号门，明卓机电</view>
+      </view>
+    </view>
+
+    <view class="cu-item arrow" bindtap="toorderlist">
+      <view class="content">
+        <text class="cuIcon-moneybag text-yellow"></text>
+        <text class="text-grey"> 维修总金额：99990</text>
+      </view>
+    </view>
+
+    <view class="cu-item arrow" bindtap="toorderlist">
+      <view class="content">
+        <text class="cuIcon-moneybag text-yellow"></text>
+        <text class="text-grey"> 未结款金额：3000</text>
+      </view>
+    </view>
+
+    <view class="cu-item arrow" bindtap="toorderlist">
+      <view class="content">
+        <text class="cuIcon-moneybag text-yellow"></text>
+        <text class="text-grey"> 已结总金额：39939</text>
+      </view>
+    </view>
+
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-moneybag text-yellow"></text>
+        <text class="text-grey"> 未取明细</text>
+      </view>
+    </view>
+
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-tagfill text-gray margin-right-xs"></text>备注：</view>
+        <view class="text-gray text-sm">
+           这是一条备注信息</view>
+      </view>
+    </view>
+
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-time text-red"></text>
+        <text class="text-grey">添加时间：2019-09-03 12:88</text>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

@@ -84,9 +84,12 @@ Page({
       textareaAValue: e.detail.value
     })
   },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
+  changeGoods(e) {
+    wx.navigateTo({
+      url: '/pages/Goods/select-list/select-list',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   toadd: function () {

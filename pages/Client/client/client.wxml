@@ -16,7 +16,7 @@
 
 <scroll-view scroll-y class="indexes {{isSearch==true?'show':'hide'}}" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
   <view class="cu-list menu-avatar no-padding">
-    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123">
+    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123" >
       <view class="cu-avatar round lg">{{searchRes[sub].second}}</view>
       <view class="content">
         <view class="text-grey">

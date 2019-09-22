@@ -344,7 +344,9 @@ Page({
     var cid = e.currentTarget.dataset.cid;
     var name = e.currentTarget.dataset.name;
     var phone = e.currentTarget.dataset.phone;
-
+    wx.navigateTo({
+      url: '/pages/Client/client-info/client-info',
+    })
   },
   // input监听搜索
   getclientsearch(e){
@@ -379,4 +381,5 @@ Page({
       addclientmodal: false
     })
   },
+
 });
