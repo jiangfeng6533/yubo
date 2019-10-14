@@ -54,6 +54,14 @@ Page({
     wx.navigateTo({
       url: '/pages/Goods/goods-list/goods-list',
     })
+  },
+  butest(){
+    global.http.postReq(
+      'ServiceOrder/getOrderAll', '', function (res) {
+        console.log(res);
+        console.log("datat", res.data);
+      }
+    )
   }
   
 })

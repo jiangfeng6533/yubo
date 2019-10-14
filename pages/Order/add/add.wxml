@@ -3,7 +3,7 @@
   <view slot="content">添加设备</view>
 </cu-custom>
 
-<form>
+<form bindsubmit="submit">
 
   <view class="cu-form-group ">
     <view class="title">客户级别</view>
@@ -15,23 +15,23 @@
   </view>
   <view class="cu-form-group ">
     <view class="title">客户名称</view>
-    <input placeholder="请输入客户名称" bindtap='selectclient' bindinput="getclientname" disabled='{{grade>0?true:false}}' value="{{cname}}"></input>
+    <input placeholder="请输入客户名称" bindtap='selectclient'  disabled='{{grade>0?true:false}}' value="{{cname}}" name="client_name"></input>
   </view>
   <view class="cu-form-group ">
     <view class="title">联系电话</view>
-    <input placeholder="请输入联系电话" bindtap='selectclient' disabled='{{grade>0?true:false}}' value="{{cphone}}"></input>
+    <input placeholder="请输入联系电话" bindtap='selectclient' disabled='{{grade>0?true:false}}' value="{{cphone}}" name="client_phone"></input>
   </view>
 
 
 
   <view class="cu-form-group ">
     <view class="title">设备名称</view>
-    <input placeholder="请输入设备名称"></input>
+    <input placeholder="请输入设备名称" value="" name="device_name"></input>
   </view>
 
   <view class="cu-form-group solid-bottom">
     <view class="title">规格型号</view>
-    <input placeholder="请输入规格型号"></input>
+    <input placeholder="请输入规格型号" name="device_unit"></input>
   </view>
 
 
@@ -57,9 +57,9 @@
   </view>
 
    <view class="cu-form-group ">
-    <textarea data-placeholder="请输入备注" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaAValue?'value':''}}" bindinput="textareaAInput"></textarea>
+    <textarea placeholder="请输入备注"   name="marker"></textarea>
   </view>
-  <button class="cu-btn block bg-blue margin lg" bindtap='toadd'>
+  <button class="cu-btn block bg-blue margin lg" form-type='submit'>
     <text class=" iconfont-spin"></text> 提交
   </button>
 </form>

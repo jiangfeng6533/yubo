@@ -31,13 +31,12 @@ Page({
     this.setData({
       grade: grade
     })
-    if (grade == 1){
+
       this.setData({
         cname:null,
         cphone:null,
         cid:null
       })
-    }
   },
   ChooseImage() {
     wx.chooseImage({
@@ -79,34 +78,6 @@ Page({
       }
     })
   },
-  textareaAInput(e) {
-    this.setData({
-      textareaAValue: e.detail.value
-    })
-  },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
-    })
-  },
-  toadd: function () {
-    wx.showModal({
-      title: '提示',
-      content: '添加成功',
-      showCancel: false,
-      success(res) {
-        if (res.confirm) {
-          wx.redirectTo({
-            url: '../index/index',
-          })
-        } else if (res.cancel) {
-          wx.redirectTo({
-            url: '../index/index',
-          })
-        }
-      }
-    })
-  },
   selectclient(){
     if (this.data.grade >0){
       wx.navigateTo({
@@ -124,60 +95,72 @@ Page({
       cid: audit.cid
     })
   },
-  getclientname(e){
-    var that = this;
-    var key = e.detail.value;
-    console.log('name',key);
-    this.setData({
-      cname: key
+  submit(e){
+    console.log(e);
+    var phone = e.detail.value.client_phone;
+    var name = e.detail.value.client_name;
+    var device_unit = e.detail.value.device_unit;
+    var device_name = e.detail.value.device_name;
+    let phonereg = /^1[1|2|3|4|5|6|7|8|9][0-9]{9}$/;
+    if (!phone || !phonereg.test(phone)) {
+      var title = '请输入正确手机号';
+    }
+    if (!name) {
+      var title = '请输入用户姓名';
+    }
+    if (!device_unit) {
+      var title = '请输入设备型号';
+    }
+    if (!device_name) {
+      var title = '请输入设备名称';
+    }
+    if (title) {
+      wx.showToast({
+        title: title,
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+    var userInfo = wx.getStorageSync('userInfo');
+    var grade = this.data.grade;
+    var audit = {
+      client_name: e.detail.value.client_name,
+      client_phone: e.detail.value.client_phone,
+      device_name: e.detail.value.device_name,
+      device_unit: e.detail.value.device_unit,
+      marker: e.detail.value.marker,
+      order_img: this.data.imgList,
+      com_id: userInfo.com_id,
+      client_level:grade
+    };
+    if(grade == 1){
+      audit.client_id = this.data.cid;
+    }
+    console.log('audit',audit);
+    global.http.postReq(global.Configs.addServiceOrder, audit, function (res) {
+      console.log("添加返回", res);
+      if (res.data.code == 200) {
+        console.log("添加成功",res);
+        wx.showModal({
+          title: '提示',
+          content: '添加成功',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '../index/index',
+              })
+            } else if (res.cancel) {
+              wx.redirectTo({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+      }
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    return;
+    
   }
 })

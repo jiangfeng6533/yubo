@@ -4,77 +4,70 @@
   <view slot="content">货品管理</view>
 </cu-custom>
 
-
-<!-- 搜索 -->
-<view class="cu-bar search bg-white">
-  <view class="margin-left padding-xs round solids" bindtap='selecttype'>
-    <!-- 选择类别 -->
-    <picker bindchange="Changetype" range="{{goodstype}}" value="typeindex">
-      <view class="picker">
-        {{goodstype[typeindex]}}
-        <text class="icon-right"></text>
-      </view>
-    </picker>
-    <!-- 选择类别结束 -->
-
-  </view>
-  <view class="search-form round">
-    <text class="icon-search"></text>
-    <input type="text" placeholder="　搜索编号、客户名称"></input>
-  </view>
-
-</view>
-<!-- 搜索结束 -->
-
-<view class='ub ub-ver bg-white margin-top '>
-  <!-- 循环 -->
-  <view class="ub padding-sm solid-bottom" bindtap='setgoods' data-gid='1'>
-    <view class="ub padding-xs solids">
-      <text style="font-size:3rem" class="icon-cameraadd"></text>
-    </view>
-    <view class="ub ub-f1 ub-ver padding-sm">
-      <view class="ub margin-bottom">
-        离心开关片
-      </view>
-      <view class="ub">
-        价格：￥5.00
-      </view>
+<view class="{{isgoodshow?'show':'hide'}}">
+  <!-- 搜索 -->
+  <view class="cu-bar search bg-white">
+    <view class="margin-left padding-xs round solids" bindtap='selecttype'>
+      <!-- 选择类别 -->
+      <picker bindchange="Changetype" range="{{goodstype}}" value="typeindex">
+        <view class="picker">
+          {{goodstype[typeindex]}}
+          <text class="icon-right"></text>
+        </view>
+      </picker>
+      <!-- 选择类别结束 -->
 
     </view>
-  </view>
-  <!-- 循环结束 -->
-
-  <!-- 循环 -->
-  <view class="ub padding-sm solid-bottom" bindtap='setgoods'>
-    <view class="ub padding-xs solids">
-      <text style="font-size:3rem" class="icon-cameraadd"></text>
+    <view class="search-form round">
+      <text class="icon-search"></text>
+      <input type="text" placeholder="　搜索编号、客户名称"></input>
     </view>
-    <view class="ub ub-f1 ub-ver padding-sm">
-      <view class="ub margin-bottom">
-        离心开关片
-      </view>
-      <view class="ub">
-        价格：￥5.00
-      </view>
 
-    </view>
   </view>
-  <!-- 循环结束 -->
+  <!-- 搜索结束 -->
 
+  <view class='ub ub-ver bg-white margin-top '>
+    <!-- 循环 -->
+    <view class="ub padding-sm solid-bottom" wx:for="{{goodsdata}}" wx:for-index="kk" wx:for-item="vv" bindtap='setgoods' data-gid='{{vv.goods_id}}' data-price="{{vv.price}}" data-mount="{{vv.mount}}" data-name="{{vv.goods_name}}">
+      <view class="ub padding-xs solids">
+        <text style="font-size:3rem" class="icon-cameraadd"></text>
+      </view>
+      <view class="ub ub-f1 ub-ver padding-sm">
+        <view class="ub margin-bottom">
+          {{vv.goods_name}}({{vv.unit}})
+        </view>
+        <view class="ub">
+          价格：￥{{vv.mount}}
+        </view>
+
+      </view>
+    </view>
+    <!-- 循环结束 -->
+
+   
+
+  </view>
 </view>
 
-<!-- 购物车按钮 -->
-<view class="menu" animation="{{animationData}}" bindtap="shoppingCart">
-  <view class="cu-tag badge">99</view>
-  <text class="cuIcon-cart text-blue"></text>
-</view>
-<!-- 购物车按钮 -->
+
+  <!-- 购物车按钮 -->
+  <view class="menugo" animation="{{animationData}}" bindtap="shoppingCart">
+    <view wx:if="{{isgoodshow==true}}">
+    <view class="cu-tag badge">{{goodsNum}}</view>
+    <text class="cuIcon-cart text-blue"></text>
+    </view>
+    <view wx:if="{{isgoodshow==false}}">
+    <text class="cuIcon-forwardfill text-blue"></text>
+    </view>
+  </view>
+  <!-- 购物车按钮 -->
+
 
 <!-- modal -->
 <view class="cu-modal {{setgoodsmodal==true?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content">商品修改</view>
+      <view class="content">商品选择</view>
       <view class="action" bindtap="setgoodshideModal">
         <text class="icon-close text-red"></text>
       </view>
@@ -82,18 +75,18 @@
     <view class="">
 
       <view class="cu-form-group margin-top">
-        <view class="title">名称修改</view>
-        <input placeholder="请输入客户名称" value="{{selectname}}"></input>
+        <view class="title">商品名称</view>
+        <input placeholder="请输入客户名称" value="{{setgoodsData.goods_name}}"></input>
       </view>
       <view class="cu-form-group margin-top margin-bottom">
         <view class="title">数 量</view>
-        <input placeholder="请输入商品单价" value="{{selectgoodsprice}}"></input>
+        <input placeholder="请输入商品数量" value="{{setgoodsData.num}}" bindinput="setGoodsDataNum"></input>
       </view>
     </view>
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn line-green text-green" bindtap="setgoodshideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="setgoodshideModal" data-gid="selectgid">确定</button>
+        <button class="cu-btn bg-green margin-left" bindtap="choosegoods" >确定</button>
 
       </view>
     </view>
@@ -102,34 +95,77 @@
 <!-- modal结束 -->
 
 
-
-<!-- modal 商品添加 -->
-<view class="cu-modal {{addgoodsmodal==true?'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white justify-end">
-      <view class="content">商品添加</view>
-      <view class="action" bindtap="addgoodshideModal">
-        <text class="icon-close text-red"></text>
+<view class="{{isgoodshow?'hide':'show'}}">
+  <!-- 购物车 -->
+  <view class="box" style="top:{{CustomBar}}px;">
+    <view class="canui-kong" style="display: none;">
+      <view class="bg-gradual-orange padding radius text-center shadow-blur canui-kong-icon">
+        <text class="icon-cart"></text>
       </view>
+
+      <view class="text-lg padding text-center">
+        <text class="text-grey"> 购物车竟然是空的 </text>
+      </view>
+
+      <view class="padding flex flex-wrap justify-between align-center">
+        <button class='cu-btn bg-gradual-green shadow-blur round'>去逛逛</button>
+      </view>
+
     </view>
-    <view class="">
 
-      <view class="cu-form-group margin-top">
-        <view class="title">名　　称</view>
-        <input placeholder="请输入商品名称" value="" disabled="disabled"></input>
-      </view>
-      <view class="cu-form-group margin-top margin-bottom">
-        <view class="title">数 量</view>
-        <input placeholder="请输入商品单价" value=""></input>
-      </view>
-    </view>
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="addgoodshideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="addgoodshideModal" data-gid="selectgid">确定</button>
 
-      </view>
+
+    <view class="canui-card-order margin-top">
+      <block wx:for="{{shopdata}}" wx:for-index="k" wx:for-item="v">
+        <view class="canui-order-item bg-white">
+          <view class="head-title-box">
+            <!-- <checkbox class='round red' checked="{{v.checked}}" data-comkey="{{k}}" data-com="1" bindtap='checkboxChange'></checkbox> -->
+            <text class="icon-shop"></text>
+            <text>{{v.com_name}}</text>
+            <text class="icon-right"></text>
+
+          </view>
+
+          <view class="cu-list menu menu-avatar">
+
+            <block wx:for="{{v.data}}" wx:for-index="kk" wx:for-item="vv">
+              <view class="cu-item">
+                <view class='action-checkbox'>
+                  <checkbox class='round red' checked="{{vv.checked}}" data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='checkboxChange'></checkbox>
+                </view>
+                <view class="canui-goods">
+                <!-- <text style="font-size:3rem" class="icon-cameraadd"></text> -->
+                  <!-- <view class="cu-avatar radius lg " style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);"></view> -->
+                  <view class="cu-avatar radius lg icon-cameraadd" ></view>
+                  <view class='content1 ' style="left:none;">
+                    <view class='canui-xzwz'>{{vv.title}}</view>
+                    <view class='canui-tool'>
+                      <text class='text-price text-red' style="position:absolute;right:180rpx;flex:right;bottom:-6rpx;">{{vv.mount}}</text>
+                      <view class='action-btn-sum'>
+                        <button class='cu-btn' data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='numdel'>-</button>
+                        <input class='ca-sum' name='input' value="{{vv.num}}"></input>
+                        <button class='cu-btn' data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='numadd'>+</button>
+                      </view>
+                    </view>
+                  </view>
+                  <view class=" icon-delete delshopcss" bindtap="delshop" data-comkey="{{k}}" data-shopkey="{{kk}}"></view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
+  <view class="cu-bar bg-white solid-bottom canui-foor-fixed">
+    <view class="action canui-checked">
+      <checkbox class='round red' checked="{{optionstatus?'checked':''}}" bindtap='optionall'></checkbox> 全选</view>
+    <view class="action canui-delete">
+      <button class='cu-btn icon-delete' bindtap="delshop"></button>
+    </view>
+    <view class='submit canui-price'>合计
+      <text class="text-red text-price">{{paymentMount}}</text>
+    </view>
+    <view class='bg-red submit canui-submit' bindtap='selectFinish'>完成</view>
+  </view>
 </view>
-<!-- modal结束 -->

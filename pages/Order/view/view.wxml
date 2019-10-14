@@ -7,7 +7,7 @@
 <!-- 循环体开始 -->
 <view class="cu-bar bg-white solid-bottom margin-top" bindtap='toorderview' data-oid="123">
   <view class="action">
-    <text class="icon-title text-orange "></text> 编号：YB00123
+    <text class="icon-title text-orange "></text> 编号：{{order_sn}}
   </view>
   <view class="action" bindtap='toeditorder'>
     <text class=" icon-edit "></text> 修改
@@ -17,28 +17,28 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-myfill text-grey"></text>
-      <text class="text-grey">客户名称：　爱的出行</text>
+      <text class="text-grey">客户名称：　{{client_name}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-vip text-grey"></text>
-      <text class="text-grey">客户级别：　大客户</text>
+      <text class="text-grey">客户级别：　{{client_level==1?"大客户":"普通客户"}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-mobile text-grey"></text>
-      <text class="text-grey" bindtap='telcar' data-phone="15845672713">联系电话：　15845672713 （点击立即呼叫）</text>
+      <text class="text-grey" bindtap='telcar' data-phone="{{client_phone}}">联系电话：　{{client_phone}} （点击立即呼叫）</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-moneybag text-grey"></text>
-      <text class="text-grey">报价费用：　800</text>
+      <text class="text-grey">报价费用：　{{money}}</text>
     </view>
   </view>
   <view class="cu-item ">
@@ -50,7 +50,7 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-list text-grey"></text>
-      <text class="text-grey">规格型号：　jj123</text>
+      <text class="text-grey">规格型号：　{{device_unit}}</text>
     </view>
   </view>
   <view class="cu-item ">
@@ -83,49 +83,49 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-edit text-grey"></text>
-      <text class="text-grey">备注：　信息123465</text>
+      <text class="text-grey">备注：　{{marker}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-calendar text-grey"></text>
-      <text class="text-grey">状　　态：　维修中</text>
+      <text class="text-grey">状　　态：　{{status}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-timefill text-grey"></text>
-      <text class="text-grey">入库时间：　2019-07-10 12:58</text>
+      <text class="text-grey">入库时间：　{{join_time?join_time:"暂无"}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-timefill text-grey"></text>
-      <text class="text-grey">付款时间：　2019-07-10 15:30</text>
+      <text class="text-grey">付款时间：　{{pay_time?pay_time:"暂无"}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-timefill text-grey"></text>
-      <text class="text-grey">修完时间：　暂无</text>
+      <text class="text-grey">修完时间：　{{good_time?good_time:"暂无"}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-timefill text-grey"></text>
-      <text class="text-grey">通知时间：　暂无</text>
+      <text class="text-grey">通知时间：　{{notice_time?notice_time:"暂无"}}</text>
     </view>
   </view>
 
   <view class="cu-item ">
     <view class="content">
       <text class="icon-timefill text-grey"></text>
-      <text class="text-grey">取机时间：　暂无</text>
+      <text class="text-grey">取机时间：　{{res_time?res_time:"暂无"}}</text>
     </view>
   </view>
 

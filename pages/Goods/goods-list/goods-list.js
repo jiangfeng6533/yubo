@@ -1,4 +1,7 @@
 // pages/Goods/goods-list/goods-list.js
+var global = require('../../../Model/global.js');
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -18,7 +21,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+  },
+  getCate:function(){
+    global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id') }, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'loading',
+          duration: 500
+        })
+       
+        that.setData(res.data.result)
+        return;
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+    });
   },
 
   /**

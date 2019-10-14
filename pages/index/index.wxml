@@ -12,7 +12,7 @@
         <button class="cu-btn bg-blue button-hover" bindtap='toaddorder'>维修</button>
       </view>
       <view class="content margin-top">
-        <button class="cu-btn bg-cyan">销售</button>
+        <button class="cu-btn bg-cyan" bindtap='butest'>销售</button>
       </view>
     </view>
   </view>

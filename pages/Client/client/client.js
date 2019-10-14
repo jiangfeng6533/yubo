@@ -1,4 +1,6 @@
+const global = require('../../../Model/global.js');
 const app = getApp();
+
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -8,7 +10,19 @@ Page({
 
   },
   onLoad() {
+    //getClientAll
     var that = this;
+    global.http.postReq(global.Configs.getClientAll, {
+      
+    }, function (res) {
+      console.log("登录返回", res);
+      if (res.data.code == 200) {
+        wx.setStorageSync('token', res.data.result.token);
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    })
     var data = {
       "ret": 200,
       "circuit": [],

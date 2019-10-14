@@ -13,7 +13,6 @@ Page({
     index: null,
     imgList: [],
     clientgrade: ['零散客户', '大客户'],
-    grade: 0,
     modalName: null,
     textareaAValue: '',
     textareaBValue: ''
@@ -23,7 +22,53 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    var oid = options.oid;
+    var that = this;
 
+    global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id'), order_id: oid }, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'loading',
+          duration: 500
+        })
+        switch (res.data.result.status) {
+          case -1:
+            res.data.result.status = "取消";
+            break;
+          case 1:
+            res.data.result.status = "检查中";
+            break;
+          case 2:
+            res.data.result.status = "维修中";
+            break;
+          case 3:
+            res.data.result.status = "维修完成";
+            break;
+          case 4:
+            res.data.result.status = "通知";
+            break;
+          case 5:
+            res.data.result.status = "取机";
+            break;
+          case 6:
+            res.data.result.status = "完成";
+            break;
+        }
+        that.setData(res.data.result)
+        return;
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+    });
   },
   Changegrade(e) {
     console.log(e);
@@ -92,6 +137,12 @@ Page({
       complete: function(res) {},
     })
   },
+  resshopinfo(audit) {
+    console.log('add-audit', audit);
+    this.setData({
+      shopdata: audit
+    })
+  },
   toadd: function () {
     wx.showModal({
       title: '提示',
@@ -110,77 +161,40 @@ Page({
       }
     })
   },
-  selectclient() {
-    if (this.data.grade > 0) {
-      wx.navigateTo({
-        url: '../select-client/client',
-      })
-    } else {
-
-    }
-  },
-  resclientinfo(audit) {
-    console.log('add-audit', audit);
-    this.setData({
-      cname: audit.name,
-      cphone: audit.phone,
-      cid: audit.cid
+  submit(e) {
+    console.log(e);
+    var shopdata = JSON.stringify(this.data.shopdata);
+    var order_id = this.data.order_id;
+    var audit = {
+      order_id: order_id,
+      goods_info: shopdata,
+      m_id: wx.getStorageSync('m_id'),
+      money: e.detail.value.money,
+      marker: e.detail.value.marker,
+    };
+    console.log('audit', audit);
+    global.http.postReq(global.Configs.editServiceOrder, audit, function (res) {
+      console.log("添加返回", res);
+      if (res.data.code == 200) {
+        console.log("添加成功", res);
+      }
     })
-  },
-  getclientname(e) {
-    var that = this;
-    var key = e.detail.value;
-    console.log('name', key);
-    this.setData({
-      cname: key
+    return;
+    wx.showModal({
+      title: '提示',
+      content: '添加成功',
+      showCancel: false,
+      success(res) {
+        if (res.confirm) {
+          wx.redirectTo({
+            url: '../index/index',
+          })
+        } else if (res.cancel) {
+          wx.redirectTo({
+            url: '../index/index',
+          })
+        }
+      }
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

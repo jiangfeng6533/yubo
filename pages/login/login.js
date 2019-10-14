@@ -46,35 +46,7 @@ Page({
     
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    var that = this;
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
+  //暂时不用
   getPhoneNumber(e) {
     console.log('getuser')
     var that = this;
@@ -121,9 +93,9 @@ Page({
           function (val) {
             var data = val.data;
             console.log(data);
-            if (data.code == 500) {
+            if (data.code == 404) {
               wx.showModal({
-                title: '亲请重新获取',
+                title: '亲请重新登录',
                 content: data.msg,
                 showCancel: false
               })
@@ -148,10 +120,8 @@ Page({
                 return;
               }
               wx.setStorageSync('openid', data.openid);
-              wx.setStorageSync('sessionKey', data.session_key);
               wx.setStorageSync('phone', data.phoneNumber);
               wx.setStorageSync('token', data.token);
-              wx.setStorageSync('p_id', data.p_id);
               wx.setStorageSync('user_info', data.user_info);
               if (wx.getStorageSync("token")) {
                 wx.showModal({
@@ -173,6 +143,51 @@ Page({
       }
     })
 
+  },
+  submit:function (e){
+    console.log("提交");
+    console.log(e.detail.value)
+    console.log(e.detail.value.phone)
+    var phone = e.detail.value.phone;
+    var pwd = e.detail.value.pwd;
+    global.http.postReq(global.Configs.login,{
+      phone:phone,pwd:pwd
+    },function(res){
+      console.log("登录返回",res);
+      if(res.data.code == 200){
+        wx.setStorageSync('token', res.data.result.token);
+        wx.setStorageSync('userInfo', res.data.result.userInfo);
+        wx.setStorageSync('phone', res.data.result.userInfo.phone);
+        wx.setStorageSync('m_id', res.data.result.userInfo.id);
+        wx.setStorageSync('com_id', res.data.result.userInfo.com_id);
+        wx.showModal({
+          title: '登录成功',
+          content: '亲，等您好久啦！',
+          showCancel: false,
+          success(res) {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }
+        });
+        return;
+      }
+      if (res.data.code == 404) {
+        wx.showModal({
+          title: '亲请重新登录',
+          content: res.data.msg,
+          showCancel: false
+        })
+      }
+    })
+  },
+  test(){
+    global.http.postReq(
+      'manager/getUserInfo', '', function (res) {
+        console.log(res);
+        console.log("datat", res.data);
+      }
+    )
   }
 
 })

@@ -3,49 +3,65 @@
   <view slot="content">维修订单修改</view>
 </cu-custom>
 
-<form>
+<form bindsubmit="submit">
 
   <view class="cu-form-group margin-top">
     <view class="title">客户级别</view>
-    <picker bindchange="Changegrade"  range="{{clientgrade}}" >
+    <picker bindchange="Changegrade" disabled="disabled" range="{{clientgrade}}">
       <view class="picker">
-        {{clientgrade[grade]?clientgrade[grade]:'请选择客户级别'}}
+        {{clientgrade[grclient_levelade]?clientgrade[client_level]:'请选择客户级别'}}
       </view>
     </picker>
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">客户名称</view>
-    <input placeholder="请输入客户名称" bindtap='selectclient' bindinput="getclientname" disabled='{{grade>0?true:false}}' value="{{cname}}"></input>
+    <input placeholder="请输入客户名称"   disabled='disabled' value="{{client_name}}"></input>
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">联系电话</view>
-    <input placeholder="请输入联系电话" bindtap='selectclient' disabled='{{grade>0?true:false}}' value="{{cphone}}"></input>
+    <input placeholder="请输入联系电话"  disabled='disabled' value="{{client_phone}}"></input>
   </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">维修费用</view>
-    <input placeholder="请输入报价费用"></input>
+    <input placeholder="请输入报价费用" value="{{money}}" name="money"></input>
   </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">预计取机时间</view>
-    <input placeholder="请输入预计维修时间"></input>
+    <input placeholder="请输入预计维修时间" value=""  ></input>
     <text class=" text-blue">天</text>
   </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">设备名称</view>
-    <input placeholder="请输入设备名称"></input>
+    <input placeholder="请输入设备名称" disabled='disabled' value="{{device_name}}"></input>
   </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">规格型号</view>
-    <input placeholder="请输入规格型号"></input>
+    <input placeholder="请输入规格型号" disabled='disabled' value="{{device_unit}}"></input>
   </view>
 
   <view class="cu-form-group top margin-top">
-    <view class="title">维修内容</view>
-    <textarea data-placeholder="请输入维修内容" maxlength="-1" disabled="disabled" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" bindtap="changeGoods"></textarea>
+
+    <view class="grid col-1 margin-bottom text-center" style="width:100%">
+      <view class="grid col-2 margin-bottom">
+        <view class="title grid">维修内容</view>
+        <view class="title grid" bindtap="changeGoods" >请输入维修内容</view>
+      </view>
+      <view class="flex p-xs margin-bottom-sm mb-sm " wx:for="{{shopdata}}" wx:for-index="kk" wx:for-item="vv">
+        <view class="flex-treble bg-blue padding-sm margin-xs radius">
+          {{vv.goods_name}}
+        </view>
+        <view class="flex-sub bg-blue padding-sm margin-xs radius">
+          {{vv.num}}盒
+        </view>
+        <view class="flex-twice bg-blue padding-sm margin-xs radius">
+          {{vv.mount}}元
+        </view>
+      </view>
+    </view>
   </view>
 
   <view class="cu-bar bg-white margin-top">
@@ -69,9 +85,9 @@
     </view>
   </view>
 
-   <view class="cu-form-group margin-top">
-    <textarea data-placeholder="请输入备注" maxlength="-1" disabled="{{modalName!=null}}" placeholder-class="placeholder" class="{{textareaAValue?'value':''}}" bindinput="textareaAInput"></textarea>
+  <view class="cu-form-group margin-top">
+    <textarea placeholder="请输入备注"  value="{{marker}}" name="marker"></textarea>
   </view>
-  <button class="cu-btn block bg-blue margin-tb-sm lg" bindtap='toadd'>
-    <text class="icon-loading2 iconfont-spin"></text> 提交</button>
+  <button class="cu-btn block bg-blue margin-tb-sm lg" form-type='submit'>
+    <text class="icon-loading2 iconfont-spin"></text> 修改</button>
 </form>

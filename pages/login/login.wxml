@@ -10,27 +10,27 @@
   </view>
 </view>
 
-<form class="bg-white ">
+<form class="bg-white " bindsubmit="submit">
   <view class="cu-form-group margin-top">
-    <view class="title">用户</view>
-    <input placeholder="请输入名称"></input>
+    <view class="title">手机号</view>
+    <input placeholder="请输入名称" name="phone"></input>
   </view>
 
   <view class="cu-form-group ">
     <view class="title">密码</view>
-    <input placeholder="请输入密码" password="true"></input>
+    <input placeholder="请输入密码" password="true" name="pwd"></input>
   </view>
 
 
   <view class="flex flex-wrap ub-pc margin-top">
     <view class="basis-xl    radius">
-      <button class="cu-btn block bg-blue margin-tb-sm lg button-hover radius">登录</button>
+      <button class="cu-btn block bg-blue margin-tb-sm lg button-hover radius" form-type='submit'>登录</button>
     </view>
   </view>
   <view class="flex flex-wrap ub-pc ">
     <view class="basis-xl radius">
       <view class="flex justify-between">
-        <view class="text-blue">
+        <view class="text-blue" bindtap="test">
           注册
         </view>
         <view class="text-blue">
