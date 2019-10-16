@@ -11,7 +11,7 @@ App({
 
   },
   onLaunch: function() {
-      
+    var that  = this;
     // 获取系统状态栏信息
     wx.getSystemInfo({
       success: e => {
@@ -24,6 +24,24 @@ App({
         }
       }
     })
+    var m_id=wx.getStorageSync('m_id');
+    var token = wx.getStorageSync('token');
+    if(!m_id || !token){
+      wx.reLaunch({
+        url: '/pages/login/login',
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
+    }else{
+      that.aData.token = token;
+      that.aData.m_id = m_id;
+    }
+
+  },
+  onShow:function (option){
+    var pages = getCurrentPages();
+    console.log('页面实例', pages);
   },
   //普通跳转
   // app.navigateTo({

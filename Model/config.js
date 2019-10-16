@@ -1,7 +1,9 @@
 const Config={
   //接口地址
-  rootDocment: 'http://118.190.61.40:9501/api/',
-  rootUrl:'http://118.190.61.40:9501/api/',
+  rootDocment: 'https://jdshop.adyy.net/api/',
+  rootUrl:'https://jdshop.adyy.net/api/',
+  // rootDocment: 'http://118.190.61.40:9501/api/',
+  // rootUrl:'http://118.190.61.40:9501/api/',
   txmapkey:"D4UBZ-EXZ65-RBCIP-QHQQZ-VRU77-42FEG",
   gdmapkey:"1f5cb96226f3db13f946b7b484178d0a",
 

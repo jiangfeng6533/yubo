@@ -3,14 +3,15 @@ var global = require('../../../Model/global.js');
 //获取应用实例
 const app = getApp()
 Page({
-
+  audit:null,
+  page:1,
   /**
    * 页面的初始数据
    */
   data: {
     setgoodsmodal:false,
     addgoodsmodal:false,
-    goodstype:["全部类别","机电维修","配件","普通商品"],
+    goodstype:["全部类别"],
     typeindex:0,
     animationData:{},
     state: false,
@@ -21,10 +22,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: 1 };
+    that.getGoodsAll();
+    that.getCate();
   },
   getCate:function(){
-    global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id') }, function (res) {
+    var that =this;
+    global.http.postReq(global.Configs.getGoodsCategory, { m_id: wx.getStorageSync('m_id') }, function (res) {
       console.log(res);
       if (res.data.code == 200) {
         wx.showToast({
@@ -32,7 +37,35 @@ Page({
           icon: 'loading',
           duration: 500
         })
-       
+        var goodstype = that.data.goodstype;
+        for (let k in res.data.result){
+          goodstype.push(res.data.result[k].cat_name);
+        }
+        that.setData({ cate: res.data.result, goodstype: goodstype})
+        return;
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+    });
+  },
+
+  getGoodsAll: function () {
+    var that = this;
+    
+    global.http.postReq(global.Configs.getGoodsAll, that.audit, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'loading',
+          duration: 500
+        })
         that.setData(res.data.result)
         return;
       }
@@ -84,6 +117,11 @@ Page({
     })
   },
   addgoods(e) {
+    wx.showToast({
+      icon: 'none',
+      title: '暂未开通',
+    })
+    return;
     var that = this;
     console.log('选择商品', e);
     that.setData({
@@ -103,8 +141,18 @@ Page({
     })
   },
   Changetype(e) {
+    var that = this;
     console.log(e);
     let typeindex = e.detail.value;
+    if (typeindex != 0){
+      that.audit.cate = that.data.cate[typeindex - 1].category_id;
+      that.page = 1;
+      that.getGoodsAll();
+    }else{
+      that.audit.cate = null;
+      that.page = 1;
+      that.getGoodsAll();
+    }
     this.setData({
       typeindex: typeindex
     })
@@ -144,43 +192,12 @@ Page({
     }
   },
   tocategory(){
-    wx.redirectTo({
-      url: '/pages/Goods/category-list/category-list',
+    wx.showToast({
+      icon:'none',
+      title: '暂未开通',
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    // wx.redirectTo({
+    //   url: '/pages/Goods/category-list/category-list',
+    // })
   }
 })

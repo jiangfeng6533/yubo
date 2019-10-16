@@ -57,6 +57,8 @@ Page({
             res.data.result.status = "完成";
             break;
         }
+        var shopdata = JSON.parse(res.data.result.goods_info);
+        res.data.result.shopdata = shopdata;
         that.setData(res.data.result)
         return;
       }
@@ -131,7 +133,7 @@ Page({
   },
   changeGoods(e) {
     wx.navigateTo({
-      url: '/pages/Goods/select-list/select-list',
+      url: '/pages/Goods/select-list/select-list?shopdata=' + JSON.stringify(this.data.shopdata),
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -139,9 +141,8 @@ Page({
   },
   resshopinfo(audit) {
     console.log('add-audit', audit);
-    this.setData({
-      shopdata: audit
-    })
+    //samount商品总金额，costamount商品成本总价
+    this.setData(audit);
   },
   toadd: function () {
     wx.showModal({
@@ -177,24 +178,25 @@ Page({
       console.log("添加返回", res);
       if (res.data.code == 200) {
         console.log("添加成功", res);
+        wx.showModal({
+          title: '提示',
+          content: '添加成功',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta:1
+              })
+            } else if (res.cancel) {
+             wx.navigateBack({
+               delta:1
+             })
+            }
+          }
+        })
       }
     })
     return;
-    wx.showModal({
-      title: '提示',
-      content: '添加成功',
-      showCancel: false,
-      success(res) {
-        if (res.confirm) {
-          wx.redirectTo({
-            url: '../index/index',
-          })
-        } else if (res.cancel) {
-          wx.redirectTo({
-            url: '../index/index',
-          })
-        }
-      }
-    })
+   
   }
 })

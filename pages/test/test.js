@@ -22,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var id = parseInt((3 * 9.2).toFixed(2));
+    console.log('dada',id);
+
     console.log('StatusBar', this.data.StatusBar);
     console.log('CustomBar', this.data.CustomBar);
     var height = wx.getSystemInfoSync().windowHeight;

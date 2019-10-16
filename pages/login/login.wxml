@@ -1,5 +1,5 @@
 <!--pages/login/login.wxml-->
-<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"></cu-custom>
+<cu-custom bgColor="bg-gradual-blue" isBack=""></cu-custom>
 <view class=" padding-xs flex align-center">
 
   <view class="flex-sub padding ">

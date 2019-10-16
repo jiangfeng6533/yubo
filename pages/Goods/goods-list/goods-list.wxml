@@ -27,39 +27,28 @@
 <!-- 搜索结束 -->
 
 <view class='ub ub-ver bg-white margin-top '>
+
   <!-- 循环 -->
-  <view class="ub padding-sm solid-bottom" bindtap='setgoods' data-gid='1'>
+  <block wx:for="{{list}}" wx:for-index="k" wx:for-item="v">
+  <!-- bindtap='setgoods' -->
+  <view class="ub padding-sm solid-bottom"  data-gid='{{v.id}}'>
     <view class="ub padding-xs solids">
       <text style="font-size:3rem" class="icon-cameraadd"></text>
     </view>
     <view class="ub ub-f1 ub-ver padding-sm">
       <view class="ub margin-bottom">
-        离心开关片
+        {{v.goods_name}}
       </view>
       <view class="ub">
-        价格：￥5.00
+        价格：￥{{v.price}}
       </view>
 
     </view>
   </view>
+  </block>
   <!-- 循环结束 -->
 
-  <!-- 循环 -->
-  <view class="ub padding-sm solid-bottom" bindtap='setgoods'>
-    <view class="ub padding-xs solids">
-      <text style="font-size:3rem" class="icon-cameraadd"></text>
-    </view>
-    <view class="ub ub-f1 ub-ver padding-sm">
-      <view class="ub margin-bottom">
-        离心开关片
-      </view>
-      <view class="ub">
-        价格：￥5.00
-      </view>
 
-    </view>
-  </view>
-  <!-- 循环结束 -->
 
 </view>
 

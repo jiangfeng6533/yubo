@@ -14,12 +14,16 @@ Page({
   },
 
   onLoad: function (options) {
+    var puldata = JSON.parse(options.shopdata);
+    if (puldata == null) puldata=[];
+    console.log('puldata', puldata);
     var that = this;
     var shopdata = [];
     var goodsdata = [];
     goodsdata.push({ goods_name: '离心开关', price: 5.05, mount: 6, goods_id: 1233, goods_img: null, unit: '个' }, { goods_name: '电焊条', price: 30.00, mount: 35.00, goods_id: 1233, goods_img: null ,unit:'盒'})
     shopdata.push(
-      { com_name: "宇博机电", checked: '', data: [{ goods_name: '这是一个商dddddd品名称', price: 30, num: 1, mount: 30, checked: 'checked', cost: 15, goods_id: 6666 }, { goods_name: '这是一个ddddddddd商品名称', price: 30, num: 1, mount: 40, checked: '', cost: 15, goods_id: 6661 }] },
+      { com_name: "宇博机电", checked: '', data: puldata }
+      //{ goods_name: '这是一个商dddddd品名称', price: 30, num: 1, mount: 30, checked: 'checked', cost: 15, goods_id: 6666 }, { goods_name: '这是一个ddddddddd商品名称', price: 30, num: 1, mount: 40, checked: '', cost: 15, goods_id: 6661 }
     );
     console.log(shopdata)
     that.countnum(shopdata);
@@ -37,7 +41,8 @@ Page({
     var shopkey = e.currentTarget.dataset.shopkey;
     var shopdata = this.data.shopdata;
     shopdata[comkey].data[shopkey].num = shopdata[comkey].data[shopkey].num + 1;
-    shopdata[comkey].data[shopkey].mount = shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].price;
+    shopdata[comkey].data[shopkey].mount = parseInt((shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].price).toFixed(2));
+    shopdata[comkey].data[shopkey].costmount = parseInt((shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].cost).toFixed(2));
     this.countnum(shopdata);
     this.setData({ shopdata: shopdata })
     //wx.setStorageSync('cartlist', shopdata);
@@ -49,7 +54,8 @@ Page({
     var shopdata = this.data.shopdata;
     if (shopdata[comkey].data[shopkey].num != 1 && shopdata[comkey].data[shopkey].num > 0) {
       shopdata[comkey].data[shopkey].num = shopdata[comkey].data[shopkey].num - 1;
-      shopdata[comkey].data[shopkey].mount = shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].price
+      shopdata[comkey].data[shopkey].mount = parseInt((shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].price).toFixed(2));
+      shopdata[comkey].data[shopkey].costmount = parseInt((shopdata[comkey].data[shopkey].num * shopdata[comkey].data[shopkey].cost).toFixed(2));
     }
     this.countnum(shopdata);
     this.setData({ shopdata: shopdata })
@@ -58,14 +64,16 @@ Page({
   //计算总价公共函数
   countnum: function (shopdata) {
     let paymentMount = 0;
+    let costamount = 0;
     for (let v in shopdata) {
       for (let vv in shopdata[v].data) {
         if (shopdata[v].data[vv].checked == 'checked'){
-          paymentMount += shopdata[v].data[vv].mount;
+          paymentMount = parseInt((paymentMount + shopdata[v].data[vv].mount).toFixed(2));
+          costamount = parseInt((costamount + shopdata[v].data[vv].costmount).toFixed(2));
         }
       }
     }
-    this.setData({ paymentMount: paymentMount })
+    this.setData({ paymentMount: paymentMount, costamount: costamount })
   },
   //购物车删除已选商品
   delshop(e){
@@ -184,7 +192,7 @@ Page({
     var setgoodsData = this.data.setgoodsData;
     var shopdata = this.data.shopdata;
     shopdata[0].data.push(
-      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: setgoodsData.mount * setgoodsData.num, checked: 'checked', cost: setgoodsData.price, goods_id: setgoodsData.goods_id }
+      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: parseInt((setgoodsData.mount * setgoodsData.num).toFixed(2)), checked: 'checked', cost: setgoodsData.price, costmount: parseInt((setgoodsData.price * setgoodsData.num).toFixed(2)), goods_id: setgoodsData.goods_id }
     );
     var goodsNum = shopdata[0].data.length;
     this.setData({
@@ -242,8 +250,13 @@ Page({
   },
   selectFinish(e) {
     console.log('changeuser', e);
-    var shopdata = this.data.shopdata;
-    var audit = shopdata[0].data; 
+    var shopdata = this.data.shopdata[0].data;
+    for (let v in shopdata){
+      if (shopdata[v].checked != 'checked'){
+        shopdata.splice(v, 1);
+      }
+    }
+    var audit = { shopdata: shopdata, samount: this.data.paymentMount, costamount: this.data.costamount}; 
     var pages = getCurrentPages();
     console.log('page', pages);
     var beforePage = pages[pages.length - 2];

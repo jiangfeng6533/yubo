@@ -44,23 +44,23 @@
     </view>
     <!-- 循环结束 -->
 
-   
+
 
   </view>
 </view>
 
 
-  <!-- 购物车按钮 -->
-  <view class="menugo" animation="{{animationData}}" bindtap="shoppingCart">
-    <view wx:if="{{isgoodshow==true}}">
+<!-- 购物车按钮 -->
+<view class="menugo" animation="{{animationData}}" bindtap="shoppingCart">
+  <view wx:if="{{isgoodshow==true}}">
     <view class="cu-tag badge">{{goodsNum}}</view>
     <text class="cuIcon-cart text-blue"></text>
-    </view>
-    <view wx:if="{{isgoodshow==false}}">
-    <text class="cuIcon-forwardfill text-blue"></text>
-    </view>
   </view>
-  <!-- 购物车按钮 -->
+  <view wx:if="{{isgoodshow==false}}">
+    <text class="cuIcon-forwardfill text-blue"></text>
+  </view>
+</view>
+<!-- 购物车按钮 -->
 
 
 <!-- modal -->
@@ -86,7 +86,7 @@
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn line-green text-green" bindtap="setgoodshideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="choosegoods" >确定</button>
+        <button class="cu-btn bg-green margin-left" bindtap="choosegoods">确定</button>
 
       </view>
     </view>
@@ -134,16 +134,16 @@
                   <checkbox class='round red' checked="{{vv.checked}}" data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='checkboxChange'></checkbox>
                 </view>
                 <view class="canui-goods">
-                <!-- <text style="font-size:3rem" class="icon-cameraadd"></text> -->
+                  <!-- <text style="font-size:3rem" class="icon-cameraadd"></text> -->
                   <!-- <view class="cu-avatar radius lg " style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);"></view> -->
-                  <view class="cu-avatar radius lg icon-cameraadd" ></view>
+                  <view class="cu-avatar radius lg icon-cameraadd"></view>
                   <view class='content1 ' style="left:none;">
-                    <view class='canui-xzwz'>{{vv.title}}</view>
+                    <view class='canui-xzwz'>{{vv.goods_name}}</view>
                     <view class='canui-tool'>
                       <text class='text-price text-red' style="position:absolute;right:180rpx;flex:right;bottom:-6rpx;">{{vv.mount}}</text>
                       <view class='action-btn-sum'>
                         <button class='cu-btn' data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='numdel'>-</button>
-                        <input class='ca-sum' name='input' value="{{vv.num}}"></input>
+                        <input class='ca-sum' name='input' value="{{vv.num}}" disabled="disabled"></input>
                         <button class='cu-btn' data-comkey="{{k}}" data-shopkey="{{kk}}" bindtap='numadd'>+</button>
                       </view>
                     </view>

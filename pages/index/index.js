@@ -1,7 +1,4 @@
 // pages/index/index.js
-
-//index.js
-var wxCharts = require('../../utils/wxcharts.js');
 var global = require('../../Model/global.js');
 //获取应用实例
 const app = getApp()
