@@ -24,7 +24,7 @@
 
 
 
-<home wx:if="{{PageCur=='home'}}"></home>
+<home wx:if="{{PageCur=='home'}}" today="{{today}}"></home>
 <user wx:if="{{PageCur=='user'}}"></user>
 
 

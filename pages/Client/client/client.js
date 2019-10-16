@@ -12,276 +12,41 @@ Page({
   onLoad() {
     //getClientAll
     var that = this;
-    global.http.postReq(global.Configs.getClientAll, {
-      
-    }, function (res) {
+    global.http.postReq(global.Configs.getClientAll, {m_id:wx.getStorageSync('m_id')}, function (res) {
       console.log("登录返回", res);
       if (res.data.code == 200) {
-        wx.setStorageSync('token', res.data.result.token);
-        wx.redirectTo({
-          url: '/pages/index/index',
+        var area = res.data.result.list;
+        var startarr = [];
+        var getstartdata = [];
+        for (var key in area) {
+          if (startarr[area[key].second]) {
+            startarr[area[key].second].push({ start: area[key].user_name, second: area[key].second, id: area[key].id, phone: area[key].phone, com_name: area[key].com_name });
+          } else {
+            startarr[area[key].second] = [{ start: area[key].user_name, second: area[key].second, id: area[key].id, phone: area[key].phone, com_name: area[key].com_name }];
+          }
+        }
+        console.log('startarr', startarr);
+        for (var startkey in startarr) {
+          getstartdata.push(startarr[startkey]);
+        }
+        let list = [];
+        let searchArr = [];
+        for (let lkey in startarr) {
+          list.push(lkey);
+          for (let lkk in startarr[lkey]) {
+            searchArr.push(startarr[lkey][lkk]);
+          }
+        }
+        that.setData({
+          list: list,
+          listCur: list[0],
+          userarr: getstartdata,
+          searchArr: searchArr
         })
       }
     })
-    var data = {
-      "ret": 200,
-      "circuit": [],
-      "data": {
-        "0": [{
-          "first": "H",
-          "second": "A",
-          "end_addr": "A哈尔滨",
-          "id": "1",
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.160153",
-          "start_lat": "46.563254",
-          "end_lon": "126.630815",
-          "end_lat": "45.760407",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230604",
-          "endarea": "230102",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.92km",
-          "discount": 1
-        }],
-        "1": [{
-          "first": "H",
-          "second": "A",
-          "end_addr": "A哈尔滨火车站",
-          "id": -3,
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.1478946882",
-          "start_lat": "46.5693956011",
-          "end_lon": "126.6383701747",
-          "end_lat": "45.767161388",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230603",
-          "endarea": "230103",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.71km",
-          "discount": 1
-        }],
-        "2": [{
-          "first": "H",
-          "second": "B",
-          "end_addr": "B哈尔滨",
-          "id": "1",
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.160153",
-          "start_lat": "46.563254",
-          "end_lon": "126.630815",
-          "end_lat": "45.760407",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230604",
-          "endarea": "230102",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.92km",
-          "discount": 1
-        }],
-        "3": [{
-          "first": "H",
-          "second": "B",
-          "end_addr": "B哈尔滨火车站",
-          "id": -3,
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.1478946882",
-          "start_lat": "46.5693956011",
-          "end_lon": "126.6383701747",
-          "end_lat": "45.767161388",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230603",
-          "endarea": "230103",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.71km",
-          "discount": 1
-        }],
-        "4": [{
-          "first": "H",
-          "second": "C",
-          "end_addr": "C哈尔滨",
-          "id": "1",
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.160153",
-          "start_lat": "46.563254",
-          "end_lon": "126.630815",
-          "end_lat": "45.760407",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230604",
-          "endarea": "230102",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.92km",
-          "discount": 1
-        }],
-        "5": [{
-          "first": "H",
-          "second": "C",
-          "end_addr": "C哈尔滨火车站",
-          "id": -3,
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.1478946882",
-          "start_lat": "46.5693956011",
-          "end_lon": "126.6383701747",
-          "end_lat": "45.767161388",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230603",
-          "endarea": "230103",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.71km",
-          "discount": 1
-        }],
-        "6": [{
-          "first": "H",
-          "second": "D",
-          "end_addr": "哈尔滨",
-          "id": "1",
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.160153",
-          "start_lat": "46.563254",
-          "end_lon": "126.630815",
-          "end_lat": "45.760407",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230604",
-          "endarea": "230102",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.92km",
-          "discount": 1
-        }],
-        "7": [{
-          "first": "H",
-          "second": "D",
-          "end_addr": "哈尔滨火车站",
-          "id": -3,
-          "price": null,
-          "b_price": null,
-          "start_lon": "125.1478946882",
-          "start_lat": "46.5693956011",
-          "end_lon": "126.6383701747",
-          "end_lat": "45.767161388",
-          "cityid": "230600",
-          "ecityid": "230100",
-          "startarea": "230603",
-          "endarea": "230103",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "179.71km",
-          "discount": 1
-        }],
-        "8": [{
-          "first": "D",
-          "second": "H",
-          "end_addr": "大庆",
-          "id": -1,
-          "price": null,
-          "b_price": null,
-          "start_lon": "126.630815",
-          "start_lat": "45.760407",
-          "end_lon": "125.160153",
-          "end_lat": "46.563254",
-          "cityid": "230100",
-          "ecityid": "230600",
-          "startarea": "230102",
-          "endarea": "230604",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "180.75km",
-          "discount": 1
-        }],
-        "9": [{
-          "first": "D",
-          "second": "H",
-          "end_addr": "大庆枢纽站",
-          "id": "3",
-          "price": null,
-          "b_price": null,
-          "start_lon": "126.6383701747",
-          "start_lat": "45.767161388",
-          "end_lon": "125.1478946882",
-          "end_lat": "46.5693956011",
-          "cityid": "230100",
-          "ecityid": "230600",
-          "startarea": "230103",
-          "endarea": "230603",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "180.90km",
-          "discount": 1
-        }],
-        "10": [{
-          "first": "D",
-          "second": "H",
-          "end_addr": "大庆枢纽站",
-          "id": "3",
-          "price": null,
-          "b_price": null,
-          "start_lon": "126.6383701747",
-          "start_lat": "45.767161388",
-          "end_lon": "125.1478946882",
-          "end_lat": "46.5693956011",
-          "cityid": "230100",
-          "ecityid": "230600",
-          "startarea": "230103",
-          "endarea": "230603",
-          "buget_describe": null,
-          "kilometre_describe": null,
-          "k_metres": "180.90km",
-          "discount": 1
-        }]
-      },
-      "msg": "获取区间成功"
-    };
-    console.log(data);
-    var area = data.data;
-    var startarr = [];
-    var getstartdata = [];
-    for (var key in area) {
-      if (startarr[area[key][0].second]) {
-        startarr[area[key][0].second].push({ start: area[key][0].end_addr, second: area[key][0].second, start_lat: area[key][0].start_lat, start_lon: area[key][0].start_lon, startarea: area[key][0].startarea });
-      } else {
-        startarr[area[key][0].second] = [{ start: area[key][0].end_addr, second: area[key][0].second, start_lat: area[key][0].start_lat, start_lon: area[key][0].start_lon, startarea: area[key][0].startarea }];
-      }
-    }
-
-    console.log('startarr',startarr);
-
-    for (var startkey in startarr) {
-      getstartdata.push(startarr[startkey]);
-    }
-
-    let list = [];
-    let searchArr = [];
-    for (let lkey in startarr){
-      list.push(lkey);
-      for (let lkk in startarr[lkey]){
-        searchArr.push(startarr[lkey][lkk]);
-      }
-    }
-    this.setData({
-      list: list,
-      listCur: list[0],
-      userarr: getstartdata,
-      searchArr: searchArr
-    })
+    return;
+    
   },
   onReady() {
     let that = this;

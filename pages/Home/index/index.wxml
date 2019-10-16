@@ -18,7 +18,7 @@
 
 <view class="cu-bar bg-white margin-top  solid-bottom">
   <view class="action">
-    <text class="icon-title text-blue"></text>日期：2019-07-09 22:27
+    <text class="icon-title text-blue"></text>日期：{{today}}
   </view>
 </view>
 

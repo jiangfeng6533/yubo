@@ -1,6 +1,11 @@
 
 // pages/Home/index.js
+const global = require('../../../Model/global.js');
+const app = getApp();
 Component({
+  properties: {
+    today: String, //接收从父组件传来的值
+  },
   options: {
     addGlobalClass: true,
   },
@@ -8,10 +13,12 @@ Component({
    * 页面的初始数据
    */
   data: {
-
+    
   },
   methods: {
-    
+    /**
+     * 生命周期函数--监听页面加载
+     */
     toorderlist: function () {
       wx.navigateTo({
         url: '/pages/Order/list/list',
@@ -22,61 +29,5 @@ Component({
         url: '/pages/User/user',
       })
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
   }
 })

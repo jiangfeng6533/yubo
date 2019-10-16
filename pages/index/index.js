@@ -1,5 +1,6 @@
 // pages/index/index.js
-var global = require('../../Model/global.js');
+var global  = require('../../Model/global.js');
+const utils = require('../../utils/util.js');
 //获取应用实例
 const app = getApp()
 
@@ -12,6 +13,25 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     PageCur: 'home'
+  },
+  onLoad: function (options) {
+    this.setData({
+      today: utils.formatTime(new Date())
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
   NavChange(e) {
     this.setData({
