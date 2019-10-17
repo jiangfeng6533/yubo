@@ -22,11 +22,11 @@ Page({
     global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id'), order_id: oid}, function (res) {
       console.log(res);
       if (res.data.code == 200) {
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'loading',
-          duration: 500
-        })
+        // wx.showToast({
+        //   title: res.data.msg,
+        //   icon: 'loading',
+        //   duration: 500
+        // })
         switch (res.data.result.status){
           case -1:
             res.data.result.status = "取消";

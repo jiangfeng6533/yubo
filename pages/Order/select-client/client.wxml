@@ -16,14 +16,14 @@
 
 <scroll-view scroll-y class="indexes {{isSearch==true?'show':'hide'}}" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
   <view class="cu-list menu-avatar no-padding">
-    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123">
+    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="{{searchRes[sub].phone}}" data-name="{{searchRes[sub].user_name}}" data-cid="{{searchRes[sub].id}}">
       <view class="cu-avatar round lg">{{searchRes[sub].second}}</view>
       <view class="content">
         <view class="text-grey">
-          {{searchRes[sub].second}}{{searchRes[sub].start}}
+          {{searchRes[sub].start}}
         </view>
         <view class="text-gray text-sm">
-          有{{sub+2}}个主子需要伺候
+          {{searchRes[sub].com_name}}
         </view>
       </view>
     </view>
@@ -35,14 +35,14 @@
   <block wx:for="{{userarr}}" wx:key>
     <view class="padding indexItem-{{userarr[index][0].second}}" id="indexes-{{userarr[index][0].second}}" data-index="{{userarr[index][0].second}}">{{userarr[index][0].second}}</view>
     <view class="cu-list menu-avatar no-padding">
-      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="15845672713" data-name="ji" data-cid="123">
+      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="{{userarr[index][sub].phone}}" data-name="{{userarr[index][sub].user_name}}" data-cid="{{userarr[index][sub].id}}">
         <view class="cu-avatar round lg">{{userarr[index][0].second}}</view>
         <view class="content">
           <view class="text-grey">
-            {{userarr[index][sub].second}}{{userarr[index][sub].start}}
+            {{userarr[index][sub].start}}
           </view>
           <view class="text-gray text-sm">
-            有{{sub+2}}个主子需要伺候
+           {{userarr[index][sub].com_name}}
           </view>
         </view>
       </view>

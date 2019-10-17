@@ -9,13 +9,13 @@
     <view class="cu-item arrow">
       <view class="content">
         <text class="cuIcon-people text-grey"></text>
-        <text class="text-grey">姓名： 姜峰</text>
+        <text class="text-grey">姓名： {{user_name}}</text>
       </view>
     </view>
     <view class="cu-item arrow">
       <view class="content">
         <text class="cuIcon-phone text-green"></text>
-        <text class="text-grey">联系电话：15845672713</text>
+        <text class="text-grey">联系电话：{{phone}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -23,7 +23,7 @@
         <view>
           <text class="cuIcon-location text-blue margin-right-xs"></text>地址：</view>
         <view class="text-gray text-sm">
-          黑龙江大庆市萨尔图区五金大街2B栋1号门，明卓机电</view>
+          {{addr}}</view>
       </view>
     </view>
 
@@ -60,14 +60,14 @@
         <view>
           <text class="cuIcon-tagfill text-gray margin-right-xs"></text>备注：</view>
         <view class="text-gray text-sm">
-           这是一条备注信息</view>
+           {{marker}}</view>
       </view>
     </view>
 
     <view class="cu-item arrow">
       <view class="content">
         <text class="cuIcon-time text-red"></text>
-        <text class="text-grey">添加时间：2019-09-03 12:88</text>
+        <text class="text-grey">注册时间：{{reg_time}}</text>
       </view>
     </view>
 

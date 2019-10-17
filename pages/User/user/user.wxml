@@ -51,8 +51,8 @@
     </view>
     <view class="cu-item arrow">
         <button class='cu-btn content'  bindtap="logout">
-            <text class='icon-writefill text-grey'></text>
-            <text class='text-grey'>退出登录</text>
+            <text class='cuIcon-exit text-grey'> </text>
+            <text class='text-grey'> 退出登录</text>
         </button>
     </view>
 </view>

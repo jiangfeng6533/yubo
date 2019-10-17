@@ -6,7 +6,7 @@
 <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
   <view class="search-form round">
     <text class="icon-search"></text>
-    <input type="text" placeholder="输入搜索的关键词" confirm-type="search" bindinput="getclientsearch" ></input>
+    <input type="text" placeholder="输入搜索的关键词" confirm-type="search" bindinput="getclientsearch"></input>
   </view>
   <view class="action">
     <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
@@ -16,7 +16,7 @@
 <!-- 搜索用 -->
 <scroll-view scroll-y class="indexes {{isSearch==true?'show':'hide'}}" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" enable-back-to-top="true">
   <view class="cu-list menu-avatar no-padding">
-    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="{{searchRes[sub].phone}}" data-name="{{searchRes[sub].user_name}}" data-cid="{{searchRes[sub].id}}" >
+    <view class="cu-item" wx:for="{{searchRes}}" wx:key wx:for-index="sub" bindtap='changeClient'  data-cid="{{searchRes[sub].id}}">
       <view class="cu-avatar round lg">{{searchRes[sub].second}}</view>
       <view class="content">
         <view class="text-grey">
@@ -35,11 +35,11 @@
   <block wx:for="{{userarr}}" wx:key>
     <view class="padding indexItem-{{userarr[index][0].second}}" id="indexes-{{userarr[index][0].second}}" data-index="{{userarr[index][0].second}}">{{userarr[index][0].second}}</view>
     <view class="cu-list menu-avatar no-padding">
-      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient' data-phone="{{userarr[index][0].phone}}" data-name="{{userarr[index][0].user_name}}" data-cid="{{userarr[index][0].id}}">
+      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient'  data-cid="{{userarr[index][0].id}}">
         <view class="cu-avatar round lg">{{userarr[index][0].second}}</view>
         <view class="content">
           <view class="text-grey">
-            {{userarr[index][sub].second}}{{userarr[index][sub].start}}
+            {{userarr[index][sub].start}}
           </view>
           <view class="text-gray text-sm">
             {{userarr[index][sub].com_name}}
@@ -65,7 +65,7 @@
 
 
 <!-- 添加菜单 -->
-<view class="menu" bindtap='addclient' animation="{{animationData}}" >
+<view class="menu" bindtap='addclient' animation="{{animationData}}">
   <text class="icon-roundadd"></text>
 </view>
 
@@ -79,24 +79,36 @@
         <text class="icon-close text-red"></text>
       </view>
     </view>
-    <view class="">
-
-      <view class="cu-form-group margin-top">
-        <view class="title">客户名称</view>
-        <input placeholder="请输入客户名称" value=""></input>
+    <form bindsubmit="addClientInfo">
+      <view class="">
+        <view class="cu-form-group margin-top">
+          <view class="title">客户名称</view>
+          <input placeholder="请输入客户名称" value="" name="user_name"></input>
+        </view>
+        <view class="cu-form-group margin-top margin-bottom">
+          <view class="title">手机号</view>
+          <input placeholder="请输入手机号" value="" name="phone"></input>
+        </view>
+        <view class="cu-form-group margin-top margin-bottom">
+          <view class="title">公司名称</view>
+          <input placeholder="请输入公司名称" value="" name="com_name"></input>
+        </view>
+        <view class="cu-form-group margin-top margin-bottom">
+          <view class="title">地址</view>
+          <input placeholder="请输入地址" value="" name="addr"></input>
+        </view>
+        <view class="cu-form-group margin-top margin-bottom">
+          <view class="title">备注</view>
+          <input placeholder="请输入备注" value="" name="marker"></input>
+        </view>
       </view>
-      <view class="cu-form-group margin-top margin-bottom">
-        <view class="title">手机号</view>
-        <input placeholder="请输入手机号" value=""></input>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="addclienthideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" form-type="submit">确定</button>
+        </view>
       </view>
-    </view>
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="addclienthideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="addclienthideModal" data-gid="selectgid">确定</button>
-
-      </view>
-    </view>
+    </form>
   </view>
 </view>
 <!-- modal结束 -->

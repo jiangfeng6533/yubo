@@ -12,7 +12,12 @@ Page({
   onLoad() {
     //getClientAll
     var that = this;
-    global.http.postReq(global.Configs.getClientAll, {m_id:wx.getStorageSync('m_id')}, function (res) {
+    that.getclientList();
+    
+  },
+  getclientList(){
+    var that = this;
+    global.http.postReq(global.Configs.getClientAll, { m_id: wx.getStorageSync('m_id') }, function (res) {
       console.log("登录返回", res);
       if (res.data.code == 200) {
         var area = res.data.result.list;
@@ -46,7 +51,6 @@ Page({
       }
     })
     return;
-    
   },
   onReady() {
     let that = this;
@@ -121,10 +125,8 @@ Page({
   changeClient(e){
     console.log('changeuser',e);
     var cid = e.currentTarget.dataset.cid;
-    var name = e.currentTarget.dataset.name;
-    var phone = e.currentTarget.dataset.phone;
     wx.navigateTo({
-      url: '/pages/Client/client-info/client-info',
+      url: '/pages/Client/client-info/client-info?cid='+cid,
     })
   },
   // input监听搜索
@@ -160,5 +162,35 @@ Page({
       addclientmodal: false
     })
   },
+  //添加客户信息
+  addClientInfo(e){
+    console.log(e);
+    var val = e.detail.value;
+    var that = this;
+    val.m_id = wx.getStorageSync('m_id');
+    global.http.postReq(global.Configs.addClientInfo, val, function (res) {
+      console.log("登录返回", res);
+      if (res.data.code == 200) {
+        wx.showToast({
+          icon:'none',
+          title: res.data.msg,
+          duration:800
+        })
+        setTimeout(function (){
+          that.getclientList();
+        },800)
+        that.setData({
+          addclientmodal: false
+        })
+      }
+      if (res.data.code == 204){
+        wx.showToast({
+          icon: 'none',
+          title: res.data.msg,
+          duration:1000
+        })
+      }
+    });
+  }
 
 });

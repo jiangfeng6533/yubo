@@ -9,7 +9,12 @@ const Config={
 
   //获取膳食信息
   login:"manager/login",
+  //获取用户列表
   getClientAll:"client/getClientAll",
+  //添加用户信息
+  addClientInfo:"client/addClientInfo",
+  //获取单个用户信息
+  getClientOneInfo:"client/getClientOneInfo",
   //维修开单
   addServiceOrder:"ServiceOrder/addServiceOrder",
   //修改维修订单
