@@ -48,7 +48,7 @@
     <view class="grid col-1 margin-bottom text-center" style="width:100%">
       <view class="grid col-2 margin-bottom">
         <view class="title grid">维修内容</view>
-        <view class="title grid" bindtap="changeGoods" >请输入维修内容</view>
+        <view class="title grid" bindtap="changeGoods"  style="color:red">点击添加维修内容</view>
       </view>
       <view class="flex p-xs margin-bottom-sm mb-sm " wx:for="{{shopdata}}" wx:for-index="kk" wx:for-item="vv">
         <view class="flex-treble bg-blue padding-sm margin-xs radius">

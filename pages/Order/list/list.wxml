@@ -21,10 +21,11 @@
     <view class="solid-bottom">
       <view class="cu-bar bg-white solid-bottom margin-top " data-oid="{{v.order_id}}" bindtap='toorderview'>
         <view class="action">
-          <text class="icon-title text-orange "></text> 编号：{{v.order_sn}}
+          <text class="icon-title text-orange "></text> <text class="">编号：{{v.order_sn}}</text>
         </view>
         <view class="action">
-          <text class=" text-orange "></text> {{v.join_time}}
+          {{v.join_time}}<text class=" text-red cuIcon-edit"></text> 
+          <!-- {{v.join_time}} -->
         </view>
       </view>
       <view class="cu-list menu sm-border">

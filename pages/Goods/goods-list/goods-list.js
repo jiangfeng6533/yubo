@@ -12,6 +12,7 @@ Page({
     setgoodsmodal:false,
     addgoodsmodal:false,
     goodstype:["全部类别"],
+    goodstypeindex:0,
     typeindex:0,
     animationData:{},
     state: false,
@@ -23,7 +24,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: 1 };
+    that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
     that.getGoodsAll();
     that.getCate();
   },
@@ -116,15 +117,12 @@ Page({
     })
   },
   addgoods(e) {
-    wx.showToast({
-      icon: 'none',
-      title: '暂未开通',
-    })
-    return;
     var that = this;
     console.log('选择商品', e);
+    var goodstypeindex = this.data.goodstypeindex;
     that.setData({
-      addgoodsmodal: true
+      addgoodsmodal: true,
+      goodstypeindex:0
     })
   },
   addgoodshideModal(e) {
@@ -132,13 +130,7 @@ Page({
       addgoodsmodal: false
     })
   },
-  //选择商品类别
-  selecttype(e){
-    var that = this;
-    that.setData({
-      typemodal:true
-    })
-  },
+
   Changetype(e) {
     var that = this;
     console.log(e);
@@ -157,6 +149,61 @@ Page({
     })
     
   },
+  //添加商品时选中类别
+  addgoodsType:function (e){
+    var that = this;
+    console.log(e);
+    let goodstypeindex = e.detail.value;
+
+    if (goodstypeindex == 0){
+      wx.showToast({
+        title: '请选择类别',
+      })
+      return;
+    }
+    this.setData({
+      goodstypeindex: goodstypeindex
+    })
+      
+  },
+  addGoodsForm:function (e){
+    console.log('form提交数据',e);
+    var that = this;
+    var audit = e.detail.value;
+    audit.m_id = wx.getStorageSync('m_id');
+    var goodstypeindex = this.data.goodstypeindex;
+    if (goodstypeindex==0){
+      wx.showToast({
+        title: '请选择类别',
+      })
+      return
+    };
+    audit.category_id = this.data.cate[goodstypeindex - 1].category_id;
+    global.http.postReq(global.Configs.addGoodsInfo,audit,function(res){
+      console.log('添加商品返回',res);
+      if(res.data.code == 200){
+        wx.showToast({
+          title: res.data.msg,
+          duration:500
+        })
+        that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
+        that.getGoodsAll();
+        that.setData({
+          addgoodsmodal: false
+        })
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+      
+    });
+  },
+  //暂时没用
   clickmenu(){
     // var animation= wx.createAnimation({
     //   duration:1000,

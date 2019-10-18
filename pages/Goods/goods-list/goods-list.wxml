@@ -16,8 +16,8 @@
       </view>
     </picker>
     <!-- 选择类别结束 -->
-
   </view>
+
   <view class="search-form round">
     <text class="icon-search"></text>
     <input type="text" placeholder="　搜索编号、客户名称"></input>
@@ -30,21 +30,21 @@
 
   <!-- 循环 -->
   <block wx:for="{{list}}" wx:for-index="k" wx:for-item="v">
-  <!-- bindtap='setgoods' -->
-  <view class="ub padding-sm solid-bottom"  data-gid='{{v.id}}'>
-    <view class="ub padding-xs solids">
-      <text style="font-size:3rem" class="icon-cameraadd"></text>
-    </view>
-    <view class="ub ub-f1 ub-ver padding-sm">
-      <view class="ub margin-bottom">
-        {{v.goods_name}}
+    <!-- bindtap='setgoods' -->
+    <view class="ub padding-sm solid-bottom" data-gid='{{v.id}}'>
+      <view class="ub padding-xs solids">
+        <text style="font-size:3rem" class="icon-cameraadd"></text>
       </view>
-      <view class="ub">
-        价格：￥{{v.price}}
-      </view>
+      <view class="ub ub-f1 ub-ver padding-sm">
+        <view class="ub margin-bottom">
+          {{v.goods_name}}
+        </view>
+        <view class="ub">
+          价格：￥{{v.price}}
+        </view>
 
+      </view>
     </view>
-  </view>
   </block>
   <!-- 循环结束 -->
 
@@ -62,9 +62,9 @@
   <view class="ub menuico ub-pc" bindtap='addgoods'>
     <text class="icon-goodsfill text-blue"></text>
   </view>
-  <view >添加商品</view>
+  <view>添加商品</view>
 </view>
-<view class="menu"  animation="{{animationData}}" bindtap="toggle">
+<view class="menu" animation="{{animationData}}" bindtap="toggle">
   <text class="icon-roundadd"></text>
 </view>
 <!-- 添加菜单结束 -->
@@ -106,29 +106,49 @@
 <view class="cu-modal {{addgoodsmodal==true?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
-      <view class="content" >商品添加</view>
+      <view class="content">商品添加</view>
       <view class="action" bindtap="addgoodshideModal">
         <text class="icon-close text-red"></text>
       </view>
     </view>
-    <view class="">
-
-      <view class="cu-form-group margin-top">
-        <view class="title">名　　称</view>
-        <input placeholder="请输入商品名称" value=""></input>
+    <form bindsubmit="addGoodsForm">
+      <view class="">
+        
+          <view class="cu-form-group margin-top">
+            <view class="title">名　　称</view>
+            <input placeholder="请输入商品名称" name="goods_name" value=""></input>
+          </view>
+          <view class="cu-form-group margin-top margin-bottom">
+            <view class="title">单　　价</view>
+            <input placeholder="请输入商品单价" value="" name="price"></input>
+          </view>
+          <view class="cu-form-group margin-top margin-bottom">
+            <view class="title">成　　本</view>
+            <input placeholder="请输入商品单价" value="" name="cost"></input>
+          </view>
+          <view class="cu-form-group margin-top margin-bottom">
+            <view class="title">单　　位</view>
+            <input placeholder="请输入商品单价" value="" name="unit"></input>
+          </view>
+          <view class="cu-form-group margin-top margin-bottom">
+            <view class="title">类　　别</view>
+            <view style="margin:0 auto;">
+              <!-- 选择类别 -->
+              <picker bindchange="addgoodsType" range="{{goodstype}}" value="goodstypeindex">
+                {{goodstype[goodstypeindex]}}
+              </picker>
+              <!-- 选择类别结束 -->
+            </view>
+          </view>
+        
       </view>
-      <view class="cu-form-group margin-top margin-bottom">
-        <view class="title">单　　价</view>
-        <input placeholder="请输入商品单价" value=""></input>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="addgoodshideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" form-type="submit">确定</button>
+        </view>
       </view>
-    </view>
-    <view class="cu-bar bg-white justify-end">
-      <view class="action">
-        <button class="cu-btn line-green text-green" bindtap="addgoodshideModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="addgoodshideModal" data-gid="selectgid">确定</button>
-
-      </view>
-    </view>
+    </form>
   </view>
 </view>
 <!-- modal结束 -->
