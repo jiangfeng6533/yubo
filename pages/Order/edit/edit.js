@@ -141,6 +141,7 @@ Page({
   },
   resshopinfo(audit) {
     console.log('add-audit', audit);
+    audit.money = audit.samount
     //samount商品总金额，costamount商品成本总价
     this.setData(audit);
   },
@@ -172,6 +173,7 @@ Page({
       m_id: wx.getStorageSync('m_id'),
       money: e.detail.value.money,
       marker: e.detail.value.marker,
+      predict_take_time: e.detail.value.predict_take_time
     };
     console.log('audit', audit);
     global.http.postReq(global.Configs.editServiceOrder, audit, function (res) {

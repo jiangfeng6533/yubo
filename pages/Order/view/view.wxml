@@ -44,7 +44,7 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-time text-grey"></text>
-      <text class="text-grey">预计维修时间：　8天</text>
+      <text class="text-grey">预计维修时间：　{{predict_take_time}}天</text>
     </view>
   </view>
   <view class="cu-item ">

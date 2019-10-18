@@ -131,8 +131,8 @@ Page({
       device_unit: e.detail.value.device_unit,
       marker: e.detail.value.marker,
       order_img: this.data.imgList,
-      com_id: userInfo.com_id,
-      client_level:grade
+      client_level:grade,
+      m_id:wx.getStorageSync('m_id')
     };
     if(grade == 1){
       audit.client_id = this.data.cid;
@@ -148,15 +148,21 @@ Page({
           showCancel: false,
           success(res) {
             if (res.confirm) {
-              wx.redirectTo({
-                url: '../index/index',
+              wx.navigateBack({
+                delta: 1
               })
             } else if (res.cancel) {
-              wx.redirectTo({
-                url: '../index/index',
+              wx.navigateBack({
+                delta: 1
               })
             }
           }
+        })
+      }
+
+      if(res.data.code == 204){
+        wx.showToast({
+          title: res.data.msg,
         })
       }
     })

@@ -9,7 +9,7 @@
     <view class="title">客户级别</view>
     <picker bindchange="Changegrade" disabled="disabled" range="{{clientgrade}}">
       <view class="picker">
-        {{clientgrade[grclient_levelade]?clientgrade[client_level]:'请选择客户级别'}}
+        {{clientgrade[client_level]?clientgrade[client_level]:'请选择客户级别'}}
       </view>
     </picker>
   </view>
@@ -24,12 +24,12 @@
 
   <view class="cu-form-group margin-top">
     <view class="title">维修费用</view>
-    <input placeholder="请输入报价费用" value="{{money}}" name="money"></input>
+    <input placeholder="请输入报价费用" disabled="disabled" value="{{money}}" name="money"></input>
   </view>
 
   <view class="cu-form-group margin-top">
     <view class="title">预计取机时间</view>
-    <input placeholder="请输入预计维修时间" value=""  ></input>
+    <input placeholder="请输入预计维修时间" value="{{predict_take_time}}" name="predict_take_time"></input>
     <text class=" text-blue">天</text>
   </view>
 
