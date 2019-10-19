@@ -10,24 +10,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    lefeModal:false
   },
-  telcar: function (e) {
-    console.log(e);
-    var phone = e.target.dataset.phone
-    wx.makePhoneCall({
-      phoneNumber: phone,
-    })
-    return false;
-  },
-  toback: function (){
-    console.log("return index....")
-
-    wx.redirectTo({
-      url: '/pages/index/index',
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,6 +48,21 @@ Page({
    */
   onShow: function () {
 
+  },
+  telcar: function (e) {
+    console.log(e);
+    var phone = e.target.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone,
+    })
+    return false;
+  },
+  toback: function () {
+    console.log("return index....")
+
+    wx.redirectTo({
+      url: '/pages/index/index',
+    })
   },
   toorderview: function (e) {
     console.log(e);
@@ -242,5 +243,14 @@ Page({
         }
       }
     })
+  },
+  //侧边抽屉
+  hideLeftModal(e) {
+    this.setData({
+      lefeModal: false
+    })
+  },
+  showLeftModal(){
+    this.setData({ lefeModal: true})
   }
 })

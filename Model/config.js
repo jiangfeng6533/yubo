@@ -37,23 +37,8 @@ const Config={
   serviceOrderFinish:"ServiceOrder/serviceOrderFinish",
   //获取服务订单单条数据
   getOneServiceOrder:"ServiceOrder/getOneServiceOrder",
-  // 还未做的
-  //获取当日送机总数：
-  todaySendDeviceCount:"ServiceOrder/todaySendDeviceCount",
-  //获取当日取机总数
-  todayTakeDeviceCount:"ServiceOrder/todayTakeDeviceCount",
-  //获取当日维修营业额
-  todayServiceEarnings:"ServiceOrder/todayEarnings",
-  //获取当日利润
-  todayServiceProfit:"ServiceOrder/todayServiceProfit",
-  //未修好设备总数
-  ungoodDeviceCount:"ServiceOrder/ungoodDeviceCount",
-  //未取设备总数
-  noTakeDeviceCount:"ServiceOrder/noTakeDeviceCount",
-  //失联设备总数
-  loseDeviceCount:"ServiceOrder/loseDeviceCount",
-  //大客户欠单总数
-  VipClientDebtCount:"ServiceOrder/VipClientDebtCount",
+  //获取首页数据comData
+  comData:"ServiceOrder/comData",
   //获取商品分类
   getGoodsCategory:"Goods/getGoodsCategory",
   //获取商品列表

@@ -15,23 +15,29 @@ Page({
     PageCur: 'home'
   },
   onLoad: function (options) {
+    var that = this;
     this.setData({
       today: utils.formatTime(new Date())
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
+    console.log("onReady一下")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.home = this.selectComponent("#home");
+    if (this.data.PageCur == 'home'){
+      
+      this.home.getComData(global.Configs.comData)
+    }
+    console.log("show一下")
   },
   NavChange(e) {
     this.setData({

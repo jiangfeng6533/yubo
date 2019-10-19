@@ -29,7 +29,7 @@
       当日送机总数
     </view>
     <view class="cu-tag line-blue">
-      123
+      {{comData.todaySendDeviceCount}}
     </view>
   </view>
   </view>
@@ -39,7 +39,7 @@
       当日取机总数
     </view>
     <view class="cu-tag line-blue">
-      123
+      {{comData.todayTakeDeviceCount}}
     </view>
   </view>
   </view>
@@ -49,7 +49,7 @@
       当日营业额
     </view>
     <view class="cu-tag line-blue">
-      16666
+      {{comData.todayServiceEarnings}}
     </view>
   </view>
   </view>
@@ -59,7 +59,7 @@
       当日利润
     </view>
     <view class="cu-tag line-blue">
-      16666
+      {{comData.todayServiceProfit}}
     </view>
   </view>
   </view>
@@ -69,25 +69,25 @@
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">未修好设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
+      <view class="margin-top-sm text-Abc">{{comData.ungoodDeviceCount}}</view>
     </view>
   </view>
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">未取设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
+      <view class="margin-top-sm text-Abc">{{comData.noTakeDeviceCount}}</view>
     </view>
   </view>
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">失联设备总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
+      <view class="margin-top-sm text-Abc">{{comData.loseDeviceCount}}</view>
     </view>
   </view>
   <view class="padding-sm">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">大客户欠单总数</view>
-      <view class="margin-top-sm text-Abc">XXX</view>
+      <view class="margin-top-sm text-Abc">{{comData.VipClientDebtCount}}</view>
     </view>
   </view>
 </view>

@@ -6,6 +6,9 @@
 
 <!-- 搜索 -->
 <view class="cu-bar search bg-white">
+  <view class="">
+    <button class="cu-btn bg-gray shadow-blur round" bindtap="showLeftModal">条件</button>
+  </view>
   <view class="search-form round">
     <text class="icon-search"></text>
     <input type="text" placeholder="　搜索编号、客户名称" confirm-type="search"></input>
@@ -104,3 +107,50 @@
   </view>
 </view>
 <!-- modal结束 -->
+
+<!-- 侧边抽屉 -->
+<view class="cu-modal drawer-modal justify-start {{lefeModal==true?'show':''}}" bindtap="hideLeftModal">
+  <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-list menu text-left">
+      
+      <view class="cu-item arrow">
+        <view class="content">
+          <view>选择时间 </view>
+        </view>
+      </view>
+      
+      <view class="cu-item ">
+        <view class="cu-bar " style="width:100%">
+          <view class="action">是否支付 </view>
+          <view class="action"><switch ></switch></view>
+          
+        </view>
+      </view>
+
+      <view class="cu-item arrow padding">
+        <view class="conten t">
+          <view>未维修订单 </view>
+        </view>
+      </view>
+
+      <view class="cu-item arrow">
+        <view class="content">
+          <view>欠款订单 </view>
+        </view>
+      </view>
+
+      <view class="cu-item arrow">
+        <view class="content">
+          <view>可通知订单 </view>
+        </view>
+      </view>
+
+      <view class="cu-item arrow">
+        <view class="content">
+          <view>已修好订单 </view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+</view>
