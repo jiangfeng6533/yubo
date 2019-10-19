@@ -182,7 +182,7 @@ Page({
         console.log("添加成功", res);
         wx.showModal({
           title: '提示',
-          content: '添加成功',
+          content: res.data.msg,
           showCancel: false,
           success(res) {
             if (res.confirm) {
@@ -197,6 +197,13 @@ Page({
           }
         })
       }
+      if(res.data.code == 204){
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none'
+        })
+      }
+      
     })
     return;
    

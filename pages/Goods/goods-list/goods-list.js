@@ -33,11 +33,6 @@ Page({
     global.http.postReq(global.Configs.getGoodsCategory, { m_id: wx.getStorageSync('m_id') }, function (res) {
       console.log(res);
       if (res.data.code == 200) {
-        // wx.showToast({
-        //   title: res.data.msg,
-        //   icon: 'none',
-        //   duration: 500
-        // })
         var goodstype = that.data.goodstype;
         for (let k in res.data.result){
           goodstype.push(res.data.result[k].cat_name);
@@ -62,10 +57,6 @@ Page({
     global.http.postReq(global.Configs.getGoodsAll, that.audit, function (res) {
       console.log(res);
       if (res.data.code == 200) {
-        // wx.showToast({
-        //   title: res.data.msg,
-        //   icon: 'loading'
-        // })
         that.setData(res.data.result)
         return;
       }

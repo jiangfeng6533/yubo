@@ -1,6 +1,11 @@
 // pages/Goods/goods-list/goods-list.js
+//页面说明，接口数据与页面匹配数据有些区别  如：接口cost对应data-price 、price对应data-mount
+var global = require('../../../Model/global.js');
+//获取应用实例
+const app = getApp()
 Page({
-
+  audit: null,
+  page: 1,
   /**
    * 页面的初始数据
    */
@@ -16,19 +21,60 @@ Page({
   onLoad: function (options) {
     var puldata = JSON.parse(options.shopdata);
     if (puldata == null) puldata=[];
-    console.log('puldata', puldata);
     var that = this;
+    //更新购物车
     var shopdata = [];
-    var goodsdata = [];
-    goodsdata.push({ goods_name: '离心开关', price: 5.05, mount: 6, goods_id: 1233, goods_img: null, unit: '个' }, { goods_name: '电焊条', price: 30.00, mount: 35.00, goods_id: 1233, goods_img: null ,unit:'盒'})
     shopdata.push(
       { com_name: "宇博机电", checked: '', data: puldata }
       //{ goods_name: '这是一个商dddddd品名称', price: 30, num: 1, mount: 30, checked: 'checked', cost: 15, goods_id: 6666 }, { goods_name: '这是一个ddddddddd商品名称', price: 30, num: 1, mount: 40, checked: '', cost: 15, goods_id: 6661 }
     );
-    console.log(shopdata)
     that.countnum(shopdata);
-    that.setData({ shopdata: shopdata, goodsNum: shopdata[0].data.length, goodsdata: goodsdata })
-    //wx.setStorageSync('cartlist', shopdata);
+    that.setData({ shopdata: shopdata, goodsNum: shopdata[0].data.length})
+    //更新商品和类别
+    that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
+    that.getGoodsAll();
+    that.getCate();
+  },
+  getCate: function () {
+    var that = this;
+    global.http.postReq(global.Configs.getGoodsCategory, { m_id: wx.getStorageSync('m_id') }, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        var goodstype = that.data.goodstype;
+        for (let k in res.data.result) {
+          goodstype.push(res.data.result[k].cat_name);
+        }
+        that.setData({ cate: res.data.result, goodstype: goodstype })
+        return;
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+    });
+  },
+
+  getGoodsAll: function () {
+    var that = this;
+    global.http.postReq(global.Configs.getGoodsAll, that.audit, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        that.setData(res.data.result)
+        return;
+      }
+      if (res.data.code == 204) {
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg,
+          showCancel: false
+        })
+        return;
+      }
+    });
   },
   submit: function () {
     wx.navigateTo({
@@ -159,9 +205,6 @@ Page({
     console.log('选择商品', e);
     var that = this;
     var gid = e.currentTarget.dataset.gid;
-    var selectname = '离心开关1';
-    var selectgid = 123;
-    var selectgoodsprice = 15;
     var setgoodsData = {};
     setgoodsData.goods_name = e.currentTarget.dataset.name;
     setgoodsData.goods_id = e.currentTarget.dataset.gid;

@@ -80,7 +80,6 @@ Page({
       case -1:
         var url = global.Configs.cancelServiceOrder;
         var audit = { m_id: wx.getStorageSync('m_id'), order_id: order_id };
-        
         wx.showModal({
           title: '提示',
           content: '亲，是否要取消该订单呀？',
@@ -102,6 +101,9 @@ Page({
           success(res) {
             if (res.confirm) {
               that.typePost(url, audit);
+              wx.navigateTo({
+                url: '/pages/Order/edit/edit?oid=' + order_id,
+              })
             } else if (res.cancel) {
               console.log('用户点击取消')
             }

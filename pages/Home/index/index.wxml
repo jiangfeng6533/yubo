@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-gradual-blue">
-  <view slot="content">宇博机电</view>
+  <view slot="content">维修助手</view>
 </cu-custom>
 <scroll-view scroll-y class="scrollPage">
 
