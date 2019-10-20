@@ -7,7 +7,7 @@
 <!-- 搜索 -->
 <view class="cu-bar search bg-white">
   <view class="">
-    <button class="cu-btn bg-gray shadow-blur round" bindtap="showLeftModal">条件</button>
+    <button class="cu-btn" bindtap="showLeftModal" style="background:white"><text class="icon-left"></text>筛选</button>
   </view>
   <view class="search-form round">
     <text class="icon-search"></text>
@@ -59,7 +59,7 @@
             <text class="text-grey" wx:if="{{v.status == 5}}">状　　态：　已取机</text>
             <text class="text-grey" wx:if="{{v.status == 6}}">状　　态：　完成</text>
             <text class="text-yellow" wx:if="{{v.pay_status == 0}}">(未付款)</text>
-            <text class="text-grey" wx:if="{{v.pay_status == 1}}">(已付款)</text>
+            <text class="text-grey" wx:if="{{v.pay_status == 1}}">(已付款<text wx:if="{{v.payment}}">：{{v.payment}}</text>)</text>
             <text>({{v.m_name}})</text>
           </view>
         </view>
@@ -95,7 +95,12 @@
     <view class="">
       <view class="cu-form-group margin-top margin-bottom">
         <view class="title">实收金额</view>
-        <input placeholder="请输入收款金额" value="{{cacheAmount}}"></input>
+        <input placeholder="请输入收款金额" value="{{cacheAmount}}" bindinput="setAmount"></input>
+      </view>
+      <view class="cu-form-group margin-top margin-bottom">
+       <picker bindchange="ChangePayType"  range="{{payType}}" value="{{paydefIndex}}">
+          {{payType[paydefIndex]}}
+        </picker>
       </view>
     </view>
     <view class="cu-bar bg-white justify-end">
@@ -139,7 +144,7 @@
         </view>
       </view>
 
-      <view class="cu-item arrow">
+      <view class="cu-item arrow" >
         <view class="content">
           <view>可通知订单 </view>
         </view>

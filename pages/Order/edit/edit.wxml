@@ -15,11 +15,17 @@
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">客户名称</view>
-    <input placeholder="请输入客户名称"   disabled='disabled' value="{{client_name}}"></input>
+    <input placeholder="请输入客户名称" disabled='disabled' value="{{client_name}}"></input>
   </view>
   <view class="cu-form-group margin-top">
     <view class="title">联系电话</view>
-    <input placeholder="请输入联系电话"  disabled='disabled' value="{{client_phone}}"></input>
+    <input placeholder="请输入联系电话" disabled='disabled' value="{{client_phone}}"></input>
+  </view>
+
+  <view class="cu-form-group margin-top margin-bottom">
+    <picker bindchange="ChangeServicePeople" range="{{servicePeople}}" value="{{servicePeopleIndex}}">
+      维修师傅：{{servicePeople[servicePeopleIndex]}}
+    </picker>
   </view>
 
   <view class="cu-form-group margin-top">
@@ -48,7 +54,7 @@
     <view class="grid col-1 margin-bottom text-center" style="width:100%">
       <view class="grid col-2 margin-bottom">
         <view class="title grid">维修内容</view>
-        <view class="title grid" bindtap="changeGoods"  style="color:red">点击添加维修内容</view>
+        <view class="title grid" bindtap="changeGoods" style="color:red">点击添加维修内容</view>
       </view>
       <view class="flex p-xs margin-bottom-sm mb-sm " wx:for="{{shopdata}}" wx:for-index="kk" wx:for-item="vv">
         <view class="flex-treble bg-blue padding-sm margin-xs radius">
@@ -86,7 +92,7 @@
   </view>
 
   <view class="cu-form-group margin-top">
-    <textarea placeholder="请输入备注"  value="{{marker}}" name="marker"></textarea>
+    <textarea placeholder="请输入备注" value="{{marker}}" name="marker"></textarea>
   </view>
   <button class="cu-btn block bg-blue margin-tb-sm lg" form-type='submit'>
     <text class="icon-loading2 iconfont-spin"></text> 修改</button>

@@ -25,7 +25,7 @@
 <view class=" bg-white grid col-2">
   <view class="padding-sm cc">
   <view class="cu-capsule round padding-sm" >
-    <view class="cu-tag bg-blue ">
+    <view class="cu-tag bg-blue " bindtap="toOrderList" data-type="todaySendDeviceCount">
       当日送机总数
     </view>
     <view class="cu-tag line-blue">
@@ -35,7 +35,7 @@
   </view>
   <view class="padding-sm cc">
   <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
+    <view class="cu-tag bg-blue " bindtap="toOrderList" data-type="todayTakeDeviceCount">
       当日取机总数
     </view>
     <view class="cu-tag line-blue">
@@ -45,7 +45,7 @@
   </view>
   <view class="padding-sm cc">
   <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
+    <view class="cu-tag bg-blue " >
       当日营业额
     </view>
     <view class="cu-tag line-blue">
@@ -55,7 +55,7 @@
   </view>
   <view class="padding-sm cc">
   <view class="cu-capsule round padding-sm">
-    <view class="cu-tag bg-blue ">
+    <view class="cu-tag bg-blue " >
       当日利润
     </view>
     <view class="cu-tag line-blue">
@@ -66,25 +66,25 @@
 </view>
 
 <view class="padding-ms grid col-2" style="margin-top:40rpx;">
-  <view class="padding-sm">
+  <view class="padding-sm" bindtap="toOrderList" data-type="ungoodDeviceCount">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">未修好设备总数</view>
       <view class="margin-top-sm text-Abc">{{comData.ungoodDeviceCount}}</view>
     </view>
   </view>
-  <view class="padding-sm">
+  <view class="padding-sm" bindtap="toOrderList" data-type="noTakeDeviceCount">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">未取设备总数</view>
       <view class="margin-top-sm text-Abc">{{comData.noTakeDeviceCount}}</view>
     </view>
   </view>
-  <view class="padding-sm">
+  <view class="padding-sm" bindtap="toOrderList" data-type="loseDeviceCount">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">失联设备总数</view>
       <view class="margin-top-sm text-Abc">{{comData.loseDeviceCount}}</view>
     </view>
   </view>
-  <view class="padding-sm">
+  <view class="padding-sm" bindtap="toOrderList" data-type="VipClientDebtCount">
     <view class="bg-gradual-blue padding radius text-center shadow-blur">
       <view class="text-lg">大客户欠单总数</view>
       <view class="margin-top-sm text-Abc">{{comData.VipClientDebtCount}}</view>

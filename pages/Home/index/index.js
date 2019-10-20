@@ -45,10 +45,17 @@ Component({
         url: '/pages/Order/list/list',
       })
     },
-    toUser: function () {
-      wx.reLaunch({
-        url: '/pages/User/user',
+    toOrderList:function(e){
+      console.log('type:',e);
+      var type = e.currentTarget.dataset.type;
+      console.log('typedata:', type);
+      var param = {
+        type: 'comData',
+        data: type
+      }
+      wx.navigateTo({
+        url: '/pages/Order/list/list?search=' + JSON.stringify(param),
       })
-    },
+    }
   }
 })

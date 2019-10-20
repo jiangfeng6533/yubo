@@ -15,7 +15,8 @@ Page({
     clientgrade: ['零散客户', '大客户'],
     modalName: null,
     textareaAValue: '',
-    textareaBValue: ''
+    textareaBValue: '',
+    servicePeopleIndex:0
   },
 
   /**
@@ -25,15 +26,20 @@ Page({
     console.log(options);
     var oid = options.oid;
     var that = this;
-
+    that.getOrderInfo(oid);
+    
+    
+  },
+  getOrderInfo:function(oid){
+    var that = this;
     global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id'), order_id: oid }, function (res) {
       console.log(res);
       if (res.data.code == 200) {
-        // wx.showToast({
-        //   title: res.data.msg,
-        //   icon: 'loading',
-        //   duration: 500
-        // })
+        if (res.data.result.service_manger) {
+          that.getServicePeopleList(res.data.result.service_manger);
+        } else {
+          that.getServicePeopleList('-1');
+        }
         switch (res.data.result.status) {
           case -1:
             res.data.result.status = "取消";
@@ -71,6 +77,33 @@ Page({
         return;
       }
     });
+  },
+  //获取维修师傅
+  getServicePeopleList: function (service_manager){
+    var that = this;
+    global.http.postReq(global.Configs.getServicemanager, { m_id: wx.getStorageSync('m_id')}, function (res) {
+      var servicePeople =['请选择维修师傅'];
+      console.log('service_manager', service_manager);
+      if (res.data.code == 200 ){
+        console.log('维修师傅',res.data);
+        var list = res.data.result;
+        for(let l in list){
+          servicePeople.push(list[l].name);
+          if (service_manager == list[l].id){
+            that.setData({ servicePeopleIndex:(parseInt(l)+1)});
+          }
+        }
+        list.unshift({ id: '-1', name:'请选择维修师傅'});
+        that.setData({ servicePeople: servicePeople, ServicePeopleList: list})
+      }
+    });
+  },
+  //维修师傅选择
+  ChangeServicePeople:function(e){
+    let servicePeopleIndex = e.detail.value;
+    this.setData({
+      servicePeopleIndex: servicePeopleIndex
+    })
   },
   Changegrade(e) {
     console.log(e);
@@ -165,6 +198,13 @@ Page({
   },
   submit(e) {
     console.log(e);
+    if(this.data.servicePeopleIndex == 0){
+      wx.showToast({
+        title: '请选择维修师傅',
+        icon:'none'
+      })
+      return;
+    }
     var shopdata = JSON.stringify(this.data.shopdata);
     var order_id = this.data.order_id;
     var audit = {
@@ -175,6 +215,12 @@ Page({
       marker: e.detail.value.marker,
       predict_take_time: e.detail.value.predict_take_time
     };
+    if (this.data.costamount){
+      audit.cost = this.data.costamount;
+    }
+    if (this.data.service_manger != this.data.ServicePeopleList[this.data.servicePeopleIndex].id){
+      audit.service_manger = this.data.ServicePeopleList[this.data.servicePeopleIndex].id;
+    }
     console.log('audit', audit);
     global.http.postReq(global.Configs.editServiceOrder, audit, function (res) {
       console.log("添加返回", res);

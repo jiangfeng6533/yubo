@@ -5,29 +5,59 @@ var global = require('../../../Model/global.js');
 const app = getApp()
 
 Page({
-
+  page:1,
+  listaudit:null,
   /**
    * 页面的初始数据
    */
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    lefeModal:false
+    lefeModal:false,
+    payType:['请选择收款类型','现金','支付宝','微信'],
+    paydefIndex:0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.search){
+      console.log('options', JSON.parse(options.search));
+      var search = JSON.parse(options.search);
+    }else{
+      search ={type:'def'}
+    }
     var that = this;
-    this.getOrderAll();
+    that.search(search);
+    
   },
-  
-  getOrderAll:function(){
+  //搜索订单
+  search: function (search){
     var that = this;
-    global.http.postReq(global.Configs.getServiceOrder, {}, function (res) {
+    this.listaudit = {
+      m_id: wx.getStorageSync('m_id')
+    }
+    switch (search.type){
+      case 'comData':
+        this.listaudit.searchData = search.data;
+        that.getOrderAll(this.listaudit);
+      break;
+      default:
+        that.getOrderAll(this.listaudit);
+      break;
+    }
+    
+  },
+  //获取订单
+  getOrderAll: function (listaudit){
+    var that = this;
+    global.http.postReq(global.Configs.getServiceOrder, listaudit, function (res) {
       console.log(res);
       if (res.data.code == 200) {
         for (let v in res.data.result.list) {
+          if (res.data.result.list[v].payment == 1) res.data.result.list[v].payment='现金';
+          if (res.data.result.list[v].payment == 2) res.data.result.list[v].payment = '支付宝';
+          if (res.data.result.list[v].payment == 3) res.data.result.list[v].payment = '微信';
           res.data.result.list[v].join_time = res.data.result.list[v].join_time.substring(0, 10);
         }
         that.setData(res.data.result);
@@ -177,7 +207,7 @@ Page({
           duration: 2000
         })
         setTimeout(function () {
-          that.getOrderAll();
+          that.getOrderAll(that.listaudit);
         }, 1000)
         return;
       }
@@ -214,7 +244,21 @@ Page({
     this.setData({
       PayModal: false,
       cacheAmount: null,
-      cacheoid: null
+      cacheoid: null,
+      paydefIndex:0
+    })
+  },
+  setAmount:function(e){
+    console.log(e);
+    var amount = e.detail.value;
+    that.setData({
+      cacheAmount: cacheAmount
+    })
+  },
+  ChangePayType:function(e){
+    var paydefIndex = e.detail.value;
+    this.setData({
+      paydefIndex: paydefIndex
     })
   },
   pay:function(){
@@ -222,7 +266,15 @@ Page({
     var url = global.Configs.payServiceOrder;
     var cacheAmount = that.data.cacheAmount;
     var cacheoid = that.data.cacheoid;
-    var audit = { m_id: wx.getStorageSync('m_id'), order_id: cacheoid, amount: cacheAmount };
+    var paydefIndex = that.data.paydefIndex;
+    if (paydefIndex == 0){
+      wx.showToast({
+        title: '请选择收款类型',
+        icon:'none'
+      })
+      return;
+    }
+    var audit = { m_id: wx.getStorageSync('m_id'), order_id: cacheoid, amount: cacheAmount, payment: paydefIndex };
     wx.showModal({
       title: '提示',
       content: '亲，确认收到客户付款了么？',
@@ -232,13 +284,15 @@ Page({
           that.setData({
             PayModal: false,
             cacheAmount: null,
-            cacheoid: null
+            cacheoid: null,
+            paydefIndex:0
           })
         } else if (res.cancel) {
           that.setData({
             PayModal: false,
             cacheAmount: null,
-            cacheoid: null
+            cacheoid: null,
+            paydefIndex:0
           })
         }
       }

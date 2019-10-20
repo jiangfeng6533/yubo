@@ -45,6 +45,8 @@ const Config={
   getGoodsAll:"Goods/getGoodsAll",
   //添加商品
   addGoodsInfo:"Goods/addGoodsInfo",
+  //获取服务人员
+  getServicemanager:"manager/getServicemanager"
   
 
 
