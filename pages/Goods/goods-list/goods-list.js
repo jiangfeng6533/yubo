@@ -177,7 +177,8 @@ Page({
           title: res.data.msg,
           duration:500
         })
-        that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
+        that.page = 1;
+        that.audit = { m_id: wx.getStorageSync('m_id'), page: 1, pageSize: 200, cate: null };
         that.getGoodsAll();
         that.setData({
           addgoodsmodal: false
@@ -227,6 +228,39 @@ Page({
         state: true
       });
     }
+  },
+  delshop:function(e){
+    var that = this;
+    console.log('删除商品',e);
+    var gid = e.currentTarget.dataset.gid;
+    console.log('gid',gid);
+    wx.showModal({
+      title: '提示',
+      content: '亲，确定要删除该商品么？',
+      success(res) {
+        if (res.confirm) {
+          global.http.postReq(global.Configs.deleteGoods, 
+          { m_id: wx.getStorageSync('m_id'), goods_id: gid }, 
+          (res) => {
+            console.log('删除商品', res);
+            if (res.data.code == 200) {
+              that.page = 1;
+              that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
+              that.getGoodsAll();
+            }
+            if (res.data.code == 204) {
+              wx.showToast({
+                title: '删除失败',
+                icon: 'none'
+              })
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
   },
   tocategory(){
     wx.showToast({

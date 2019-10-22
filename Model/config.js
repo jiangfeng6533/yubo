@@ -46,10 +46,13 @@ const Config={
   getGoodsAll:"Goods/getGoodsAll",
   //添加商品
   addGoodsInfo:"Goods/addGoodsInfo",
+  //删除商品
+  deleteGoods:"Goods/deleteGoods",
   //获取服务人员
   getServicemanager:"manager/getServicemanager",
   //测试图片上传
-  test:"upload/test"
+  test:"upload/test",
+  
   
 
 

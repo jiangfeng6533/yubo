@@ -44,6 +44,9 @@
         </view>
 
       </view>
+      <view class="ub ub-ae ub-pe">
+        <button class='cu-btn icon-delete' data-gid='{{v.id}}' bindtap="delshop"></button>
+      </view>
     </view>
   </block>
   <!-- 循环结束 -->
