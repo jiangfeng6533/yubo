@@ -211,6 +211,7 @@ Page({
     setgoodsData.mount = e.currentTarget.dataset.mount;
     setgoodsData.price = e.currentTarget.dataset.price;
     setgoodsData.num = 1;
+    setgoodsData.unit = e.currentTarget.dataset.unit;
     that.setData({
       setgoodsmodal: true,
       setgoodsData: setgoodsData
@@ -235,7 +236,7 @@ Page({
     var setgoodsData = this.data.setgoodsData;
     var shopdata = this.data.shopdata;
     shopdata[0].data.push(
-      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: parseInt((setgoodsData.mount * setgoodsData.num).toFixed(2)), checked: 'checked', cost: setgoodsData.price, costmount: parseInt((setgoodsData.price * setgoodsData.num).toFixed(2)), goods_id: setgoodsData.goods_id }
+      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: parseInt((setgoodsData.mount * setgoodsData.num).toFixed(2)), checked: 'checked', cost: setgoodsData.price, costmount: parseInt((setgoodsData.price * setgoodsData.num).toFixed(2)), goods_id: setgoodsData.goods_id, unit: setgoodsData.unit}
     );
     var goodsNum = shopdata[0].data.length;
     this.setData({

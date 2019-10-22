@@ -12,6 +12,7 @@ Page({
   data: {
     index: null,
     imgList: [],
+    imglistUrl:[],
     clientgrade: ['零散客户', '大客户'],
     grade:0,
     modalName: null,
@@ -39,20 +40,38 @@ Page({
       })
   },
   ChooseImage() {
+    var that =this;
+    var imglistUrl = this.data.imglistUrl;
+    var imgList = this.data.imgList;
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], //从相册选择
+      sourceType: ['album','camera'], //从相册选择
       success: (res) => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
-          })
-        } else {
-          this.setData({
-            imgList: res.tempFilePaths
+        console.log('选择相册图片',res);
+        for (let k in res.tempFilePaths){
+          wx.uploadFile({
+            url: global.Configs.rootDocment + global.Configs.test,
+            filePath: res.tempFilePaths[k],
+            name: 'file',
+            success: (upres) => {
+              var resdata = JSON.parse(upres.data)
+              if (resdata.code == 200){
+                console.log('上传成功', resdata);
+                imgList.push(res.tempFilePaths[k])
+                imglistUrl.push(resdata.result.fileUrl)
+                that.setData({
+                  imgList: imgList,
+                  imglistUrl: imglistUrl
+                })
+              }
+            },
+            fail: () => {
+              console.log("上传失败");
+            }
           })
         }
+        
       }
     });
   },
@@ -71,12 +90,18 @@ Page({
       success: res => {
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.data.imglistUrl.splice(e.currentTarget.dataset.index, 1);
           this.setData({
-            imgList: this.data.imgList
+            imgList: this.data.imgList,
+            imglistUrl : this.data.imglistUrl
           })
         }
       }
     })
+  },
+  upload(){
+    var imglistUrl = this.data.imglistUrl;
+    console.log('转json');
   },
   selectclient(){
     if (this.data.grade >0){
@@ -97,6 +122,7 @@ Page({
   },
   submit(e){
     console.log(e);
+    var imglistUrl = this.data.imglistUrl;
     var phone = e.detail.value.client_phone;
     var name = e.detail.value.client_name;
     var device_unit = e.detail.value.device_unit;
@@ -130,7 +156,7 @@ Page({
       device_name: e.detail.value.device_name,
       device_unit: e.detail.value.device_unit,
       marker: e.detail.value.marker,
-      order_img: this.data.imgList,
+      order_img: JSON.stringify(imglistUrl),
       client_level:grade,
       m_id:wx.getStorageSync('m_id')
     };

@@ -14,7 +14,8 @@ Page({
     state: false,
     first_click: false,
     StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar
+    CustomBar: app.globalData.CustomBar,
+    pics: [],//图片
   },
 
   /**
@@ -111,5 +112,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  
 })

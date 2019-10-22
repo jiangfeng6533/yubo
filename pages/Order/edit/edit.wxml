@@ -61,11 +61,25 @@
           {{vv.goods_name}}
         </view>
         <view class="flex-sub bg-blue padding-sm margin-xs radius">
-          {{vv.num}}盒
+          {{vv.num}}{{vv.unit}}
         </view>
         <view class="flex-twice bg-blue padding-sm margin-xs radius">
           {{vv.mount}}元
         </view>
+      </view>
+    </view>
+  </view>
+
+<view class="cu-bar bg-white margin-top">
+    <view class="action">
+      已传凭证
+    </view>
+    <view class="action">
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="padding-xs bg-img" style="background-image:url({{order_img[index]}})" wx:for="{{order_img}}" wx:key="{{index}}" bindtap="OldViewImage" data-url="{{order_img[index]}}">
       </view>
     </view>
   </view>
@@ -95,5 +109,5 @@
     <textarea placeholder="请输入备注" value="{{marker}}" name="marker"></textarea>
   </view>
   <button class="cu-btn block bg-blue margin-tb-sm lg" form-type='submit'>
-    <text class="icon-loading2 iconfont-spin"></text> 修改</button>
+    <text class=" iconfont-spin"></text> 修改</button>
 </form>

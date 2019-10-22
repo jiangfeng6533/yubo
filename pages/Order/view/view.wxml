@@ -5,7 +5,7 @@
 </cu-custom>
 
 <!-- 循环体开始 -->
-<view class="cu-bar bg-white solid-bottom margin-top" bindtap='toorderview' data-oid="123">
+<view class="cu-bar bg-white solid-bottom margin-top" >
   <view class="action">
     <text class="icon-title text-orange "></text> 编号：{{order_sn}}
   </view>
@@ -38,13 +38,21 @@
   <view class="cu-item ">
     <view class="content">
       <text class="icon-moneybag text-grey"></text>
-      <text class="text-grey">报价费用：　{{money}}</text>
+      <text class="text-grey">报价费用：　{{money?money:0}}</text>
     </view>
   </view>
+
+  <view class="cu-item " wx:if="{{amount!=null}}">
+    <view class="content">
+      <text class="icon-moneybag text-grey"></text>
+      <text class="text-grey">实收费用：　{{amount?amount:0}}</text>
+    </view>
+  </view>
+
   <view class="cu-item ">
     <view class="content">
       <text class="icon-time text-grey"></text>
-      <text class="text-grey">预计维修时间：　{{predict_take_time}}天</text>
+      <text class="text-grey">预计维修时间：　{{predict_take_time?predict_take_time:0}}天</text>
     </view>
   </view>
   <view class="cu-item ">
@@ -62,19 +70,15 @@
 
   <view class="cu-bar bg-white ">
     <view class="action">
-      <text class="text-grey">图片素材</text>
+      <text class="text-grey">订单凭证</text>
     </view>
     <view class="action">
-      4/4
+     
     </view>
   </view>
   <view class="cu-form-group">
     <view class="grid col-4 grid-square flex-sub">
-      <view class="padding-xs bg-img" style="background-image:url({{imgList[index]}})" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
-        
-      </view>
-      <view class="padding-xs solids"  wx:if="{{imgList.length<4}}">
-        <text class="icon-cameraadd"></text>
+      <view class="padding-xs bg-img" style="background-image:url({{order_img[index]}})" wx:for="{{order_img}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{order_img[index]}}">
       </view>
     </view>
   </view>

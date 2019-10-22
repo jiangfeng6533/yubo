@@ -18,7 +18,7 @@ Page({
     console.log(options);
     var oid = options.oid;
     var that = this;
-
+    this.setData({docurl:global.Configs.imgurl,order_id:oid});
     global.http.postReq(global.Configs.getOneServiceOrder, { m_id: wx.getStorageSync('m_id'), order_id: oid}, function (res) {
       console.log(res);
       if (res.data.code == 200) {
@@ -27,6 +27,15 @@ Page({
         //   icon: 'loading',
         //   duration: 500
         // })
+        // res.data.result.order_img = JSON.parse(res.data.result.order_img);
+        if (res.data.result.order_img != ''){
+          var order_img = JSON.parse(res.data.result.order_img);
+          res.data.result.order_img = [];
+          for (let kk in order_img) {
+            res.data.result.order_img[kk] = global.Configs.imgurl + order_img[kk];
+          }
+        }
+        
         switch (res.data.result.status){
           case -1:
             res.data.result.status = "取消";
@@ -88,6 +97,12 @@ Page({
     wx.redirectTo({
       url: '/pages/Order/edit/edit?oid='+oid,
     })
+  },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.order_img,
+      current: this.data.order_img[e.currentTarget.dataset.url]
+    });
   },
 
   

@@ -28,7 +28,7 @@
 
   <view class='ub ub-ver bg-white margin-top '>
     <!-- 循环 -->
-    <view class="ub padding-sm solid-bottom" wx:for="{{list}}" wx:for-index="kk" wx:for-item="vv" bindtap='setgoods' data-gid='{{vv.id}}' data-price="{{vv.cost}}" data-mount="{{vv.price}}" data-name="{{vv.goods_name}}">
+    <view class="ub padding-sm solid-bottom" wx:for="{{list}}" wx:for-index="kk" wx:for-item="vv" bindtap='setgoods' data-gid='{{vv.id}}' data-price="{{vv.cost}}" data-mount="{{vv.price}}" data-name="{{vv.goods_name}}" data-unit="{{vv.unit}}">
       <view class="ub padding-xs solids">
         <text style="font-size:3rem" class="icon-cameraadd"></text>
       </view>

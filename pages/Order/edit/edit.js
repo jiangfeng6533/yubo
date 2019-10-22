@@ -40,6 +40,16 @@ Page({
         } else {
           that.getServicePeopleList('-1');
         }
+
+        if (res.data.result.order_img != '') {
+          var order_img = JSON.parse(res.data.result.order_img);
+          res.data.result.order_img = [];
+          for (let kk in order_img) {
+            res.data.result.order_img[kk] = global.Configs.imgurl + order_img[kk];
+          }
+        }
+
+
         switch (res.data.result.status) {
           case -1:
             res.data.result.status = "取消";
@@ -158,6 +168,12 @@ Page({
         }
       }
     })
+  },
+  OldViewImage(e) {
+    wx.previewImage({
+      urls: this.data.order_img,
+      current: this.data.order_img[e.currentTarget.dataset.url]
+    });
   },
   textareaAInput(e) {
     this.setData({

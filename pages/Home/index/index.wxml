@@ -49,7 +49,7 @@
       当日营业额
     </view>
     <view class="cu-tag line-blue">
-      {{comData.todayServiceEarnings}}
+      {{comData.todayServiceEarnings?comData.todayServiceEarnings:0}}
     </view>
   </view>
   </view>
@@ -59,7 +59,7 @@
       当日利润
     </view>
     <view class="cu-tag line-blue">
-      {{comData.todayServiceProfit}}
+      {{comData.todayServiceProfit?comData.todayServiceProfit:0}}
     </view>
   </view>
   </view>

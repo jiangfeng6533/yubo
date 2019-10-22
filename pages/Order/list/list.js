@@ -21,15 +21,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.search){
+    if (options.search) {
       console.log('options', JSON.parse(options.search));
-      var search = JSON.parse(options.search);
-    }else{
-      search ={type:'def'}
+      this.searchdata = JSON.parse(options.search);
+    } else {
+      this.searchdata = { type: 'def' }
     }
     var that = this;
-    that.search(search);
-    
+    that.search(this.searchdata);
+  },
+  onShow: function (options) {
+    var that = this;
+    if (this.listaudit){
+      that.search(that.searchdata);
+    }
   },
   //搜索订单
   search: function (search){
@@ -70,13 +75,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
   telcar: function (e) {
@@ -251,8 +249,8 @@ Page({
   setAmount:function(e){
     console.log(e);
     var amount = e.detail.value;
-    that.setData({
-      cacheAmount: cacheAmount
+    this.setData({
+      cacheAmount: amount
     })
   },
   ChangePayType:function(e){

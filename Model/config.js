@@ -2,6 +2,7 @@ const Config={
   //接口地址
   rootDocment: 'https://jdshop.adyy.net/api/',
   rootUrl:'https://jdshop.adyy.net/api/',
+  imgurl: 'https://jdshop.adyy.net/',
   // rootDocment: 'http://118.190.61.40:9501/api/',
   // rootUrl:'http://118.190.61.40:9501/api/',
   txmapkey:"D4UBZ-EXZ65-RBCIP-QHQQZ-VRU77-42FEG",
@@ -46,7 +47,9 @@ const Config={
   //添加商品
   addGoodsInfo:"Goods/addGoodsInfo",
   //获取服务人员
-  getServicemanager:"manager/getServicemanager"
+  getServicemanager:"manager/getServicemanager",
+  //测试图片上传
+  test:"upload/test"
   
 
 

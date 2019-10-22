@@ -55,7 +55,7 @@
       </view>
     </view>
   </view>
-
+  <button class="cu-btn" bindtap="upload" >上传</button>
    <view class="cu-form-group ">
     <textarea placeholder="请输入备注"   name="marker"></textarea>
   </view>
