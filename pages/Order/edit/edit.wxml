@@ -75,6 +75,7 @@
       已传凭证
     </view>
     <view class="action">
+      {{order_img!=''?order_img.length:0}}/4
     </view>
   </view>
   <view class="cu-form-group">

@@ -304,5 +304,59 @@ Page({
   },
   showLeftModal(){
     this.setData({ lefeModal: true})
-  }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    var that = this;
+    console.log('下拉');
+    // var carpool = that.data.carpool;
+    // var audit = { p_id: wx.getStorageSync('p_id') };
+    // if (carpool == 1) {
+    //   audit.carpool = 1;
+    // }
+    // global.http.postReq(
+    //   'Sectionpa/index/triplists/page/0',
+    //   audit,
+    //   function (data) {
+    //     if (data.data.ret == 200) {
+    //       that.setData({
+    //         order: data.data.data
+    //       });
+    //     }
+    //     console.log(data.data.data);
+    //   }
+    // )
+
+    wx.stopPullDownRefresh()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var that = this;
+    that.page = that.page + 1;
+    console.log(that.page);
+    console.log('上拉');
+
+    // var orderlist = that.data.order.concat(data.data.data);
+    that.listaudit.page = that.page;
+    global.http.postReq(global.Configs.getServiceOrder, that.listaudit, function (res) {
+      console.log(res);
+      if (res.data.code == 200) {
+        for (let v in res.data.result.list) {
+          if (res.data.result.list[v].payment == 1) res.data.result.list[v].payment = '现金';
+          if (res.data.result.list[v].payment == 2) res.data.result.list[v].payment = '支付宝';
+          if (res.data.result.list[v].payment == 3) res.data.result.list[v].payment = '微信';
+          res.data.result.list[v].join_time = res.data.result.list[v].join_time.substring(0, 10);
+        }
+        res.data.result.list = that.data.list.concat(res.data.result.list);
+        that.setData(res.data.result);
+        return;
+      }
+    });
+    
+  },
 })

@@ -12,7 +12,7 @@
 }
 .menugo text{
   font-size:2rem;
-  color:#ccc;
+  /* color:#ccc; */
 }
 
 .menuico{

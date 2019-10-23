@@ -6,13 +6,13 @@
   </cu-custom>
 
   <view class="cu-list menu sm-border card-menu margin-top ">
-    <view class="cu-item arrow">
+    <view class="cu-item ">
       <view class="content">
         <text class="cuIcon-people text-grey"></text>
         <text class="text-grey">姓名： {{user_name}}</text>
       </view>
     </view>
-    <view class="cu-item arrow">
+    <view class="cu-item arrow" bindtap="telcar" data-phone="{{phone}}">
       <view class="content">
         <text class="cuIcon-phone text-green"></text>
         <text class="text-grey">联系电话：{{phone}}</text>
@@ -64,7 +64,7 @@
       </view>
     </view>
 
-    <view class="cu-item arrow">
+    <view class="cu-item ">
       <view class="content">
         <text class="cuIcon-time text-red"></text>
         <text class="text-grey">注册时间：{{reg_time}}</text>

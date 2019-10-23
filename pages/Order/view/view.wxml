@@ -61,10 +61,24 @@
       <text class="text-grey">规格型号：　{{device_unit}}</text>
     </view>
   </view>
-  <view class="cu-item ">
-    <view class="content">
-      <text class="icon-repair text-grey"></text>
-      <text class="text-grey">维修内容：　换零件</text>
+  <view class="cu-form-group top margin-top">
+
+    <view class="grid col-1 margin-bottom text-center" style="width:100%">
+      <view class="grid col-2 margin-bottom">
+        <view class="title grid">维修内容</view>
+        <view class="title grid" bindtap="changeGoods" style="color:red">点击添加维修内容</view>
+      </view>
+      <view class="flex p-xs margin-bottom-sm mb-sm " wx:for="{{shopdata}}" wx:for-index="kk" wx:for-item="vv">
+        <view class="flex-treble bg-blue padding-sm margin-xs radius">
+          {{vv.goods_name}}
+        </view>
+        <view class="flex-sub bg-blue padding-sm margin-xs radius">
+          {{vv.num}}{{vv.unit}}
+        </view>
+        <view class="flex-twice bg-blue padding-sm margin-xs radius">
+          {{vv.mount}}元
+        </view>
+      </view>
     </view>
   </view>
 
@@ -73,7 +87,7 @@
       <text class="text-grey">订单凭证</text>
     </view>
     <view class="action">
-     
+     {{order_img!=''?order_img.length:0}}/4
     </view>
   </view>
   <view class="cu-form-group">

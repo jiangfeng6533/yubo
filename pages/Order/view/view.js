@@ -59,6 +59,8 @@ Page({
             res.data.result.status = "完成";
             break;
         }
+        var shopdata = JSON.parse(res.data.result.goods_info);
+        res.data.result.shopdata = shopdata;
         that.setData(res.data.result)
         return;
       }
