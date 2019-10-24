@@ -41,9 +41,15 @@ Page({
       }
     });
   },
-  toorderlist:function(){
+  toorderlist:function(e){
+    var type = e.currentTarget.dataset.type;
+    var param = {
+      type: 'client',
+      data: type,
+      c_id:this.data.id
+    }
     wx.navigateTo({
-      url: '/pages/Order/list/list',
+      url: '/pages/Order/list/list?search=' + JSON.stringify(param),
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

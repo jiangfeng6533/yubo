@@ -1,5 +1,6 @@
 // pages/Order/view/view.js
 var global = require('../../../Model/global.js');
+var time = require('../../../utils/util.js');
 //获取应用实例
 const app = getApp()
 Page({
@@ -35,7 +36,14 @@ Page({
             res.data.result.order_img[kk] = global.Configs.imgurl + order_img[kk];
           }
         }
-        
+        if (res.data.result.pay_time != 0) res.data.result.pay_time = time.formatTimeTwo(res.data.result.pay_time, 'Y-M-D h:m:s');
+
+        if (res.data.result.res_time != 0) res.data.result.res_time = time.formatTimeTwo(res.data.result.res_time, 'Y-M-D h:m:s');
+
+        if (res.data.result.notice_time != 0) res.data.result.notice_time = time.formatTimeTwo(res.data.result.notice_time, 'Y-M-D h:m:s');
+
+        if (res.data.result.good_time != 0) res.data.result.good_time = time.formatTimeTwo(res.data.result.good_time, 'Y-M-D h:m:s');
+
         switch (res.data.result.status){
           case -1:
             res.data.result.status = "取消";

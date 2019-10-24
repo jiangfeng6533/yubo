@@ -43,6 +43,10 @@ Page({
     this.setData({
       PageCur: e.currentTarget.dataset.cur
     })
+    if (e.currentTarget.dataset.cur == "home"){
+      this.home = this.selectComponent("#home");
+      this.home.getComData(global.Configs.comData)
+    }
   },
   toaddorder: function () {
     this.setData({

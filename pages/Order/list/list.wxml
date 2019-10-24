@@ -67,7 +67,7 @@
 
       <view class="bg-white ">
         <view class="flex solid-bottom padding-bottom padding-right justify-end " style="width:100%;">
-          <button class="cu-btn margin-right-sm lines-green shadow button-hover round" wx:if="{{v.pay_status==0 && v.status != -1 && v.money != null}}" data-oid="{{v.order_id}}" data-amount="{{v.money}}" bindtap="PayModal">收款</button>
+          <button class="cu-btn margin-right-sm lines-green shadow button-hover round" wx:if="{{v.pay_status==0 && v.status != -1 && v.money > 0}}" data-oid="{{v.order_id}}" data-amount="{{v.money}}" bindtap="PayModal">收款</button>
 
           <button wx:if="{{v.status == 1}}" class="cu-btn margin-right-sm lines-blue shadow button-hover round" data-oid="{{v.order_id}}" data-type="2" bindtap="clickType">开始维修</button>
           <button wx:if="{{v.status == 2}}" class="cu-btn margin-right-sm lines-blue shadow button-hover round" data-oid="{{v.order_id}}" data-type="3" bindtap="clickType">修好</button>

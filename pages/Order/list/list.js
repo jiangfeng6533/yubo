@@ -47,6 +47,23 @@ Page({
         this.listaudit.searchData = search.data;
         that.getOrderAll(this.listaudit);
       break;
+      case 'client':
+        if (search.data ==1){ //用户总数据
+          this.listaudit.c_id = search.c_id;
+          that.getOrderAll(this.listaudit);
+        }
+        if (search.data == 2) { //未结算
+          this.listaudit.pay_status = 0;
+          this.listaudit.c_id = search.c_id;
+          that.getOrderAll(this.listaudit);
+        }
+        if (search.data == 3) { //已结算金额
+          this.listaudit.pay_status = 1;
+          this.listaudit.c_id = search.c_id;
+          that.getOrderAll(this.listaudit);
+        }
+
+      break;
       default:
         that.getOrderAll(this.listaudit);
       break;

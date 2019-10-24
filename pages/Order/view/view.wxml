@@ -42,7 +42,7 @@
     </view>
   </view>
 
-  <view class="cu-item " wx:if="{{amount!=null}}">
+  <view class="cu-item " wx:if="{{amount>0}}">
     <view class="content">
       <text class="icon-moneybag text-grey"></text>
       <text class="text-grey">实收费用：　{{amount?amount:0}}</text>
@@ -66,7 +66,6 @@
     <view class="grid col-1 margin-bottom text-center" style="width:100%">
       <view class="grid col-2 margin-bottom">
         <view class="title grid">维修内容</view>
-        <view class="title grid" bindtap="changeGoods" style="color:red">点击添加维修内容</view>
       </view>
       <view class="flex p-xs margin-bottom-sm mb-sm " wx:for="{{shopdata}}" wx:for-index="kk" wx:for-item="vv">
         <view class="flex-treble bg-blue padding-sm margin-xs radius">

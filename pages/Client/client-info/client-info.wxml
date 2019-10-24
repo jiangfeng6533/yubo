@@ -12,10 +12,10 @@
         <text class="text-grey">姓名： {{user_name}}</text>
       </view>
     </view>
-    <view class="cu-item arrow" bindtap="telcar" data-phone="{{phone}}">
+    <view class="cu-item arrow" >
       <view class="content">
         <text class="cuIcon-phone text-green"></text>
-        <text class="text-grey">联系电话：{{phone}}</text>
+        <text class="text-grey" bindtap="telcar" data-phone="{{phone}}">联系电话：{{phone}}</text>
       </view>
     </view>
     <view class="cu-item">
@@ -27,28 +27,28 @@
       </view>
     </view>
 
-    <view class="cu-item arrow" bindtap="toorderlist">
+    <view class="cu-item arrow" bindtap="toorderlist" data-type="1">
       <view class="content">
         <text class="cuIcon-moneybag text-yellow"></text>
-        <text class="text-grey"> 维修总金额：99990</text>
+        <text class="text-grey"> 维修总金额：{{totalMoney?totalMoney:0}}</text>
       </view>
     </view>
 
-    <view class="cu-item arrow" bindtap="toorderlist">
+    <view class="cu-item arrow" bindtap="toorderlist" data-type="2">
       <view class="content">
         <text class="cuIcon-moneybag text-yellow"></text>
-        <text class="text-grey"> 未结款金额：3000</text>
+        <text class="text-grey"> 未结款金额：{{money?money:0}}</text>
       </view>
     </view>
 
-    <view class="cu-item arrow" bindtap="toorderlist">
+    <view class="cu-item arrow" bindtap="toorderlist" data-type="3">
       <view class="content">
         <text class="cuIcon-moneybag text-yellow"></text>
-        <text class="text-grey"> 已结总金额：39939</text>
+        <text class="text-grey"> 已结总金额：{{amount?amount:0}}</text>
       </view>
     </view>
 
-    <view class="cu-item arrow">
+    <view class="cu-item arrow" >
       <view class="content">
         <text class="cuIcon-moneybag text-yellow"></text>
         <text class="text-grey"> 未取明细</text>
