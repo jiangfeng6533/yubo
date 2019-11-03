@@ -7,7 +7,8 @@
 <!-- 搜索 -->
 <view class="cu-bar search bg-white">
   <view class="">
-    <button class="cu-btn" bindtap="showLeftModal" style="background:white"><text class="icon-left"></text>筛选</button>
+    <button class="cu-btn" bindtap="showLeftModal" style="background:white">
+      <text class="icon-left"></text>筛选</button>
   </view>
   <view class="search-form round">
     <text class="icon-search"></text>
@@ -24,30 +25,38 @@
     <view class="solid-bottom">
       <view class="cu-bar bg-white solid-bottom margin-top " data-oid="{{v.order_id}}" bindtap='toorderview'>
         <view class="action">
-          <text class="icon-title text-orange "></text> <text class="">编号：{{v.order_sn}}</text>
+          <text class="icon-title text-orange "></text>
+          <text class="">编号：{{v.order_sn}}</text>
         </view>
         <view class="action">
-          {{v.join_time}}<text class=" text-red cuIcon-edit"></text> 
+          {{v.join_time}}
+          <text class=" text-red cuIcon-edit"></text>
           <!-- {{v.join_time}} -->
         </view>
       </view>
       <view class="cu-list menu sm-border">
-        <view class="cu-item " style="height:auto;">
-          <view class="content ub">
-            <view class="ub  content">
-              <text class="icon-myfill text-grey"></text>
-              <text class="text-grey">客户名称：　{{v.client_name}}</text>
+        <view class="ub padding-xs bg-white">
+          <view class="ub margin-left">
+            <view class="cu-avatar round lg" style="background-image:url({{imgPublic+v.order_img}});"></view>
+          </view>
+          <view class="ub ub-ver padding-left" >
+            <view class="ub" >
+              <view class="ub  content" style="align-items:center">
+                <text class="icon-myfill text-grey"></text>
+                <text class="text-grey">客户名称：　{{v.client_name}}</text>
+              </view>
+              <view class="text-grey content ub " style="align-items:center" catchtap="telcar" data-phone="{{v.client_phone}}">({{v.client_phone}})</view>
             </view>
-            <view class="text-grey ub-f1 ub" catchtap="telcar" data-phone="{{v.client_phone}}">({{v.client_phone}})</view>
+            <view class="ub margin-top">
+              <view class="content">
+                <text class="icon-mobile text-grey"></text>
+                <text class="text-grey">设备名称：　{{v.device_name}}</text>
+              </view>
+            </view>
           </view>
-        </view>
 
-        <view class="cu-item ">
-          <view class="content">
-            <text class="icon-mobile text-grey"></text>
-            <text class="text-grey">设备名称：　{{v.device_name}}</text>
-          </view>
         </view>
+       
         <view class="cu-item ">
           <view class="content">
             <text class="icon-calendar text-grey"></text>
@@ -58,8 +67,8 @@
             <text class="text-grey" wx:if="{{v.status == 4}}">状　　态：　已通知</text>
             <text class="text-grey" wx:if="{{v.status == 5}}">状　　态：　已取机</text>
             <text class="text-grey" wx:if="{{v.status == 6}}">状　　态：　完成</text>
-            <text class="text-yellow" wx:if="{{v.pay_status == 0}}">(未付款)</text>
-            <text class="text-grey" wx:if="{{v.pay_status == 1}}">(已付款<text wx:if="{{v.payment}}">：{{v.payment}}</text>)</text>
+            <text class="text-yellow" wx:if="{{v.pay_status == 0}}">(未付款:{{v.money>0?v.money:0}})</text>
+            <text class="text-grey" wx:if="{{v.pay_status == 1}}">(已付款<text wx:if="{{v.payment}}">：{{v.payment}}:{{v.amount}}</text>)</text>
             <text>({{v.m_name}})</text>
           </view>
         </view>
@@ -98,7 +107,7 @@
         <input placeholder="请输入收款金额" value="{{cacheAmount}}" bindinput="setAmount"></input>
       </view>
       <view class="cu-form-group margin-top margin-bottom">
-       <picker bindchange="ChangePayType"  range="{{payType}}" value="{{paydefIndex}}">
+        <picker bindchange="ChangePayType" range="{{payType}}" value="{{paydefIndex}}">
           {{payType[paydefIndex]}}
         </picker>
       </view>
@@ -106,7 +115,7 @@
     <view class="cu-bar bg-white justify-end">
       <view class="action">
         <button class="cu-btn line-green text-green" bindtap="cancelPayModal">取消</button>
-        <button class="cu-btn bg-green margin-left" bindtap="pay" >确定</button>
+        <button class="cu-btn bg-green margin-left" bindtap="pay">确定</button>
       </view>
     </view>
   </view>
@@ -117,18 +126,20 @@
 <view class="cu-modal drawer-modal justify-start {{lefeModal==true?'show':''}}" bindtap="hideLeftModal">
   <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
     <view class="cu-list menu text-left">
-      
+
       <view class="cu-item arrow">
         <view class="content">
           <view>选择时间 </view>
         </view>
       </view>
-      
+
       <view class="cu-item ">
         <view class="cu-bar " style="width:100%">
           <view class="action">是否支付 </view>
-          <view class="action"><switch ></switch></view>
-          
+          <view class="action">
+            <switch></switch>
+          </view>
+
         </view>
       </view>
 
@@ -144,7 +155,7 @@
         </view>
       </view>
 
-      <view class="cu-item arrow" >
+      <view class="cu-item arrow">
         <view class="content">
           <view>可通知订单 </view>
         </view>
@@ -155,7 +166,7 @@
           <view>已修好订单 </view>
         </view>
       </view>
-      
+
     </view>
   </view>
 </view>

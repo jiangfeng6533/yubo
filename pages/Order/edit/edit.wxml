@@ -29,11 +29,6 @@
   </view>
 
   <view class="cu-form-group margin-top">
-    <view class="title">维修费用</view>
-    <input placeholder="请输入报价费用" disabled="disabled" value="{{money}}" name="money"></input>
-  </view>
-
-  <view class="cu-form-group margin-top">
     <view class="title">预计取机时间</view>
     <input placeholder="请输入预计维修时间" value="{{predict_take_time}}" name="predict_take_time"></input>
     <text class=" text-blue">天</text>
@@ -70,17 +65,22 @@
     </view>
   </view>
 
+  <view class="cu-form-group margin-top">
+    <view class="title">维修费用</view>
+    <input placeholder="请输入报价费用" disabled="" value="{{money}}" name="money"></input>
+  </view>
+
 <view class="cu-bar bg-white margin-top">
     <view class="action">
       已传凭证
     </view>
     <view class="action">
-      {{order_img!=''?order_img.length:0}}/4
+      {{img!=''?img.length:0}}/4
     </view>
   </view>
   <view class="cu-form-group">
     <view class="grid col-4 grid-square flex-sub">
-      <view class="padding-xs bg-img" style="background-image:url({{order_img[index]}})" wx:for="{{order_img}}" wx:key="{{index}}" bindtap="OldViewImage" data-url="{{order_img[index]}}">
+      <view class="padding-xs bg-img" style="background-image:url({{img[index]}})" wx:for="{{img}}" wx:key="{{index}}" bindtap="OldViewImage" data-url="{{img[index]}}">
       </view>
     </view>
   </view>

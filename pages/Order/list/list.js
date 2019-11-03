@@ -15,7 +15,8 @@ Page({
     CustomBar: app.globalData.CustomBar,
     lefeModal:false,
     payType:['请选择收款类型','现金','支付宝','微信'],
-    paydefIndex:0
+    paydefIndex:0,
+    imgPublic: global.Configs.imgurl
   },
   /**
    * 生命周期函数--监听页面加载
@@ -63,6 +64,10 @@ Page({
           that.getOrderAll(this.listaudit);
         }
 
+      break;
+      case 'managerlist':
+        this.listaudit.service_manger = wx.getStorageSync('m_id');
+        that.getOrderAll(this.listaudit);
       break;
       default:
         that.getOrderAll(this.listaudit);

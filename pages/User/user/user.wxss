@@ -45,3 +45,10 @@ map,.mapBox{
     width: 750rpx;
     height: 300rpx;
 }
+.newcon{
+  display: inline-block;
+  margin-right: 10rpx;
+  width: 1.6em;
+  text-align: center;
+
+}

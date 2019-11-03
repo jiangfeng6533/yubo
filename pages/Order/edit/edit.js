@@ -41,11 +41,11 @@ Page({
           that.getServicePeopleList('-1');
         }
 
-        if (res.data.result.order_img != '') {
-          var order_img = JSON.parse(res.data.result.order_img);
-          res.data.result.order_img = [];
-          for (let kk in order_img) {
-            res.data.result.order_img[kk] = global.Configs.imgurl + order_img[kk];
+        if (res.data.result.img != '') {
+          var img = JSON.parse(res.data.result.img);
+          res.data.result.img = [];
+          for (let kk in img) {
+            res.data.result.img[kk] = global.Configs.imgurl + img[kk];
           }
         }
 
@@ -171,8 +171,8 @@ Page({
   },
   OldViewImage(e) {
     wx.previewImage({
-      urls: this.data.order_img,
-      current: this.data.order_img[e.currentTarget.dataset.url]
+      urls: this.data.img,
+      current: e.currentTarget.dataset.url
     });
   },
   textareaAInput(e) {

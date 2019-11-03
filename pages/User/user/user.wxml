@@ -26,23 +26,23 @@
 </view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="cu-item arrow">
-        <navigator class='content' open-type="navigate" hover-class='none' url="/pages/order/index/index">
+        <view class="content" bindtap="toServiceOrderList">
             <text class='icon-send text-cyan'></text>
             <text class='text-grey'>我的维修</text>
-        </navigator>
+        </view>
     </view>
     <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/vipcard/index/index">
             <text class='icon-vipcard text-green'></text>
-            <text class='text-grey'>公司会员管理</text>
+            <text class='text-grey'>货品订单</text>
         </navigator>
     </view>
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/address/index">
             <text class='icon-location text-orange'></text>
             <text class='text-grey'>地址管理</text>
         </navigator>
-    </view>
+    </view> -->
     <view class="cu-item arrow">
         <button class='cu-btn content' open-type='feedback'>
             <text class='icon-writefill text-grey'></text>
@@ -51,7 +51,7 @@
     </view>
     <view class="cu-item arrow">
         <button class='cu-btn content'  bindtap="logout">
-            <text class='cuIcon-exit text-grey'> </text>
+            <text class='cuIcon-exit text-grey newcon'> </text>
             <text class='text-grey'> 退出登录</text>
         </button>
     </view>

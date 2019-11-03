@@ -47,6 +47,11 @@ Page({
       this.home = this.selectComponent("#home");
       this.home.getComData(global.Configs.comData)
     }
+    if (e.currentTarget.dataset.cur == "user") {
+      this.home = this.selectComponent("#user");
+      this.home.getData()
+    }
+
   },
   toaddorder: function () {
     this.setData({
@@ -89,6 +94,11 @@ Page({
         console.log("datat", res.data);
       }
     )
+  },
+  toshop(){
+    wx.navigateTo({
+      url: '/pages/Goods/select-shop/select-shop',
+    })
   }
   
 })

@@ -11,39 +11,51 @@ Component({
    * 页面的初始数据
    */
   data: {
-    visitTotal: 123,
-    starCount: 9600,
-    forksCount: 3200
+    visitTotal: 0,
+    starCount: 0,
+    forksCount: 0
+  },
+  lifetimes: {
+    attached() {
+      var that = this;
+      console.log("CompontcomData");
+      console.log("我是User组件");
+    },
+    ready() {
+      console.log("User/ready")
+    }
+
   },
 
   methods: {
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log('cola')
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-  logout:function(){
-    wx.clearStorageSync();
-    delete app.aData.p_id;
-    delete app.aData.token;
-    wx.reLaunch({
-      url: '/pages/login/login',
-    })
-  }
+  
+    getData:function(){
+      console.log("aaa123");
+      var that = this;
+      global.http.postReq(global.Configs.getManagerServiceCount, {m_id:wx.getStorageSync('m_id')}, function (res) {
+        console.log('data', res);
+        if (res.data.code == 200) {
+          that.setData({ visitTotal: res.data.result.serviceCount})
+        }
+      });
+    },
+    logout:function(){
+      wx.clearStorageSync();
+      delete app.aData.p_id;
+      delete app.aData.token;
+      wx.reLaunch({
+        url: '/pages/login/login',
+      })
+    },
+    toServiceOrderList: function () {
+      // console.log('type:', e);
+      var type = 'managerlist';
+      var param = {
+        type: type
+      }
+      wx.navigateTo({
+        url: '/pages/Order/list/list?search=' + JSON.stringify(param),
+      })
+    }
   }
 })

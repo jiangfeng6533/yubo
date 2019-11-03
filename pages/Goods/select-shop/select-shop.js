@@ -15,12 +15,11 @@ Page({
     typeindex: 0,
     animationData: {},
     optionstatus: false,
-    isgoodshow:true
+    isgoodshow: true
   },
 
   onLoad: function (options) {
-    var puldata = JSON.parse(options.shopdata);
-    if (puldata == null) puldata=[];
+    var puldata = [];
     var that = this;
     //更新购物车
     var shopdata = [];
@@ -29,7 +28,7 @@ Page({
       //{ goods_name: '这是一个商dddddd品名称', price: 30, num: 1, mount: 30, checked: 'checked', cost: 15, goods_id: 6666 }, { goods_name: '这是一个ddddddddd商品名称', price: 30, num: 1, mount: 40, checked: '', cost: 15, goods_id: 6661 }
     );
     that.countnum(shopdata);
-    that.setData({ shopdata: shopdata, goodsNum: shopdata[0].data.length})
+    that.setData({ shopdata: shopdata, goodsNum: shopdata[0].data.length })
     //更新商品和类别
     that.audit = { m_id: wx.getStorageSync('m_id'), page: that.page, pageSize: 200, cate: null };
     that.getGoodsAll();
@@ -113,7 +112,7 @@ Page({
     let costamount = 0;
     for (let v in shopdata) {
       for (let vv in shopdata[v].data) {
-        if (shopdata[v].data[vv].checked == 'checked'){
+        if (shopdata[v].data[vv].checked == 'checked') {
           paymentMount = parseInt((paymentMount + shopdata[v].data[vv].mount).toFixed(2));
           costamount = parseInt((costamount + shopdata[v].data[vv].costmount).toFixed(2));
         }
@@ -122,13 +121,13 @@ Page({
     this.setData({ paymentMount: paymentMount, costamount: costamount })
   },
   //购物车删除已选商品
-  delshop(e){
+  delshop(e) {
     console.log(e);
     var comkey = e.currentTarget.dataset.comkey;
     var shopkey = e.currentTarget.dataset.shopkey;
     var shopdata = this.data.shopdata;
-    shopdata[comkey].data.splice(shopkey,1);
-    console.log(shopdata,"daa");
+    shopdata[comkey].data.splice(shopkey, 1);
+    console.log(shopdata, "daa");
     this.countnum(shopdata);
     this.setData({ shopdata: shopdata });
 
@@ -153,7 +152,7 @@ Page({
           shopdata[k].data[kk].checked = 'checked';
         }
       }
-     // wx.setStorageSync('cartlist', shopdata);
+      // wx.setStorageSync('cartlist', shopdata);
       this.setData({ optionstatus: true, shopdata: shopdata })
     }
     that.countnum(shopdata);
@@ -220,10 +219,10 @@ Page({
   setgoodshideModal(e) {
     this.setData({
       setgoodsmodal: false,
-      setgoodsData:{}
+      setgoodsData: {}
     })
   },
-  setGoodsDataNum(e){
+  setGoodsDataNum(e) {
     var setgoodsData = this.data.setgoodsData;
     setgoodsData.num = e.detail.value
     this.setData({
@@ -231,12 +230,12 @@ Page({
     })
   },
   //选择商品
-  choosegoods(){
+  choosegoods() {
     var that = this;
     var setgoodsData = this.data.setgoodsData;
     var shopdata = this.data.shopdata;
     shopdata[0].data.push(
-      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: parseInt((setgoodsData.mount * setgoodsData.num).toFixed(2)), checked: 'checked', cost: setgoodsData.price, costmount: parseInt((setgoodsData.price * setgoodsData.num).toFixed(2)), goods_id: setgoodsData.goods_id, unit: setgoodsData.unit}
+      { goods_name: setgoodsData.goods_name, price: setgoodsData.mount, num: setgoodsData.num, mount: parseInt((setgoodsData.mount * setgoodsData.num).toFixed(2)), checked: 'checked', cost: setgoodsData.price, costmount: parseInt((setgoodsData.price * setgoodsData.num).toFixed(2)), goods_id: setgoodsData.goods_id, unit: setgoodsData.unit }
     );
     var goodsNum = shopdata[0].data.length;
     this.setData({
@@ -255,14 +254,25 @@ Page({
     })
   },
   Changetype(e) {
+    var that = this;
     console.log(e);
     let typeindex = e.detail.value;
+    if (typeindex != 0) {
+      that.audit.cate = that.data.cate[typeindex - 1].category_id;
+      that.page = 1;
+      that.getGoodsAll();
+    } else {
+      that.audit.cate = null;
+      that.page = 1;
+      that.getGoodsAll();
+    }
     this.setData({
       typeindex: typeindex
     })
+
   },
-  
-  shoppingCart:function(){
+
+  shoppingCart: function () {
     var shopdata = this.data.shopdata;
     var isgoodshow = !this.data.isgoodshow;
     var goodsNum = shopdata[0].data.length;
@@ -295,19 +305,15 @@ Page({
   selectFinish(e) {
     console.log('changeuser', e);
     var shopdata = this.data.shopdata[0].data;
-    for (let v in shopdata){
-      if (shopdata[v].checked != 'checked'){
+    for (let v in shopdata) {
+      if (shopdata[v].checked != 'checked') {
         shopdata.splice(v, 1);
       }
     }
-    var audit = { shopdata: shopdata, samount: this.data.paymentMount, costamount: this.data.costamount}; 
-    var pages = getCurrentPages();
-    console.log('page', pages);
-    var beforePage = pages[pages.length - 2];
-    wx.navigateBack({
-      delta: 1
-    })
-    beforePage.resshopinfo(audit);
+    var audit = { shopdata: shopdata, samount: this.data.paymentMount, costamount: this.data.costamount };
+
+    console.log("audit", audit);
+    return false;
   },
- 
+
 })

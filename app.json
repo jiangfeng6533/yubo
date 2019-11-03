@@ -14,6 +14,7 @@
     "pages/Goods/goods/goods",
     "pages/Goods/goods-list/goods-list",
     "pages/Goods/select-list/select-list",
+    "pages/Goods/select-shop/select-shop",
     "pages/Goods/category-list/category-list",
     "pages/foot/foot",
     "pages/timeline/timeline",

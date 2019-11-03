@@ -156,10 +156,14 @@ Page({
       device_name: e.detail.value.device_name,
       device_unit: e.detail.value.device_unit,
       marker: e.detail.value.marker,
-      order_img: JSON.stringify(imglistUrl),
       client_level:grade,
       m_id:wx.getStorageSync('m_id')
     };
+    if (imglistUrl.length>0){
+      audit.order_img = imglistUrl[0];
+      audit.img = JSON.stringify(imglistUrl);
+    }else{
+    }
     if(grade == 1){
       audit.client_id = this.data.cid;
     }

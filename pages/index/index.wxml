@@ -12,7 +12,7 @@
         <button class="cu-btn bg-blue button-hover" bindtap='toaddorder'>维修</button>
       </view>
       <view class="content margin-top">
-        <button class="cu-btn bg-cyan" bindtap='butest'>销售</button>
+        <button class="cu-btn bg-cyan" bindtap='toshop'>销售</button>
       </view>
     </view>
   </view>
@@ -25,7 +25,7 @@
 
 
 <home wx:if="{{PageCur=='home'}}" today="{{today}}" comData="{{comData}}" id='home'></home>
-<user wx:if="{{PageCur=='user'}}"></user>
+<user wx:if="{{PageCur=='user'}}" id='user'></user>
 
 
 <!-- bar -->

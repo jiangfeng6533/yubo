@@ -52,6 +52,8 @@ const Config={
   getServicemanager:"manager/getServicemanager",
   //测试图片上传
   test:"upload/test",
+  //获取我的界面数据
+  getManagerServiceCount:"ServiceOrder/getManagerServiceCount"
   
   
 
