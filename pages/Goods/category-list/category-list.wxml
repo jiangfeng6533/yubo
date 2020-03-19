@@ -1,2 +1,52 @@
 <!--pages/Goods/category-list/category-list.wxml-->
-<text>pages/Goods/category-list/category-list.wxml</text>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">商品类别管理</view>
+</cu-custom>
+
+<view class='ub ub-ver bg-white padding'>
+  <view class="ub padding btn-red" style="text-align:right">
+    <view class="ub ub-f1"></view> 
+    <view class="ub text-blue">添加+</view>
+  </view>
+  <view class="ub padding solid" wx:for="{{cate}}" wx:for-index="k" wx:for-item="v">
+    <view class="ub ub-f1">
+      {{v.cat_name}}
+    </view>  
+    <view class="ub text-red">
+      删除
+    </view>  
+  </view>
+  
+</view>
+
+
+<!-- modal -->
+<view class="cu-modal {{catemodal==true?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">类别修改</view>
+      <view class="action" bindtap="cateclosemodal">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <form bindsubmit="cateeditsubmit">
+    <view class="">
+
+      <view class="cu-form-group margin-top margin-bottom">
+        <view class="title">类别名称修改</view>
+        <input placeholder="请输入类别名称" name="catename" value="{{selectname}}"></input>
+        <input hidden="true" name="cateid" value="001"></input>
+      </view>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="cateclosemodal" >取消</button>
+        <button class="cu-btn bg-green margin-left" form-type='submit'>确定</button>
+
+      </view>
+    </view>
+    </form>
+  </view>
+</view>
+<!-- modal结束 -->

@@ -58,7 +58,7 @@
   
   <view class="cu-form-group solid-bottom">
     <view class="title">预估价（可不填写）</view>
-    <input placeholder="请输入预估价" name="money"></input>
+    <input type="number" placeholder="请输入预估价" name="money"></input>
   </view>
   <button class="cu-btn block bg-blue margin lg" form-type='submit'>
     <text class=" iconfont-spin"></text> 提交

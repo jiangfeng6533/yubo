@@ -59,7 +59,9 @@ const Config={
   //上传文件
   comUpload: "upload/comUpload",
   //公司注册
-  addCompanyInfo:"companyinfo/addCompanyInfo"
+  addCompanyInfo:"companyinfo/addCompanyInfo",
+  //商品类别列表获取
+  
 
   
   

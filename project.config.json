@@ -168,6 +168,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/Goods/category-list/category-list",
+					"pathName": "pages/Goods/category-list/category-list",
 					"scene": null
 				}
 			]

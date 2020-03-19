@@ -263,12 +263,12 @@ Page({
     
   },
   tocategory(){
-    wx.showToast({
-      icon:'none',
-      title: '暂未开通',
-    })
-    // wx.redirectTo({
-    //   url: '/pages/Goods/category-list/category-list',
+    // wx.showToast({
+    //   icon:'none',
+    //   title: '暂未开通',
     // })
+    wx.redirectTo({
+      url: '/pages/Goods/category-list/category-list',
+    })
   }
 })
