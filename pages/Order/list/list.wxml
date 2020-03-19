@@ -12,10 +12,10 @@
   </view>
   <view class="search-form round">
     <text class="icon-search"></text>
-    <input type="text" placeholder="　搜索编号、客户名称" confirm-type="search"></input>
+    <input type="text" placeholder="　搜索编号、客户名称" confirm-type="search" bindinput="getsearch"></input>
   </view>
   <view class="action">
-    <button class="cu-btn bg-green shadow-blur round">搜索</button>
+    <button class="cu-btn bg-green shadow-blur round" bindtap="osearch">搜索</button>
   </view>
 </view>
 
@@ -37,7 +37,7 @@
       <view class="cu-list menu sm-border">
         <view class="ub padding-xs bg-white">
           <view class="ub margin-left">
-            <view class="cu-avatar round lg" style="background-image:url({{imgPublic+v.order_img}});"></view>
+            <view class="cu-avatar round lg" data-imgurl="{{imgPublic+v.order_img}}" bindtap="showimg" style="background-image:url({{imgPublic+v.order_img}});"></view>
           </view>
           <view class="ub ub-ver padding-left" >
             <view class="ub" >
@@ -91,7 +91,7 @@
 <!-- 循环体结束 -->
 
 
-<!-- modal -->
+<!-- 收款modal -->
 <view class="cu-modal {{PayModal==true?'show':''}}">
 
   <view class="cu-dialog">
@@ -118,6 +118,24 @@
         <button class="cu-btn bg-green margin-left" bindtap="pay">确定</button>
       </view>
     </view>
+  </view>
+</view>
+<!-- modal结束 -->
+
+<!-- 图片放大modal -->
+<view class="cu-modal {{imgModal==true?'show':''}}">
+
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">图片信息</view>
+      <view class="action" bindtap="closeimgview">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="">
+      <image src="{{showimgval}}"></image>
+    </view>
+    
   </view>
 </view>
 <!-- modal结束 -->

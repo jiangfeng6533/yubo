@@ -53,7 +53,14 @@ const Config={
   //测试图片上传
   test:"upload/test",
   //获取我的界面数据
-  getManagerServiceCount:"ServiceOrder/getManagerServiceCount"
+  getManagerServiceCount:"ServiceOrder/getManagerServiceCount",
+  //修改密码
+  editManagerPwd: "manager/editManagerPwd",
+  //上传文件
+  comUpload: "upload/comUpload",
+  //公司注册
+  addCompanyInfo:"companyinfo/addCompanyInfo"
+
   
   
 

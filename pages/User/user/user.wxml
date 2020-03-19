@@ -1,7 +1,7 @@
 <!--pages/User/user/user.wxml-->
 <view class='UCenter-bg'>
     <image src='/images/logo.png' class='png' mode='widthFix'></image>
-    <view class='text-xl'> Cola </view>
+    <view class='text-xl'> {{name}} </view>
     <view class='margin-top-sm'>
         <text>普通管理员</text>
     </view>
@@ -47,6 +47,12 @@
         <button class='cu-btn content' open-type='feedback'>
             <text class='icon-writefill text-grey'></text>
             <text class='text-grey'>意见反馈</text>
+        </button>
+    </view>
+    <view class="cu-item arrow">
+        <button class='cu-btn content'  bindtap="editpwd">
+            <text class='cuIcon-edit text-grey newcon'> </text>
+            <text class='text-grey'> 修改密码</text>
         </button>
     </view>
     <view class="cu-item arrow">

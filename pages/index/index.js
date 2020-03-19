@@ -32,6 +32,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (!app.isLogin()){
+      return;
+    }
     this.home = this.selectComponent("#home");
     if (this.data.PageCur == 'home'){
       

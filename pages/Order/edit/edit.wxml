@@ -67,7 +67,7 @@
 
   <view class="cu-form-group margin-top">
     <view class="title">维修费用</view>
-    <input placeholder="请输入报价费用" disabled="" value="{{money}}" name="money"></input>
+    <input class="{{money==0?'f-red':''}}" placeholder="请输入报价费用" disabled="" value="{{money!=0?money:0}}" name="money"></input>
   </view>
 
 <view class="cu-bar bg-white margin-top">

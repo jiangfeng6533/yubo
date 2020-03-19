@@ -25,14 +25,10 @@
 
 
   <view class="cu-form-group ">
-    <view class="title">设备名称</view>
+    <view class="title">设备名称及型号</view>
     <input placeholder="请输入设备名称" value="" name="device_name"></input>
   </view>
 
-  <view class="cu-form-group solid-bottom">
-    <view class="title">规格型号</view>
-    <input placeholder="请输入规格型号" name="device_unit"></input>
-  </view>
 
 
   <view class="cu-bar bg-white ">
@@ -58,6 +54,11 @@
   <button class="cu-btn" bindtap="upload" >上传</button>
    <view class="cu-form-group ">
     <textarea placeholder="请输入备注"   name="marker"></textarea>
+  </view>
+  
+  <view class="cu-form-group solid-bottom">
+    <view class="title">预估价（可不填写）</view>
+    <input placeholder="请输入预估价" name="money"></input>
   </view>
   <button class="cu-btn block bg-blue margin lg" form-type='submit'>
     <text class=" iconfont-spin"></text> 提交

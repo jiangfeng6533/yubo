@@ -1,9 +1,8 @@
-// pages/Order/add/add.js
+// pages/Register/company-reg/company-reg.js
 var wxCharts = require('../../../utils/wxcharts.js');
 var global = require('../../../Model/global.js');
 //获取应用实例
 const app = getApp()
-
 Page({
 
   /**
@@ -12,12 +11,7 @@ Page({
   data: {
     index: null,
     imgList: [],
-    imglistUrl:[],
-    clientgrade: ['零散客户', '大客户'],
-    grade:0,
-    modalName: null,
-    textareaAValue: '',
-    textareaBValue: ''
+    imglistUrl: [],
   },
 
   /**
@@ -26,40 +20,62 @@ Page({
   onLoad: function (options) {
 
   },
-  Changegrade(e) {
-    console.log(e);
-    let grade = e.detail.value;
-    this.setData({
-      grade: grade
-    })
 
-      this.setData({
-        cname:null,
-        cphone:null,
-        cid:null
-      })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   },
   ChooseImage() {
-    var that =this;
+    var that = this;
     var imglistUrl = this.data.imglistUrl;
     var imgList = this.data.imgList;
     wx.chooseImage({
       count: 4, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album','camera'], //从相册选择
+      sourceType: ['album', 'camera'], //从相册选择
       success: (res) => {
-        console.log('选择相册图片',res);
-        for (let k in res.tempFilePaths){
+        console.log('选择相册图片', res);
+        for (let k in res.tempFilePaths) {
           wx.uploadFile({
-            url: global.Configs.rootDocment + global.Configs.test,
+            url: global.Configs.rootDocment + global.Configs.comUpload,
             filePath: res.tempFilePaths[k],
             name: 'file',
             success: (upres) => {
               var resdata = JSON.parse(upres.data)
-              if (resdata.code == 200){
+              if (resdata.code == 200) {
                 wx.showToast({
                   title: '上传成功',
-                  icon:'none'
+                  icon: 'none'
                 })
                 console.log('上传成功', resdata);
                 imgList.push(res.tempFilePaths[k])
@@ -75,7 +91,7 @@ Page({
             }
           })
         }
-        
+
       }
     });
   },
@@ -97,55 +113,42 @@ Page({
           this.data.imglistUrl.splice(e.currentTarget.dataset.index, 1);
           this.setData({
             imgList: this.data.imgList,
-            imglistUrl : this.data.imglistUrl
+            imglistUrl: this.data.imglistUrl
           })
         }
       }
     })
   },
-  upload(){
-    var imglistUrl = this.data.imglistUrl;
-    console.log('转json');
-  },
-  selectclient(){
-    if (this.data.grade >0){
-      wx.navigateTo({
-        url: '../select-client/client',
-      })
-    }else{
-
-    }
-  },
-  resclientinfo(audit){
-    console.log('add-audit',audit);
-    this.setData({
-      cname: audit.name,
-      cphone: audit.phone,
-      cid: audit.cid
-    })
-  },
-  submit(e){
+  submit(e) {
     console.log(e);
     var imglistUrl = this.data.imglistUrl;
-    if (imglistUrl.length == 0){
-      var title = '请上传设备照片';
+    if (imglistUrl.length == 0) {
+      var title = '请上传营业照片';
     }
-    var phone = e.detail.value.client_phone;
-    var name = e.detail.value.client_name;
-    var device_unit = e.detail.value.device_name;
-    var device_name = e.detail.value.device_name;
+    var phone = e.detail.value.phone;
+    var company = e.detail.value.company;
+    var license = e.detail.value.license;
+    var pwd = e.detail.value.pwd;
+    var leader = e.detail.value.leader;
+    var leader_idcard = e.detail.value.leader_idcard;
     let phonereg = /^1[1|2|3|4|5|6|7|8|9][0-9]{9}$/;
     if (!phone || !phonereg.test(phone)) {
       var title = '请输入正确手机号';
     }
-    if (!name) {
-      var title = '请输入用户姓名';
+    if (!company) {
+      var title = '请输入公司名称';
     }
-    if (!device_unit) {
-      var title = '请输入设备型号';
+    if (!license) {
+      var title = '请输入营业执照编号';
     }
-    if (!device_name) {
-      var title = '请输入设备名称';
+    if (!leader) {
+      var title = '请输入负责人姓名';
+    }
+    if (!leader_idcard) {
+      var title = '请输入负责人身份证编号';
+    }
+    if (!pwd) {
+      var title = '请输入公司密码';
     }
     if (title) {
       wx.showToast({
@@ -155,37 +158,24 @@ Page({
       })
       return false;
     }
-    var userInfo = wx.getStorageSync('userInfo');
-    var grade = this.data.grade;
     var audit = {
-      client_name: e.detail.value.client_name,
-      client_phone: e.detail.value.client_phone,
-      device_name: e.detail.value.device_name,
-      device_unit: e.detail.value.device_name,
-      marker: e.detail.value.marker,
-      client_level:grade,
-      m_id:wx.getStorageSync('m_id'),
+      company: e.detail.value.company,
+      phone: e.detail.value.phone,
+      license: e.detail.value.license,
+      pwd: e.detail.value.pwd,
+      license_img : JSON.stringify(imglistUrl),
+      leader: leader,
+      leader_idcard: leader_idcard
     };
-    if (imglistUrl.length>0){
-      audit.order_img = imglistUrl[0];
-      audit.img = JSON.stringify(imglistUrl);
-    }else{
-    }
-    if (e.detail.value.money >0){
-      audit.money = e.detail.value.money;
-    }
-
-    if(grade == 1){
-      audit.client_id = this.data.cid;
-    }
-    console.log('audit',audit);
-    global.http.postReq(global.Configs.addServiceOrder, audit, function (res) {
+    console.log('audit', audit);
+    // return;
+    global.http.postReq(global.Configs.addCompanyInfo, audit, function (res) {
       console.log("添加返回", res);
       if (res.data.code == 200) {
-        console.log("添加成功",res);
+        console.log("添加成功", res);
         wx.showModal({
           title: '提示',
-          content: '添加成功',
+          content: '提交成功请等待审核',
           showCancel: false,
           success(res) {
             if (res.confirm) {
@@ -201,13 +191,15 @@ Page({
         })
       }
 
-      if(res.data.code == 204){
+      if (res.data.code == 204) {
         wx.showToast({
           title: res.data.msg,
         })
       }
     })
     return;
-    
+
   }
+
+  
 })

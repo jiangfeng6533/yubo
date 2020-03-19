@@ -5,7 +5,8 @@ App({
     m_id: false,
     token: false,
     appcityid: false,
-    dev: false
+    dev: false,
+    accountType:false,//1员工 ，2老板
   },
   globalData:{
 
@@ -26,16 +27,20 @@ App({
     })
     var m_id=wx.getStorageSync('m_id');
     var token = wx.getStorageSync('token');
-    if(!m_id || !token){
-      wx.reLaunch({
-        url: '/pages/login/login',
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
-      })
+    var accountType = wx.getStorageSync('accountType');
+    console.log('执行accountType初始化');
+    if (!accountType){
+
+      // wx.reLaunch({
+      //   url: '/pages/login/login',
+      //   success: function(res) {},
+      //   fail: function(res) {},
+      //   complete: function(res) {},
+      // })
     }else{
       that.aData.token = token;
       that.aData.m_id = m_id;
+      that.aData.accountType = accountType;
     }
 
   },
@@ -60,10 +65,13 @@ App({
   //是否登录
   isLogin: function () {
     var that = this;
-    if (that.aData.m_id && that.aData.token) {
+    if (that.aData.accountType) {
       return true;
+      console.log('登录成功');
     } else {
-      wx.navigateTo({
+      console.log('暂无登录');
+
+      wx.reLaunch({
         url: "/pages/login/login"
       });
       return false;

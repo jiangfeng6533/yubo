@@ -20,6 +20,10 @@ Component({
       var that = this;
       console.log("CompontcomData");
       console.log("我是User组件");
+      var userinfo = wx.getStorageSync('userInfo');
+      this.setData({
+        name: userinfo.name
+      })
     },
     ready() {
       console.log("User/ready")
@@ -41,8 +45,10 @@ Component({
     },
     logout:function(){
       wx.clearStorageSync();
-      delete app.aData.p_id;
+      delete app.aData.m_id;
       delete app.aData.token;
+      delete app.aData.accountType;
+      
       wx.reLaunch({
         url: '/pages/login/login',
       })
@@ -55,6 +61,11 @@ Component({
       }
       wx.navigateTo({
         url: '/pages/Order/list/list?search=' + JSON.stringify(param),
+      })
+    },
+    editpwd(){
+      wx.navigateTo({
+        url: '/pages/User/editpwd/editpwd',
       })
     }
   }

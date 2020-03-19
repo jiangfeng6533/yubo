@@ -19,13 +19,15 @@ Page({
   },
 
   onLoad: function (options) {
-    var puldata = JSON.parse(options.shopdata);
+    console.log('options.shopdata',options);
+    if (options.shopdata != "undefined")
+      var puldata = JSON.parse(options.shopdata);
     if (puldata == null) puldata=[];
     var that = this;
     //更新购物车
     var shopdata = [];
     shopdata.push(
-      { com_name: "宇博机电", checked: '', data: puldata }
+      { com_name: "购物车", checked: '', data: puldata }
       //{ goods_name: '这是一个商dddddd品名称', price: 30, num: 1, mount: 30, checked: 'checked', cost: 15, goods_id: 6666 }, { goods_name: '这是一个ddddddddd商品名称', price: 30, num: 1, mount: 40, checked: '', cost: 15, goods_id: 6661 }
     );
     that.countnum(shopdata);

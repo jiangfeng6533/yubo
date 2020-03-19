@@ -9,7 +9,9 @@ Page({
   data: {
 
   },
+  onShow: function () {
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -27,25 +29,27 @@ Page({
         console.log(err);
       }
     })
-    if ( wx.getStorageSync("p_id")) {
-      wx.showModal({
-        title: '已登录',
-        content: '您的账号已经登录',
-        showCancel: false,
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../index/index',
-            })
-          }
-        }
-      });
-      return;
-    }
-    wx.hideLoading();
+    
+    // if (wx.getStorageSync("p_id")) {
+    //   wx.showModal({
+    //     title: '已登录',
+    //     content: '您的账号已经登录',
+    //     showCancel: false,
+    //     success(res) {
+    //       if (res.confirm) {
+    //         wx.navigateTo({
+    //           url: '../index/index',
+    //         })
+    //       }
+    //     }
+    //   });
+    //   return;
+    // }
+    // wx.hideLoading();
     
 
   },
+  
   //暂时不用
   getPhoneNumber(e) {
     console.log('getuser')
@@ -123,6 +127,8 @@ Page({
               wx.setStorageSync('phone', data.phoneNumber);
               wx.setStorageSync('token', data.token);
               wx.setStorageSync('user_info', data.user_info);
+              wx.setStorageSync('accountType', 1);
+              
               if (wx.getStorageSync("token")) {
                 wx.showModal({
                   title: '登录成功',
@@ -150,6 +156,13 @@ Page({
     console.log(e.detail.value.phone)
     var phone = e.detail.value.phone;
     var pwd = e.detail.value.pwd;
+    if(!pwd || !phone){
+      wx.showToast({
+        title: '手机号与密码不得为空',
+        icon:'none'
+      })
+      return;
+    }
     global.http.postReq(global.Configs.login,{
       phone:phone,pwd:pwd
     },function(res){
@@ -160,6 +173,10 @@ Page({
         wx.setStorageSync('phone', res.data.result.userInfo.phone);
         wx.setStorageSync('m_id', res.data.result.userInfo.id);
         wx.setStorageSync('com_id', res.data.result.userInfo.com_id);
+        wx.setStorageSync('accountType', 1);
+        app.aData.accountType = 1;
+        app.aData.m_id = res.data.result.userInfo.id;
+        app.aData.token = res.data.result.token;
         wx.showModal({
           title: '登录成功',
           content: '亲，等您好久啦！',
@@ -188,6 +205,33 @@ Page({
         console.log("datat", res.data);
       }
     )
-  }
+  },
+  reg(){
+   
+    // wx.showModal({
+    //   title: '温馨提示',
+    //   content: '暂时关闭自动注册界面，新用户请联系管理员或在微信群中联系管理员，管理员微信：13284950004',
+    // })
+    wx.navigateTo({
+      url: '/pages/Register/company-reg/company-reg',
+    })
+  },
+  forgetpwd(){
+    wx.showModal({
+      title: '温馨提示',
+      content: '请联系管理员或在微信群中联系管理员进行密码重置，管理员微信：13284950004',
+    })
+  },
+  toComLogin(){
+    wx.redirectTo({
+      url: '/pages/login/comlogin',
+    })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
 
 })

@@ -36,7 +36,7 @@ Page({
       console.log(res);
       if (res.data.code == 200) {
         if (res.data.result.service_manger) {
-          that.getServicePeopleList(res.data.result.service_manger);
+          that.getServicePeopleList(res.data.result.serverId);
         } else {
           that.getServicePeopleList('-1');
         }
@@ -73,8 +73,10 @@ Page({
             res.data.result.status = "完成";
             break;
         }
-        var shopdata = JSON.parse(res.data.result.goods_info);
-        res.data.result.shopdata = shopdata;
+        if (res.data.result.goods_info != "" && res.data.result.goods_info) {
+          var shopdata = JSON.parse(res.data.result.goods_info);
+          res.data.result.shopdata = shopdata;
+        }
         that.setData(res.data.result)
         return;
       }
@@ -90,6 +92,7 @@ Page({
   },
   //获取维修师傅
   getServicePeopleList: function (service_manager){
+    console.log('service_manager', service_manager)
     var that = this;
     global.http.postReq(global.Configs.getServicemanager, { m_id: wx.getStorageSync('m_id')}, function (res) {
       var servicePeople =['请选择维修师傅'];
@@ -100,6 +103,7 @@ Page({
         for(let l in list){
           servicePeople.push(list[l].name);
           if (service_manager == list[l].id){
+            console.log('确认维修师傅')
             that.setData({ servicePeopleIndex:(parseInt(l)+1)});
           }
         }

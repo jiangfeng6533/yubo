@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">密码修改</view>
+</cu-custom>
+
+
+<form class="bg-white " bindsubmit="submit">
+  <view class="cu-form-group margin-top">
+    <view class="title">原密码</view>
+    <input placeholder="请输入原密码" password="true" name="pwd"></input>
+  </view>
+
+  <view class="cu-form-group ">
+    <view class="title">新密码</view>
+    <input placeholder="请输入新密码" password="true" name="xpwd"></input>
+  </view>
+  <view class="cu-form-group ">
+    <view class="title">新密码</view>
+    <input placeholder="请再次输入新密码" password="true" name="xpwd2"></input>
+  </view>
+
+
+  <view class="flex flex-wrap ub-pc margin-top">
+    <view class="basis-xl    radius">
+      <button class="cu-btn block bg-blue margin-tb-sm lg button-hover radius" form-type='submit'>确认修改</button>
+    </view>
+  </view>
+  <!-- <view class="flex flex-wrap ub-pc ">
+    <view class="basis-xl radius">
+      <view class="flex justify-between">
+        <view class="text-blue" bindtap="reg">
+          注册
+        </view>
+        <view class="text-blue">
+          忘记密码
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+</form>

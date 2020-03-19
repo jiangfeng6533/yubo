@@ -1,0 +1,45 @@
+<!--pages/Home/daily-turnover/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" bindtap='toback'>返回</view>
+  <view slot="content">今日营业额</view>
+</cu-custom>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 收款方式列表
+    </view>
+    <!-- <view class="action">
+      <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="menuModal">设置</button>
+    </view> -->
+  </view>
+
+<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="icon-circlefill text-grey"></text>
+        <text class="text-grey">微信：</text>
+      </view>
+    </view>
+    <view class="cu-item  {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="icon-circlefill text-grey"></text>
+
+        <text class="text-grey">支付宝：</text>
+      </view>
+    </view>
+    <view class="cu-item  {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="icon-circlefill text-grey"></text>
+
+        <text class="text-grey">现金：</text>
+      </view>
+    </view>
+    <view class="cu-item  {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="icon-circlefill text-grey"></text>
+
+        <text class="text-grey">银行卡(企)：</text>
+      </view>
+    </view>
+</view>
+

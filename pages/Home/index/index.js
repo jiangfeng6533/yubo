@@ -56,6 +56,11 @@ Component({
       wx.navigateTo({
         url: '/pages/Order/list/list?search=' + JSON.stringify(param),
       })
+    },
+    toDailyTurnover:function(){
+      wx.navigateTo({
+        url: '/pages/Home/daily-turnover/index',
+      })
     }
   }
 })

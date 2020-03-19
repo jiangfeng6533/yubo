@@ -1,5 +1,5 @@
 <cu-custom bgColor="bg-gradual-blue">
-  <view slot="content">维修助手</view>
+  <view slot="content">维修记</view>
 </cu-custom>
 <scroll-view scroll-y class="scrollPage">
 
@@ -44,7 +44,7 @@
   </view>
   </view>
   <view class="padding-sm cc">
-  <view class="cu-capsule round padding-sm">
+  <view class="cu-capsule round padding-sm"  bindtap="toDailyTurnover">
     <view class="cu-tag bg-blue " >
       当日营业额
     </view>

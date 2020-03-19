@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
-	"appid": "wx083d60accf8be66e",
+	"appid": "wxc70d235add1ebd11",
 	"projectname": "yubo",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -45,6 +45,10 @@
 		},
 		"game": {
 			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -136,6 +140,34 @@
 					"id": -1,
 					"name": "pages/Order/add/add",
 					"pathName": "pages/Order/add/add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/Home/daily-turnover/index",
+					"pathName": "pages/Home/daily-turnover/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/User/editpwd/editpwd",
+					"pathName": "pages/User/editpwd/editpwd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/Company/home/home",
+					"pathName": "pages/Company/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"scene": null
 				}
 			]

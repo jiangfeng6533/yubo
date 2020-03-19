@@ -1,13 +1,17 @@
 {
   "pages": [
+    "pages/welcome/index",
     "pages/index/index",
     "pages/login/login",
+    "pages/login/comlogin",
     "pages/Order/add/add",
     "pages/Order/list/list",
     "pages/Order/view/view",
     "pages/Order/edit/edit",
     "pages/User/user/user",
+    "pages/User/editpwd/editpwd",
     "pages/Home/index/index",
+    "pages/Home/daily-turnover/index",
     "pages/Client/client/client",
     "pages/Client/client-info/client-info",
     "pages/Order/select-client/client",
@@ -16,6 +20,9 @@
     "pages/Goods/select-list/select-list",
     "pages/Goods/select-shop/select-shop",
     "pages/Goods/category-list/category-list",
+    "pages/Register/company-reg/company-reg",
+    "pages/Company/home/home",
+    
     "pages/foot/foot",
     "pages/timeline/timeline",
     "pages/manger/sick",

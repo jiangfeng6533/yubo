@@ -1,0 +1,5 @@
+<!--pages/welcome/index.wxml-->
+<view class="ub ub-f1 ub-ver ub-pc ub-ac" style="height:100%">
+  <view class="ub" style="font-size:40rpx">欢迎使用维修记</view>
+  <view class="ub margin-top line-white cu-btn" bindtap="toindex">立即进入</view>
+</view>

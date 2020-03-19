@@ -4,9 +4,9 @@
 
   <view class="flex-sub padding ">
     <view class=" text-xxl ">
-      <text class="text-black  text-bold">店铺登录</text>
+      <text class="text-black text-bold">老板登录</text>
     </view>
-    <view class="margin-top text-blue" bindtap="toComLogin">点击切换店铺后台登录</view>
+    <view class="margin-top text-blue" bindtap="toShopLogin">点击切换店铺登录</view>
   </view>
 </view>
 
@@ -23,19 +23,20 @@
 
 
   <view class="flex flex-wrap ub-pc margin-top">
-    <view class="basis-xl radius">
+    <view class="basis-xl    radius">
       <button class="cu-btn block bg-blue margin-tb-sm lg button-hover radius" form-type='submit'>登录</button>
     </view>
   </view>
-  <view class="flex flex-wrap ub-pc ">
+  
+   <view class="flex flex-wrap ub-pc ">
     <view class="basis-xl radius">
       <view class="flex justify-between">
-        <view class="text-blue" bindtap="reg">
-          注册
+        <view class="text-blue" bindtap="tocom">
+          预览
         </view>
-        <view class="text-blue" bindtap="forgetpwd">
+        <!-- <view class="text-blue" bindtap="forgetpwd">
           忘记密码
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

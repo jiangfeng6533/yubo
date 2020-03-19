@@ -1,0 +1,7 @@
+/* pages/welcome/index.wxss */
+page{
+  background-image: var(--gradualBlue);
+  color: #fff;
+  height: 100%;
+  width: 100%;
+}

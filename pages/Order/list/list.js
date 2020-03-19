@@ -14,9 +14,10 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     lefeModal:false,
-    payType:['请选择收款类型','现金','支付宝','微信'],
+    payType:['请选择收款类型','现金','支付宝','微信','银行卡(企)'],
     paydefIndex:0,
-    imgPublic: global.Configs.imgurl
+    imgPublic: global.Configs.imgurl,
+    imgModal:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -33,9 +34,10 @@ Page({
   },
   onShow: function (options) {
     var that = this;
-    if (this.listaudit){
-      that.search(that.searchdata);
-    }
+    // if (this.listaudit){
+    //   that.search(that.searchdata);
+    // }
+    that.getOrderAll(this.listaudit);
   },
   //搜索订单
   search: function (search){
@@ -85,6 +87,7 @@ Page({
           if (res.data.result.list[v].payment == 1) res.data.result.list[v].payment='现金';
           if (res.data.result.list[v].payment == 2) res.data.result.list[v].payment = '支付宝';
           if (res.data.result.list[v].payment == 3) res.data.result.list[v].payment = '微信';
+          if (res.data.result.list[v].payment == 4) res.data.result.list[v].payment = '银行卡(企)';
           res.data.result.list[v].join_time = res.data.result.list[v].join_time.substring(0, 10);
         }
         that.setData(res.data.result);
@@ -381,4 +384,41 @@ Page({
     });
     
   },
+  getsearch(e){
+    var val = e.detail.value;
+    console.log(val);
+    this.setData({
+      searchval: val
+    });
+  },
+  osearch(){
+    var that = this;
+    var searchval = that.data.searchval;
+    if (searchval && searchval != '' && searchval != 'undefined'){
+      this.listaudit = {
+        m_id: wx.getStorageSync('m_id'),
+         phone: searchval
+      }
+      that.getOrderAll(this.listaudit);
+    }else{
+      this.listaudit = {
+        m_id: wx.getStorageSync('m_id'),
+      }
+      that.getOrderAll(this.listaudit);
+    }
+  },
+  closeimgview(){
+    
+    this.setData({
+      imgModal:false
+    })
+  },
+  showimg(e){
+    console.log(e);
+    var imgurl = e.target.dataset.imgurl
+    this.setData({
+      showimgval: imgurl,
+      imgModal: true
+    })
+  }
 })

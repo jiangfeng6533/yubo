@@ -35,7 +35,7 @@
   <block wx:for="{{userarr}}" wx:key>
     <view class="padding indexItem-{{userarr[index][0].second}}" id="indexes-{{userarr[index][0].second}}" data-index="{{userarr[index][0].second}}">{{userarr[index][0].second}}</view>
     <view class="cu-list menu-avatar no-padding">
-      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient'  data-cid="{{userarr[index][0].id}}">
+      <view class="cu-item" wx:for="{{userarr[index]}}" wx:key wx:for-index="sub" bindtap='changeClient'  data-cid="{{userarr[index][sub].id}}">
         <view class="cu-avatar round lg">{{userarr[index][0].second}}</view>
         <view class="content">
           <view class="text-grey">
